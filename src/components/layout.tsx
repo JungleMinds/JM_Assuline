@@ -10,8 +10,11 @@ import styled from "styled-components"
 
 import { StaticQuery, graphql } from "gatsby"
 
-import CSSReset from "../styles/reset"
+// Components
 import Header from "./header"
+
+// Styling
+import GlobalStyle from "../styles/index"
 
 const Layout: React.FC = ({ children }) => (
   <StaticQuery
@@ -26,15 +29,15 @@ const Layout: React.FC = ({ children }) => (
     `}
     render={data => (
       <>
-        <CSSReset />
+        <GlobalStyle />
         <Header siteTitle={data.site.siteMetadata.title} />
         <Container>
-          <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
+        <main>{children}</main>
+        <footer>
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        </footer>
         </Container>
       </>
     )}
