@@ -59,6 +59,8 @@ module.exports = {
           ],
         },
         mergeSecurityHeaders: false,
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false,
       },
     },
     `gatsby-plugin-robots-txt`,
