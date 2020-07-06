@@ -4,11 +4,10 @@ export const BASE_FONT_SIZE = 16
 
 // these sizes are arbitrary and you can set them to whatever you wish
 export const breakpoints = Object.freeze({
-  XXL: 1440,
   XL: 1272,
   L: 1024,
   M: 768,
-  S: 600,
+  S: 480,
   XS: 320,
 })
 
