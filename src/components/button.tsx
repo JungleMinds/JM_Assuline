@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 
 // Components
@@ -14,22 +14,10 @@ interface IProps {
 }
 
 const Button: React.FC<IProps> = ({ children, icon = false }) => {
-  const [isHovered, setIsHovered] = useState(false)
-
-  const handleHover = () => {
-    setIsHovered(prevState => !prevState)
-  }
-
   return (
-    <ButtonStyled
-      icon={icon}
-      onMouseEnter={handleHover}
-      onMouseLeave={handleHover}
-    >
-      {children}
-      {icon && (
-        <ArrowRight width={40} height={24} color={dark} isHovered={isHovered} />
-      )}
+    <ButtonStyled icon={icon}>
+      <span>{children}</span>
+      {icon && <ArrowRight width={24} height={16} color={dark} />}
     </ButtonStyled>
   )
 }
@@ -37,22 +25,27 @@ const Button: React.FC<IProps> = ({ children, icon = false }) => {
 export default Button
 
 const ButtonStyled = styled.button<IProps>`
-  display: block;
+  display: inline-flex;
+  align-items: center;
   background: ${yellow};
-  padding: ${props => (props.icon ? "12px 16px 12px 32px" : "12px 32px 12px")};
+  padding: 12px 32px;
   border-radius: 24px;
   border: none;
   cursor: pointer;
   color: ${dark};
   ${textStyles.highlight}
-  transition: all 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
 
-  :focus {
-    outline: none;
+  & svg {
+    transition: transform 0.2s ease-in-out;
   }
 
   :hover {
     background: ${yellowDark};
     color: ${darkest};
+
+    & svg {
+      transform: translateX(16px);
+    }
   }
 `
