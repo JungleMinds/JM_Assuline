@@ -11,6 +11,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 // Components
 import Header from "./header"
+import Navigation from "./navigation"
 
 // Styling
 import GlobalStyle from "../styles/index"
@@ -29,6 +30,7 @@ const Layout: React.FC = ({ children }) => (
     render={data => (
       <>
         <GlobalStyle />
+        <Navigation />
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
         <footer>
