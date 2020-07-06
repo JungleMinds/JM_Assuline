@@ -15,16 +15,16 @@ interface IProps {
 
 const Button: React.FC<IProps> = ({ children, icon }) => {
   return (
-    <Conntainer>
+    <Container>
       <span>{children}</span>
       {icon && <Icon icon="arrow" width={24} height={16} color={dark} />}
-    </Conntainer>
+    </Container>
   )
 }
 
 export default Button
 
-const Conntainer = styled.button`
+const Container = styled.button`
   display: inline-flex;
   align-items: center;
   background: ${yellow};

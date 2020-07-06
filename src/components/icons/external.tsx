@@ -1,0 +1,38 @@
+import React from "react"
+import styled from "styled-components"
+
+// Types
+interface IIconProps {
+  width?: number
+  height?: number
+  className?: string
+}
+
+const External = ({ width, height }: IIconProps) => (
+  <Svg
+    width={width}
+    height={height}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox={`0 0 24 24`}
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <g
+      stroke="#282623"
+      strokeWidth="2"
+      fill="none"
+      fillRule="evenodd"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17.333 12.889v5.333c0 .982-.796 1.778-1.777 1.778H5.778A1.778 1.778 0 014 18.222V8.444c0-.981.796-1.777 1.778-1.777h5.333M14.667 4H20v5.333M10.222 13.778L20 4" />
+    </g>
+  </Svg>
+)
+
+export default External
+
+const Svg = styled.svg<IIconProps>`
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+  margin-left: 8px;
+`

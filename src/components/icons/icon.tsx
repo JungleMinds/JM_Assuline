@@ -2,6 +2,9 @@ import React from "react"
 
 // Components
 import Arrow from "./arrow"
+import Logo from "./logo"
+import Menu from "./menu"
+import External from "./external"
 
 // Styles
 import { dark } from "../../styles/colors"
@@ -12,6 +15,10 @@ export interface IIconProps {
   height?: number
   color?: string
   className?: string
+  isOpen?: boolean
+  inverse?: boolean
+  payoff?: boolean
+  isScrolled?: boolean
 }
 
 type IProps = IIconProps & {
@@ -20,6 +27,9 @@ type IProps = IIconProps & {
 
 const iconMap = {
   arrow: Arrow,
+  logo: Logo,
+  menu: Menu,
+  external: External,
 }
 
 const Icon = ({
@@ -28,6 +38,10 @@ const Icon = ({
   height = 24,
   color = dark,
   className,
+  isOpen,
+  inverse,
+  payoff,
+  isScrolled,
 }: IProps) => {
   const IconComponent: React.FC<IIconProps> = iconMap[icon]
   return (
@@ -36,6 +50,10 @@ const Icon = ({
       height={height}
       color={color}
       className={className}
+      isOpen={isOpen}
+      inverse={inverse}
+      payoff={payoff}
+      isScrolled={isScrolled}
     />
   )
 }
