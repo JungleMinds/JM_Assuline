@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 // Components
-import ArrowRight from "./arrowRight"
+import Icon from "./icons/icon"
 
 // Styles
 import { yellow, yellowDark, dark, darkest } from "../styles/colors"
@@ -13,18 +13,18 @@ interface IProps {
   icon?: boolean
 }
 
-const Button: React.FC<IProps> = ({ children, icon = false }) => {
+const Button: React.FC<IProps> = ({ children, icon }) => {
   return (
-    <ButtonStyled icon={icon}>
+    <Conntainer>
       <span>{children}</span>
-      {icon && <ArrowRight width={24} height={16} color={dark} />}
-    </ButtonStyled>
+      {icon && <Icon icon="arrow" width={24} height={16} color={dark} />}
+    </Conntainer>
   )
 }
 
 export default Button
 
-const ButtonStyled = styled.button<IProps>`
+const Conntainer = styled.button`
   display: inline-flex;
   align-items: center;
   background: ${yellow};
@@ -36,7 +36,7 @@ const ButtonStyled = styled.button<IProps>`
   ${textStyles.highlight}
   transition: background 0.2s ease-in-out;
 
-  & svg {
+  > svg {
     transition: transform 0.2s ease-in-out;
   }
 
@@ -44,7 +44,7 @@ const ButtonStyled = styled.button<IProps>`
     background: ${yellowDark};
     color: ${darkest};
 
-    & svg {
+    > svg {
       transform: translateX(16px);
     }
   }

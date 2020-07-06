@@ -19,7 +19,9 @@ const IndexPage = () => (
       <Image />
     </ImageContainer>
     <Link to="/styleguide">Go to styleguide</Link>
+    <br />
     <Button>Lees Meer</Button>
+    <br />
     <Button icon>Lees Meer</Button>
   </Layout>
 )
