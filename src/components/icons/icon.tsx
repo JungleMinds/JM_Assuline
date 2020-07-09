@@ -10,11 +10,8 @@ import External from "./external"
 import { dark } from "../../styles/colors"
 
 // Types
-export interface IIconProps {
-  width?: number
-  height?: number
-  color?: string
-  className?: string
+import { IBaseIcon } from "../../types/entities"
+export interface IIconProps extends IBaseIcon {
   isOpen?: boolean
   inverse?: boolean
   payoff?: boolean
@@ -38,10 +35,7 @@ const Icon = ({
   height = 24,
   color = dark,
   className,
-  isOpen,
-  inverse,
-  payoff,
-  isScrolled,
+  ...rest
 }: IProps) => {
   const IconComponent: React.FC<IIconProps> = iconMap[icon]
   return (
@@ -50,10 +44,7 @@ const Icon = ({
       height={height}
       color={color}
       className={className}
-      isOpen={isOpen}
-      inverse={inverse}
-      payoff={payoff}
-      isScrolled={isScrolled}
+      {...rest}
     />
   )
 }

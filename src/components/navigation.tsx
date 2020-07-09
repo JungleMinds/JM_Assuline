@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
@@ -9,7 +9,7 @@ import NavLinks from "./navLinks"
 
 // Styles
 import colors, { white, yellow } from "../styles/colors"
-import mediaQueries from "../styles/mediaQueries"
+import mediaQueries, { breakpoints } from "../styles/mediaQueries"
 
 interface IProps {
   isOpen?: boolean
@@ -20,15 +20,35 @@ const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const handleClick = () => {
-    setIsOpen(prevState => !prevState)
+  const handleResize = () => {
+    if (window.innerWidth >= breakpoints.M && isOpen) {
+      setIsOpen(false)
+    }
   }
 
   const handleScroll = () => {
-    setIsScrolled(window.scrollY > 72)
+    if (window.innerWidth >= breakpoints.M) {
+      if (window.scrollY > 72 && !isScrolled) {
+        setIsScrolled(true)
+      } else if (window.scrollY < 72 && isScrolled) {
+        setIsScrolled(false)
+      }
+    }
   }
 
-  document.addEventListener("scroll", handleScroll)
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [handleScroll, handleResize])
+
+  const handleClick = () => {
+    setIsOpen(prevState => !prevState)
+  }
 
   return (
     <>
@@ -60,6 +80,7 @@ const Navigation: React.FC = () => {
               height={88}
               inverse
               isScrolled={isScrolled}
+              payoff
             />
           </Link>
           <NavLinks />
@@ -81,7 +102,8 @@ const ContentPusher = styled.div`
   `}
 `
 
-const Container = styled.header<IProps>`
+const Container = styled.div<IProps>`
+  position: relative;
   background: ${white};
   margin-bottom: 16px;
   padding: 0 16px;
@@ -242,6 +264,7 @@ const MobileNavContainer = styled.nav<IProps>`
 
   ${mediaQueries.from.breakpoint.S`
     padding-top: 24px;
+    padding-left: 20px;
   `}
 
   ${mediaQueries.from.breakpoint.M`
