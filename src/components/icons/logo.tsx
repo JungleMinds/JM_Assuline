@@ -12,9 +12,17 @@ interface IIconProps extends IBaseIcon {
   inverse?: boolean
   payoff?: boolean
   isScrolled?: boolean
+  footer?: boolean
 }
 
-const Logo = ({ width, height, inverse, payoff, isScrolled }: IIconProps) => (
+const Logo = ({
+  width,
+  height,
+  inverse,
+  payoff,
+  isScrolled,
+  footer,
+}: IIconProps) => (
   <Svg
     width={width}
     height={height}
@@ -22,6 +30,7 @@ const Logo = ({ width, height, inverse, payoff, isScrolled }: IIconProps) => (
     viewBox={`0 0 291 128`}
     preserveAspectRatio="xMidYMid meet"
     isScrolled={isScrolled}
+    footer={footer}
   >
     <Container inverse={inverse} fillRule="evenodd">
       <I
@@ -60,8 +69,10 @@ const Svg = styled.svg<IIconProps>`
   transition: width 0.2s ease, height 0.2s ease;
 
   ${mediaQueries.from.breakpoint.S`
-      width: 236px;
-      height: 104px;
+      width: ${(props: { footer: boolean }) =>
+        props.footer ? "200px" : "236px"};
+      height: ${(props: { footer: boolean }) =>
+        props.footer ? "88px" : "104px"};
   `}
 
   ${mediaQueries.from.breakpoint.M`
@@ -70,10 +81,10 @@ const Svg = styled.svg<IIconProps>`
   `}
 
   ${mediaQueries.from.breakpoint.L`
-      width: ${(props: { isScrolled: boolean }) =>
-        props.isScrolled ? "219px" : "291px"};
-      height: ${(props: { isScrolled: boolean }) =>
-        props.isScrolled ? "96px" : "128px"};
+      width: ${(props: { isScrolled: boolean; footer: boolean }) =>
+        props.footer ? "200px" : props.isScrolled ? "219px" : "291px"};
+      height: ${(props: { isScrolled: boolean; footer: boolean }) =>
+        props.footer ? "88px" : props.isScrolled ? "96px" : "128px"};
   `}
 `
 
