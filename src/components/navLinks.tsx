@@ -7,7 +7,7 @@ import IconComponent from "./icons/icon"
 
 // Styles
 import * as textStyles from "../styles/textStyles"
-import { dark } from "../styles/colors"
+import { dark, green } from "../styles/colors"
 import mediaQueries from "../styles/mediaQueries"
 
 // Types
@@ -76,6 +76,10 @@ const List = styled.ul<IProps>`
     justify-content: space-between;
     align-items: center;
   `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    padding-left: 0;
+  `}
 `
 
 const ListItem = styled.li<IProps>`
@@ -110,23 +114,39 @@ const Link = styled(LinkComponent)`
     }
   }
 
-  ${mediaQueries.from.breakpoint.XL`
+  ${mediaQueries.from.breakpoint.M`
 
     ::after {
       content: "";
       width: 0%;
       height: 2px;
       position: absolute;
-      top: calc(100% + 6px);
+      top: calc(100% + 4px);
       left: 0;
       background: ${dark};
       transition: width 0.2s ease;
     }
 
     &:hover {
+      color: ${green};
       ::after {
         width: 100%;
+        background: ${green};
       }
+
+      &.active {
+        color: ${dark};
+
+        ::after {
+          background: ${dark};
+        }
+      }
+    }
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    ::after {
+      top: calc(100% + 6px);
     }
 
     &.active {

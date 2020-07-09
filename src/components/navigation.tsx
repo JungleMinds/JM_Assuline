@@ -108,6 +108,7 @@ const Container = styled.div<IProps>`
   margin-bottom: 16px;
   padding: 0 16px;
   max-height: 160px;
+  z-index: 9;
 
   ::before {
     content: "";
@@ -137,6 +138,8 @@ const Container = styled.div<IProps>`
     position: fixed;
     top: 0;
     width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
       `
@@ -150,6 +153,11 @@ const Container = styled.div<IProps>`
         );
       transition: max-height 0.2s ease;
     `}
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    padding-left: 64px;
+    padding-right: 64px;
   `}
 `
 
@@ -166,9 +174,7 @@ const Wrapper = styled.div<IProps>`
 
   ${mediaQueries.from.breakpoint.M`
     position: relative;
-    max-width: 1312px;
-    padding-left: 24px;
-    padding-right: 24px;
+    max-width: 1920px;
     transition: max-height 0.2s ease;
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
@@ -183,8 +189,6 @@ const Wrapper = styled.div<IProps>`
   `}
 
   ${mediaQueries.from.breakpoint.XL`
-    padding-left: 64px;
-    padding-right: 64px;
     margin: 0 auto;
   `}
 `
@@ -224,6 +228,10 @@ const NavContainer = styled.nav<IProps>`
     ${(props: { isScrolled: boolean }) =>
       !props.isScrolled && "padding-top: 32px;"}
   `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    max-width: 700px;
+  `}
 `
 
 const MobileNavBackground = styled.div<IProps>`
@@ -260,6 +268,7 @@ const MobileNavContainer = styled.nav<IProps>`
   left: 0;
   padding: 16px;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  ${({ isOpen }) => !isOpen && "pointer-events: none;"}
   transition: opacity 0.2s ease ${({ isOpen }) => isOpen && `.2s`};
 
   ${mediaQueries.from.breakpoint.S`

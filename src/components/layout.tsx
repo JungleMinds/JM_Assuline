@@ -12,6 +12,7 @@ import { StaticQuery, graphql } from "gatsby"
 // Components
 import Header from "./header"
 import Navigation from "./navigation"
+import Footer from "./footer"
 
 // Styling
 import GlobalStyle from "../styles/index"
@@ -33,11 +34,7 @@ const Layout: React.FC = ({ children }) => (
         <Navigation />
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        <Footer />
       </>
     )}
   />
