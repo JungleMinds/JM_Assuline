@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 // Components
-import Icon from "./icons/icon"
+import IconComponent from "./icons/icon"
 
 // Styles
 import { yellow, yellowDark, dark, darkest } from "../styles/colors"
@@ -16,13 +16,17 @@ interface IProps {
 const Button: React.FC<IProps> = ({ children, icon }) => {
   return (
     <Container>
-      <span>{children}</span>
+      <Label>{children}</Label>
       {icon && <Icon icon="arrow" width={24} height={16} color={dark} />}
     </Container>
   )
 }
 
 export default Button
+
+const Icon = styled(IconComponent)`
+  transition: transform 0.2s ease-in-out;
+`
 
 const Container = styled.button`
   display: inline-flex;
@@ -36,16 +40,16 @@ const Container = styled.button`
   ${textStyles.highlight}
   transition: background 0.2s ease-in-out;
 
-  > svg {
-    transition: transform 0.2s ease-in-out;
-  }
-
   :hover {
     background: ${yellowDark};
     color: ${darkest};
 
-    > svg {
+    > ${Icon} {
       transform: translateX(16px);
     }
   }
+`
+
+const Label = styled.span`
+  margin-right: 8px;
 `
