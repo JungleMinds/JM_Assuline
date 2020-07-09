@@ -9,12 +9,12 @@ import mediaQueries from "../styles/mediaQueries"
 
 interface IProps {
   isOpen?: boolean
-  handleClick?(): void
+  handleClick?: () => void
 }
 
 const Hamburger: React.FC<IProps> = ({ isOpen, handleClick }) => {
   return (
-    <Button onClick={handleClick} isOpen={isOpen}>
+    <Button onClick={handleClick}>
       <Icon icon="menu" width={24} height={24} isOpen={isOpen} />
     </Button>
   )
