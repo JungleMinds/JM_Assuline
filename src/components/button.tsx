@@ -11,11 +11,12 @@ import * as textStyles from "../styles/textStyles"
 // Types
 interface IProps {
   icon?: boolean
+  className?: string
 }
 
-const Button: React.FC<IProps> = ({ children, icon }) => {
+const Button: React.FC<IProps> = ({ children, icon, className }) => {
   return (
-    <Container>
+    <Container className={className}>
       <Label>{children}</Label>
       {icon && <Icon icon="arrow" width={24} height={16} color={dark} />}
     </Container>

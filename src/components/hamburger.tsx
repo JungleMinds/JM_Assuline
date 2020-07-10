@@ -45,7 +45,7 @@ const Button = styled.button<IProps>`
     right: 20px;
   `}
 
-  ${mediaQueries.from.breakpoint.M`
+  ${mediaQueries.from.breakpoint.L`
     display: none;
   `}
 `
