@@ -8,6 +8,8 @@ import External from "./external"
 import Phone from "./phone"
 import Mail from "./mail"
 import Location from "./location"
+import Lines from "./lines"
+import Check from "./check"
 
 // Styles
 import { dark } from "../../styles/colors"
@@ -20,6 +22,7 @@ export interface IIconProps extends IBaseIcon {
   payoff?: boolean
   isScrolled?: boolean
   footer?: boolean
+  large?: boolean
 }
 
 type IProps = IIconProps & {
@@ -34,6 +37,8 @@ const iconMap = {
   phone: Phone,
   location: Location,
   mail: Mail,
+  lines: Lines,
+  check: Check,
 }
 
 const Icon = ({

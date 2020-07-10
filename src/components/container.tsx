@@ -4,13 +4,18 @@ import styled from "styled-components"
 // Styles
 import mediaQueries from "../styles/mediaQueries"
 
-const Container: React.FC = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>
+// Types
+interface IProps {
+  className?: string
+}
+
+const Container: React.FC<IProps> = ({ children, className }) => {
+  return <Wrapper className={className}>{children}</Wrapper>
 }
 
 export default Container
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   max-width: 1264px;
   display: block;
   margin: 0 auto;

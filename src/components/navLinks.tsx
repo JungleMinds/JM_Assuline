@@ -20,16 +20,16 @@ const NAV_ITEMS: INavLinkItem[] = [
     label: "Home",
   },
   {
-    url: "/team",
-    label: "Team",
-  },
-  {
     url: "/hypotheken",
     label: "Hypotheken",
   },
   {
     url: "/verzekeren",
     label: "Verzekeren",
+  },
+  {
+    url: "/team",
+    label: "Team",
   },
   {
     url: "/contact",
@@ -69,7 +69,7 @@ const List = styled.ul<IProps>`
   padding-left: 16px;
   transition: font-size 0.2s ease;
 
-  ${mediaQueries.from.breakpoint.M`
+  ${mediaQueries.from.breakpoint.L`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -89,7 +89,7 @@ const ListItem = styled.li<IProps>`
     margin-bottom: 22px;
   }
 
-  ${mediaQueries.from.breakpoint.M`
+  ${mediaQueries.from.breakpoint.L`
     margin-bottom: 0;
 
     &:nth-last-child(2) {
@@ -114,7 +114,7 @@ const Link = styled(LinkComponent)`
     }
   }
 
-  ${mediaQueries.from.breakpoint.M`
+  ${mediaQueries.from.breakpoint.L`
 
     ::after {
       content: "";

@@ -10,7 +10,6 @@ import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 
 // Components
-import Header from "./header"
 import Navigation from "./navigation"
 import Footer from "./footer"
 
@@ -28,11 +27,10 @@ const Layout: React.FC = ({ children }) => (
         }
       }
     `}
-    render={data => (
+    render={() => (
       <>
         <GlobalStyle />
         <Navigation />
-        <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
         <Footer />
       </>
