@@ -11,7 +11,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ['COMMIT_HASH', 'VERSION'], // Add ENV vars to whitelist here and they'll show up in your client-side
+        whitelist: ['NODE_ENV', 'COMMIT_HASH', 'VERSION'], // Add ENV vars to whitelist here and they'll show up in your client-side
       },
     },
     `gatsby-plugin-typescript`,
@@ -70,6 +70,17 @@ module.exports = {
         mergeSecurityHeaders: false,
         mergeLinkHeaders: false,
         mergeCachingHeaders: false,
+      },
+    },
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: process.env.PRISMIC_REPO_NAME,
+        accessToken: process.env.PRISMIC_TOKEN,
+        linkResolver: ({ node }) => () => `/${node.uid}`,
+        schemas: {
+          content_page: require('./src/schemas/content_page.json'),
+        },
       },
     },
     `gatsby-plugin-robots-txt`,
