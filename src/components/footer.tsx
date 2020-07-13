@@ -92,7 +92,9 @@ const Footer: React.FC = () => {
         </InnerWrapper>
         <BottomSection>
           <BottomTexts>
-            <Span>© Copyright Assuport BV {new Date().getFullYear()}</Span>
+            <Copyright>
+              &copy; Copyright Assuline BV {new Date().getFullYear()}
+            </Copyright>
             <Statements>
               <StyledLink to="/disclaimer">Disclaimer</StyledLink>
               <StyledLink to="/privacy">Privacy statement</StyledLink>
@@ -190,23 +192,6 @@ const Icon = styled(IconComponent)`
   margin-right: 16px;
 `
 
-const ListItem = styled.li`
-  display: table;
-  margin-bottom: 16px;
-
-  > a {
-    :hover {
-      color: ${green};
-      transform: translateX(16px);
-      transition: transform 0.2s ease-in-out;
-
-      ${Icon} {
-        fill: ${green};
-      }
-    }
-  }
-`
-
 const StyledNavLink = styled(Link)`
   display: flex;
   align-items: center;
@@ -220,6 +205,28 @@ const StyledAddressLink = styled.a`
     ${Icon} {
       fill: none !important;
       stroke: ${green};
+    }
+  }
+`
+
+const ListItem = styled.li`
+  display: table;
+  margin-bottom: 16px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  ${StyledNavLink}, ${StyledAddressLink} {
+    transition: transform 0.2s ease-in-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    :hover {
+      color: ${green};
+      transform: translateX(16px);
+
+      ${Icon} {
+        fill: ${green};
+      }
     }
   }
 `
@@ -252,7 +259,7 @@ const BottomTexts = styled.div`
   `}
 `
 
-const Span = styled.span`
+const Copyright = styled.span`
   margin: 24px 0;
 
   ${mediaQueries.from.breakpoint.M`
