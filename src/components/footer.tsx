@@ -4,8 +4,6 @@ import styled from 'styled-components'
 
 // Components
 import IconComponent from './icons/icon'
-import Connect from '../images/connect.png'
-import Kifid from '../images/kifid.png'
 
 // Styles
 import * as textStyles from '../styles/textStyles'
@@ -103,8 +101,8 @@ const Footer: React.FC = () => {
             </Statements>
           </BottomTexts>
           <LogoContainer>
-            <Image src={Kifid} alt="Kifid Logo" />
-            <Image src={Connect} alt="Connect Logo" />
+            <Image src="/images/kifid.png" alt="Kifid Logo" />
+            <Image src="/images/connect.png" alt="Connect Logo" />
           </LogoContainer>
         </BottomSection>
       </Wrapper>

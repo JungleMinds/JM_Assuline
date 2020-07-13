@@ -22,3 +22,6 @@ export type HeaderTypes =
   | 'Verzekeren'
   | 'Team'
   | 'Contact'
+
+// SERVICES
+export type ServiceTypes = 'Hypotheken' | 'Verzekeren'

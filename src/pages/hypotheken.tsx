@@ -5,7 +5,6 @@ import SEO from '../components/seo'
 
 // Components
 import Header from '../components/header'
-import HeaderImage from '../images/hypothekenHeaderImage.png'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -15,7 +14,7 @@ const HEADER_CONTENT = {
     'Vrijblijvend gratis eerste hypotheekgesprek',
     'Zowel particulier als zakelijk',
   ],
-  image: HeaderImage,
+  image: '/images/hypothekenHeaderImage.png',
 }
 
 const headerButtons = [
