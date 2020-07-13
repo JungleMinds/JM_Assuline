@@ -95,9 +95,18 @@ const Container = styled(ContainerComponent)`
   flex-wrap: nowrap;
   padding: 0;
   max-width: 1920px;
+  margin-bottom: 64px;
+
+  ${mediaQueries.from.breakpoint.M`
+    margin-bottom: 80px;
+  `}
 
   ${mediaQueries.from.breakpoint.L`
     flex-direction: row-reverse;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    margin-bottom: 160px;
   `}
 `
 

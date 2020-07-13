@@ -9,26 +9,18 @@ import SEO from '../components/seo'
 // Components
 import Button from '../components/button'
 import Header from '../components/header'
-import HeaderImage from '../images/homeHeaderImage.png'
+import Services from '../components/services'
 import Carousel from '../components/carousel'
 
-// Mock data
-const CAROUSEL_DATA = {
-  images: [
-    '/images/carouselImage.png',
-    '/images/carouselImage.png',
-    '/images/carouselImage.png',
-  ],
-  heading:
-    'Wij vergelijken rentepercentages en voorwaarden bij meer dan 20 geldverstrekkers',
-}
+// Types
+import { ServiceTypes } from '../types/entities'
 
 // Mock data
 const HEADER_CONTENT = {
   title: 'Persoonlijk advies op maat',
   paragraph:
     'Voor uw hypotheek, verzekeringen en andere financiële zaken voor zowel consumenten als bedrijven.',
-  image: HeaderImage,
+  image: '/images/homeHeaderImage.png',
   type: 'Hypotheken',
 }
 
@@ -38,6 +30,37 @@ const headerButtons = [
     url: '/',
   },
 ]
+
+const SERVICES = [
+  {
+    title: 'Goed verzekerd, zowel particulier als zakelijk',
+    paragraph:
+      'Wij zijn niet gebonden aan een verzekeraar, maar zoeken alles uit en vinden de beste aanbieder voor uw situatie. We bieden totaalpakketten, maar ook losse verzekeringen voor consumenten én voor bedrijven.',
+    buttonLabel: 'Naar verzekeren',
+    buttonUrl: '/verzekeren',
+    image: '/images/hypothekenHeaderImage.png',
+    type: 'Verzekeren' as ServiceTypes,
+  },
+  {
+    title: 'Hypotheekadvies voor ondernemers én consumenten',
+    paragraph:
+      'Wij zijn een onafhankelijk werkend financieel adviesbureau. Door onze persoonlijke manier van werken kennen onze specialisten uw situatie goed en kunnen we snel handelen wanneer dat nodig is. Een eerste hypotheekgesprek is bij Assuline altijd gratis.',
+    buttonLabel: 'Naar hypotheken',
+    buttonUrl: '/hypotheken',
+    image: '/images/hypothekenHeaderImage.png',
+    type: 'Hypotheken' as ServiceTypes,
+  },
+]
+
+const CAROUSEL_DATA = {
+  images: [
+    '/images/carouselImage.png',
+    '/images/carouselImage.png',
+    '/images/carouselImage.png',
+  ],
+  heading:
+    'Wij vergelijken rentepercentages en voorwaarden bij meer dan 20 geldverstrekkers',
+}
 
 const Index = () => (
   <Layout>
@@ -49,6 +72,7 @@ const Index = () => (
       image={HEADER_CONTENT.image}
       type="Home"
     />
+    <Services services={SERVICES} />
     <Carousel images={CAROUSEL_DATA.images} heading={CAROUSEL_DATA.heading} />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>

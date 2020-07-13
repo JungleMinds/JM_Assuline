@@ -5,7 +5,6 @@ import SEO from '../components/seo'
 
 // Components
 import Header from '../components/header'
-import HeaderImage from '../images/contactHeaderImage.png'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -15,7 +14,7 @@ const HEADER_CONTENT = {
     { label: 'Mail ons', url: '/contact' },
     { label: 'Bel ons', url: '/contact' },
   ],
-  image: HeaderImage,
+  image: '/images/contactHeaderImage.png',
 }
 
 const Contact = () => (
