@@ -10,6 +10,18 @@ import SEO from '../components/seo'
 import Button from '../components/button'
 import Header from '../components/header'
 import HeaderImage from '../images/homeHeaderImage.png'
+import Carousel from '../components/carousel'
+
+// Mock data
+const CAROUSEL_DATA = {
+  images: [
+    '/images/carouselImage.png',
+    '/images/carouselImage.png',
+    '/images/carouselImage.png',
+  ],
+  heading:
+    'Wij vergelijken rentepercentages en voorwaarden bij meer dan 20 geldverstrekkers',
+}
 
 // Mock data
 const HEADER_CONTENT = {
@@ -37,6 +49,7 @@ const Index = () => (
       image={HEADER_CONTENT.image}
       type="Home"
     />
+    <Carousel images={CAROUSEL_DATA.images} heading={CAROUSEL_DATA.heading} />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>

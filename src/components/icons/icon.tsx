@@ -10,6 +10,7 @@ import Mail from './mail'
 import Location from './location'
 import Lines from './lines'
 import Check from './check'
+import Indicator from './indicator'
 
 // Styles
 import { dark } from '../../styles/colors'
@@ -39,6 +40,7 @@ const iconMap = {
   mail: Mail,
   lines: Lines,
   check: Check,
+  indicator: Indicator,
 }
 
 const Icon = ({
