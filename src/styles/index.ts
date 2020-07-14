@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: ${dark};
+    text-decoration: none;
   }
 `
 
