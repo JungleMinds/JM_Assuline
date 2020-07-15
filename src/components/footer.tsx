@@ -22,16 +22,16 @@ const NAV_ITEMS: INavLinkItem[] = [
     label: "Home",
   },
   {
-    url: "/team",
-    label: "Team",
-  },
-  {
     url: "/hypotheken",
     label: "Hypotheken",
   },
   {
     url: "/verzekeren",
     label: "Verzekeren",
+  },
+  {
+    url: "/team",
+    label: "Team",
   },
   {
     url: "/contact",
@@ -81,6 +81,8 @@ const Footer: React.FC = () => {
                 <ListItem>
                   <StyledAddressLink
                     href={`https://www.google.com/maps/search/${ADDRESS_DATA.location}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <Icon icon="location" width={24} height={24} />
                     {ADDRESS_DATA.location}
@@ -190,6 +192,7 @@ const AddressList = styled(NavLinks)`
 
 const Icon = styled(IconComponent)`
   margin-right: 16px;
+  flex: 0 0 ${({ width }) => width}px;
 `
 
 const StyledNavLink = styled(Link)`
@@ -296,8 +299,13 @@ const StyledLink = styled(Link)`
 
 const LogoContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
+
+  ${mediaQueries.from.px(375)`
+    flex-direction: row;
+    align-items: center;
+  `}
 
   ${mediaQueries.from.breakpoint.M`
   max-width: 33%;
@@ -315,8 +323,12 @@ ${mediaQueries.from.breakpoint.XL`
 
 const Image = styled.img`
   :first-of-type {
-    display: block;
-    margin-right: 40px;
+    margin-bottom: 24px;
+
+    ${mediaQueries.from.px(375)`
+      margin-bottom: 0;
+      margin-right: 40px;
+    `}
 
     ${mediaQueries.from.breakpoint.M`
       margin-right: 24px;
