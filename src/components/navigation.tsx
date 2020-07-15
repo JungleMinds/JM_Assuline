@@ -27,10 +27,13 @@ const Navigation: React.FC = () => {
   }
 
   const handleScroll = () => {
+    const doc = document.documentElement
+    const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+
     if (window.innerWidth >= breakpoints.L) {
-      if (window.scrollY > 72 && !isScrolled) {
+      if (top > 72 && !isScrolled) {
         setIsScrolled(true)
-      } else if (window.scrollY < 72 && isScrolled) {
+      } else if (top < 72 && isScrolled) {
         setIsScrolled(false)
       }
     }
@@ -53,39 +56,41 @@ const Navigation: React.FC = () => {
   return (
     <>
       <ContentPusher />
-      <Container isOpen={isOpen} isScrolled={isScrolled}>
-        <MobileNavBackground isOpen={isOpen} />
-        <Wrapper isScrolled={isScrolled}>
-          <LogoLinkContainer isScrolled={isScrolled}>
+      <ShadowBox isScrolled={isScrolled}>
+        <Container isOpen={isOpen} isScrolled={isScrolled}>
+          <MobileNavBackground isOpen={isOpen} />
+          <Wrapper isScrolled={isScrolled}>
+            <LogoLinkContainer isScrolled={isScrolled}>
+              <Link to="/">
+                <Icon
+                  icon="logo"
+                  width={200.2}
+                  height={88}
+                  isScrolled={isScrolled}
+                  payoff={!isScrolled}
+                />
+              </Link>
+            </LogoLinkContainer>
+            <NavContainer isScrolled={isScrolled}>
+              <NavLinks subtle={isScrolled} />
+            </NavContainer>
+            <Hamburger isOpen={isOpen} handleClick={handleClick} />
+          </Wrapper>
+          <MobileNavContainer isOpen={isOpen}>
             <Link to="/">
-              <Icon
+              <MobileNavLogo
                 icon="logo"
                 width={200.2}
                 height={88}
+                inverse
                 isScrolled={isScrolled}
-                payoff={!isScrolled}
+                payoff
               />
             </Link>
-          </LogoLinkContainer>
-          <NavContainer isScrolled={isScrolled}>
-            <NavLinks subtle={isScrolled} />
-          </NavContainer>
-          <Hamburger isOpen={isOpen} handleClick={handleClick} />
-        </Wrapper>
-        <MobileNavContainer isOpen={isOpen}>
-          <Link to="/">
-            <Icon
-              icon="logo"
-              width={200.2}
-              height={88}
-              inverse
-              isScrolled={isScrolled}
-              payoff
-            />
-          </Link>
-          <NavLinks />
-        </MobileNavContainer>
-      </Container>
+            <NavLinks />
+          </MobileNavContainer>
+        </Container>
+      </ShadowBox>
     </>
   )
 }
@@ -99,6 +104,29 @@ const ContentPusher = styled.div`
 
   ${mediaQueries.from.breakpoint.XL`
     margin-bottom: 160px;
+  `}
+`
+
+const ShadowBox = styled.div<IProps>`
+  ${mediaQueries.from.breakpoint.L`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    transition: height 0.2s ease;
+    ${(props: { isScrolled: boolean }) =>
+      props.isScrolled &&
+      `
+      height: 72px;
+      box-shadow: 0 0 4px
+        rgba(
+          ${colors.darkest.channels.red},
+          ${colors.darkest.channels.green},
+          ${colors.darkest.channels.blue},
+          0.16
+        );
+    `}
   `}
 `
 
@@ -142,18 +170,11 @@ const Container = styled.div<IProps>`
     padding-left: 24px;
     padding-right: 24px;
     transform: translateX(-50%);
+    transition: max-height 0.2s ease;
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
       `
       max-height: 72px;
-      box-shadow: 0 0px 4px
-        rgba(
-          ${colors.darkest.channels.red},
-          ${colors.darkest.channels.green},
-          ${colors.darkest.channels.blue},
-          0.16
-        );
-      transition: max-height 0.2s ease;
     `}
   `}
 
@@ -240,7 +261,7 @@ const MobileNavBackground = styled.div<IProps>`
   background: ${yellow};
   position: fixed;
   top: ${({ isOpen }) => (isOpen ? "-182px" : "16px")};
-  left: ${({ isOpen }) => (isOpen ? "-200px" : "calc(100vw - 72px)")};
+  left: ${({ isOpen }) => (isOpen ? "-200px" : "calc(100% - 72px)")};
   border-radius: 50%;
   width: ${({ isOpen }) => (isOpen ? "max(100vw + 342px, 680px)" : "56px")};
   height: ${({ isOpen }) => (isOpen ? "max(100vw + 342px, 680px)" : "56px")};
@@ -256,13 +277,13 @@ const MobileNavBackground = styled.div<IProps>`
   ${mediaQueries.from.breakpoint.S`
     top: ${(props: { isOpen: boolean }) => (props.isOpen ? "-182px" : "24px")};
     left: ${(props: { isOpen: boolean }) =>
-      props.isOpen ? "-200px" : "calc(100vw - 76px)"};
+      props.isOpen ? "-200px" : "calc(100% - 76px)"};
   `}
 
   ${mediaQueries.from.breakpoint.M`
     top: ${(props: { isOpen: boolean }) => (props.isOpen ? "-587px" : "24px")};
     left: ${(props: { isOpen: boolean }) =>
-      props.isOpen ? "-320px" : "calc(100vw - 76px)"};
+      props.isOpen ? "-320px" : "calc(100% - 76px)"};
   `}
 
   ${mediaQueries.from.breakpoint.L`
@@ -287,4 +308,8 @@ const MobileNavContainer = styled.nav<IProps>`
   ${mediaQueries.from.breakpoint.L`
       display: none;
   `}
+`
+
+const MobileNavLogo = styled(Icon)`
+  margin-bottom: 32px;
 `

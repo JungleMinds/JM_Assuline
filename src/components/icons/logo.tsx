@@ -18,6 +18,7 @@ interface IIconProps extends IBaseIcon {
 const Logo = ({
   width,
   height,
+  className,
   inverse,
   payoff,
   isScrolled,
@@ -26,6 +27,7 @@ const Logo = ({
   <Svg
     width={width}
     height={height}
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     viewBox={`0 0 291 128`}
     preserveAspectRatio="xMidYMid meet"
