@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 // Components
 import ContainerComponent from "./container"
@@ -64,7 +64,7 @@ const Header: React.FC<IProps> = ({
           <List>
             {usps.map(item => (
               <ListItem key={`usps-item-${item}`}>
-                <Icon icon="check" color={yellow} />
+                <Icon icon="check" width={24} color={yellow} />
                 {item}
               </ListItem>
             ))}
@@ -79,23 +79,6 @@ const Header: React.FC<IProps> = ({
             ))}
           </ButtonWrapper>
         )}
-        {/* {buttonLabel && (
-          <StyledLink to={`/${buttonUrl}`}>
-            <Button icon>{buttonLabel}</Button>
-          </StyledLink>
-        )}
-        {buttons && (
-          <div>
-            {buttons.map(button => (
-              <Link
-                to={button.buttonUrl}
-                key={`header-button-${button.buttonLabel}`}
-              >
-                <StyledButton icon>{button.buttonLabel}</StyledButton>
-              </Link>
-            ))}
-          </div>
-        )} */}
       </Wrapper>
     </Container>
   )
@@ -115,6 +98,16 @@ const Container = styled(ContainerComponent)`
   `}
 `
 
+const appear = keyframes`
+  30% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
 const ImageContainer = styled.div`
   ${aspectRatio(375, 248)}
   margin: 0;
@@ -129,6 +122,11 @@ const ImageContainer = styled.div`
   ${mediaQueries.from.breakpoint.L`
     ${aspectRatio(512, 512)}
     flex: 1 0 50%;
+    border-radius: 2px 0 0 2px;
+  `}
+
+  ${mediaQueries.from.px(1920)`
+    border-radius: 2px;
   `}
 `
 
@@ -138,10 +136,20 @@ const Image = styled.div<{ background?: string }>`
   background-image: url('${({ background }) => background}');
   background-size: cover;
   background-position: center center;
+
+  ${mediaQueries.from.breakpoint.L`
+    border-radius: 2px 0 0 2px;
+  `}
+
+  ${mediaQueries.from.px(1920)`
+    border-radius: 2px;
+  `}
 `
 
 const Lines = styled(IconComponent)`
   ${aspectRatioChild}
+  opacity: 0;
+  animation: ${appear} 1s linear forwards;
 `
 
 const Wrapper = styled.div`
@@ -175,9 +183,17 @@ const Title = styled.h1<{ type: string }>`
 `
 
 const List = styled.ul`
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   padding: 0;
   list-style: none;
+
+  ${mediaQueries.from.breakpoint.M`
+    margin-bottom: 32px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    margin-bottom: 40px;
+  `}
 `
 
 const ListItem = styled.li`
@@ -188,6 +204,7 @@ const ListItem = styled.li`
 
 const Icon = styled(IconComponent)`
   margin-right: 12px;
+  flex: 0 0 ${({ width }) => width}px;
 `
 
 const Text = styled.p<{ type: string }>`
@@ -203,9 +220,18 @@ const Text = styled.p<{ type: string }>`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: column;
+
+  ${mediaQueries.from.px(375)`
+    flex-flow: row nowrap;
+  `}
 `
 
 const StyledButton = styled(Button)`
-  margin-right: 16px;
+  margin-bottom: 16px;
+
+  ${mediaQueries.from.px(375)`
+    margin-bottom: 0;
+    margin-right: 16px;
+  `}
 `
