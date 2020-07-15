@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import styled, { keyframes } from "styled-components"
+import useComponentWillMount from "../hooks/useComponentWillMount"
 
 // Components
 import ContainerComponent from "./container"
@@ -41,6 +42,8 @@ const Header: React.FC<IProps> = ({
       setIsWide(false)
     }
   }
+
+  useComponentWillMount(handleResize)
 
   useEffect(() => {
     setIsWide(window.innerWidth >= breakpoints.L)
