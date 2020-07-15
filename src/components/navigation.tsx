@@ -94,10 +94,6 @@ export default Navigation
 
 const ContentPusher = styled.div`
   ${mediaQueries.from.breakpoint.L`
-    margin-bottom: 144px;
-  `}
-
-  ${mediaQueries.from.breakpoint.XL`
     margin-bottom: 160px;
   `}
 `
@@ -105,7 +101,6 @@ const ContentPusher = styled.div`
 const Container = styled.div<IProps>`
   position: relative;
   background: ${white};
-  margin-bottom: 16px;
   padding: 0 16px;
   max-height: 160px;
   z-index: 9;
