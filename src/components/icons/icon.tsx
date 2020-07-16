@@ -11,6 +11,7 @@ import Location from './location'
 import Lines from './lines'
 import Check from './check'
 import Indicator from './indicator'
+import Chevron from './chevron'
 
 // Styles
 import { dark } from '../../styles/colors'
@@ -41,6 +42,7 @@ const iconMap = {
   lines: Lines,
   check: Check,
   indicator: Indicator,
+  chevron: Chevron,
 }
 
 const Icon = ({
