@@ -1,21 +1,21 @@
-import React from "react"
+import React from 'react'
 
 // Components
-import Arrow from "./arrow"
-import Logo from "./logo"
-import Menu from "./menu"
-import External from "./external"
-import Phone from "./phone"
-import Mail from "./mail"
-import Location from "./location"
-import Lines from "./lines"
-import Check from "./check"
+import Arrow from './arrow'
+import Logo from './logo'
+import Menu from './menu'
+import External from './external'
+import Phone from './phone'
+import Mail from './mail'
+import Location from './location'
+import Lines from './lines'
+import Check from './check'
 
 // Styles
-import { dark } from "../../styles/colors"
+import { dark } from '../../styles/colors'
 
 // Types
-import { IBaseIcon } from "../../types/entities"
+import { IBaseIcon } from '../../types/entities'
 export interface IIconProps extends IBaseIcon {
   isOpen?: boolean
   inverse?: boolean

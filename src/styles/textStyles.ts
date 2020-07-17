@@ -1,6 +1,6 @@
-import { css } from "styled-components"
-import { families as font } from "./fonts"
-import mediaQueries from "./mediaQueries"
+import { css } from 'styled-components'
+import { families as font } from './fonts'
+import mediaQueries from './mediaQueries'
 
 // Text styles
 // Headings

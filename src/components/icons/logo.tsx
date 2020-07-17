@@ -1,13 +1,13 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Styles
-import mediaQueries from "../../styles/mediaQueries"
-import { white, yellow, dark } from "../../styles/colors"
+import mediaQueries from '../../styles/mediaQueries'
+import { white, yellow, dark } from '../../styles/colors'
 
 // Types
 // Types
-import { IBaseIcon } from "../../types/entities"
+import { IBaseIcon } from '../../types/entities'
 interface IIconProps extends IBaseIcon {
   inverse?: boolean
   payoff?: boolean
@@ -67,26 +67,26 @@ export default Logo
 const Svg = styled.svg<IIconProps>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  ${({ inverse }) => inverse && "margin-bottom: 32px;"}
+  ${({ inverse }) => inverse && 'margin-bottom: 32px;'}
   transition: width 0.2s ease, height 0.2s ease;
 
   ${mediaQueries.from.breakpoint.S`
       width: ${(props: { footer: boolean }) =>
-        props.footer ? "200px" : "236px"};
+        props.footer ? '200px' : '236px'};
       height: ${(props: { footer: boolean }) =>
-        props.footer ? "88px" : "104px"};
+        props.footer ? '88px' : '104px'};
   `}
 
   ${mediaQueries.from.breakpoint.M`
-    ${(props: { isScrolled: boolean }) => props.isScrolled && "width: 219px;"}
-    ${(props: { isScrolled: boolean }) => props.isScrolled && "height: 96px;"}
+    ${(props: { isScrolled: boolean }) => props.isScrolled && 'width: 219px;'}
+    ${(props: { isScrolled: boolean }) => props.isScrolled && 'height: 96px;'}
   `}
 
   ${mediaQueries.from.breakpoint.L`
       width: ${(props: { isScrolled: boolean; footer: boolean }) =>
-        props.footer ? "200px" : props.isScrolled ? "219px" : "291px"};
+        props.footer ? '200px' : props.isScrolled ? '219px' : '291px'};
       height: ${(props: { isScrolled: boolean; footer: boolean }) =>
-        props.footer ? "88px" : props.isScrolled ? "96px" : "128px"};
+        props.footer ? '88px' : props.isScrolled ? '96px' : '128px'};
   `}
 `
 

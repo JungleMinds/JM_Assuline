@@ -1,11 +1,11 @@
 // Global stylesheet
-import { createGlobalStyle } from "styled-components"
-import styledNormalize from "styled-normalize"
+import { createGlobalStyle } from 'styled-components'
+import styledNormalize from 'styled-normalize'
 
 // Styles
-import * as fonts from "./fonts"
-import * as textStyles from "./textStyles"
-import { dark } from "./colors"
+import * as fonts from './fonts'
+import * as textStyles from './textStyles'
+import { dark } from './colors'
 
 const GlobalStyle = createGlobalStyle`
   ${styledNormalize}

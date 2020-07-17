@@ -17,8 +17,8 @@ export interface IButton {
 
 // HEADER
 export type HeaderTypes =
-  | "Home"
-  | "Hypotheken"
-  | "Verzekeren"
-  | "Team"
-  | "Contact"
+  | 'Home'
+  | 'Hypotheken'
+  | 'Verzekeren'
+  | 'Team'
+  | 'Contact'

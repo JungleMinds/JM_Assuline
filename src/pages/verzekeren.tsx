@@ -1,27 +1,27 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 // Components
-import Header from "../components/header"
-import HeaderImage from "../images/hypothekenHeaderImage.png"
+import Header from '../components/header'
+import HeaderImage from '../images/hypothekenHeaderImage.png'
 
 // Mock data
 const HEADER_CONTENT = {
-  title: "Goed verzekerd, zowel particulier als zakelijk",
+  title: 'Goed verzekerd, zowel particulier als zakelijk',
   usps: [
-    "Totaalpakket aan verzekeringen",
-    "Snelle afwikkeling van schades",
-    "Zowel particulier als zakelijk",
+    'Totaalpakket aan verzekeringen',
+    'Snelle afwikkeling van schades',
+    'Zowel particulier als zakelijk',
   ],
   image: HeaderImage,
 }
 
 const headerButtons = [
   {
-    label: "Neem contact op",
-    url: "/verzekeren",
+    label: 'Neem contact op',
+    url: '/verzekeren',
   },
 ]
 

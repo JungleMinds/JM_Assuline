@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Styles
-import mediaQueries from "../../styles/mediaQueries"
+import mediaQueries from '../../styles/mediaQueries'
 
 // Types
 interface IIconProps {
@@ -17,7 +17,7 @@ const Lines = ({ color, className, large }: IIconProps) => (
   <Svg
     color={color}
     className={className}
-    viewBox={`0 0 ${large ? "720 720" : "375 248"}`}
+    viewBox={`0 0 ${large ? '720 720' : '375 248'}`}
     xmlns="http://www.w3.org/2000/svg"
   >
     <g fillRule="evenodd" strokeLinecap="round">

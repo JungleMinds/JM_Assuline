@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Types
-import { IBaseIcon as IIconProps } from "../../types/entities"
+import { IBaseIcon as IIconProps } from '../../types/entities'
 
 const Arrow = ({ width, height, color, className }: IIconProps) => (
   <Svg

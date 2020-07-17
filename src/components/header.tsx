@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
-import styled, { keyframes } from "styled-components"
-import useComponentWillMount from "../hooks/useComponentWillMount"
+import React, { useState, useEffect } from 'react'
+import { Link } from 'gatsby'
+import styled, { keyframes } from 'styled-components'
+import useComponentWillMount from '../hooks/useComponentWillMount'
 
 // Components
-import ContainerComponent from "./container"
-import Button from "./button"
-import IconComponent from "./icons/icon"
+import ContainerComponent from './container'
+import Button from './button'
+import IconComponent from './icons/icon'
 
 // Styles
-import * as textStyles from "../styles/textStyles"
-import mediaQueries, { breakpoints } from "../styles/mediaQueries"
-import aspectRatio, { aspectRatioChild } from "../styles/aspectRatio"
-import { yellow } from "../styles/colors"
+import * as textStyles from '../styles/textStyles'
+import mediaQueries, { breakpoints } from '../styles/mediaQueries'
+import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
+import { yellow } from '../styles/colors'
 
 // Types
-import { HeaderTypes, IButton } from "../types/entities"
+import { HeaderTypes, IButton } from '../types/entities'
 export interface IProps {
   title: string
   paragraph?: any
@@ -48,9 +48,9 @@ const Header: React.FC<IProps> = ({
   useEffect(() => {
     setIsWide(window.innerWidth >= breakpoints.L)
 
-    window.addEventListener("resize", handleResize)
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -176,7 +176,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1<{ type: string }>`
   ${props =>
-    props.type === "Home" ? textStyles.headingLoud : textStyles.headingBig}
+    props.type === 'Home' ? textStyles.headingLoud : textStyles.headingBig}
   margin: 0;
   margin-bottom: 16px;
 
@@ -212,7 +212,7 @@ const Icon = styled(IconComponent)`
 
 const Text = styled.p<{ type: string }>`
   ${props =>
-    props.type === "Home" ? textStyles.plainLoud : textStyles.plainNormal}
+    props.type === 'Home' ? textStyles.plainLoud : textStyles.plainNormal}
   margin: 0;
   margin-bottom: 24px;
 

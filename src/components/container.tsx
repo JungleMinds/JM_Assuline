@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Styles
-import mediaQueries from "../styles/mediaQueries"
+import mediaQueries from '../styles/mediaQueries'
 
 // Types
 interface IProps {

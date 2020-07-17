@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Types
-import { IBaseIcon } from "../../types/entities"
+import { IBaseIcon } from '../../types/entities'
 interface IIconProps extends IBaseIcon {
   isOpen?: boolean
 }
@@ -44,20 +44,20 @@ const Svg = styled.svg<IIconProps>`
   ${Top} {
     ${({ isOpen }) =>
       isOpen &&
-      "transform: translateX(-2px) translateY(7px) rotate(45deg) scaleX(1.4375);"}
+      'transform: translateX(-2px) translateY(7px) rotate(45deg) scaleX(1.4375);'}
     transform-origin: center;
     transition: transform 0.2s ease;
   }
 
   ${Middle} {
-    ${({ isOpen }) => isOpen && "opacity: 0;"}
+    ${({ isOpen }) => isOpen && 'opacity: 0;'}
     transition: opacity 0.1s ease;
   }
 
   ${Bottom} {
     ${({ isOpen }) =>
       isOpen &&
-      "transform: translateX(1px) translateY(-9px) rotate(-45deg) scaleX(1.916);"}
+      'transform: translateX(1px) translateY(-9px) rotate(-45deg) scaleX(1.916);'}
     transform-origin: center;
     transition: transform 0.2s ease;
   }

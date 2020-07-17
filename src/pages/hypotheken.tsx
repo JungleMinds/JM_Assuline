@@ -1,27 +1,27 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 // Components
-import Header from "../components/header"
-import HeaderImage from "../images/hypothekenHeaderImage.png"
+import Header from '../components/header'
+import HeaderImage from '../images/hypothekenHeaderImage.png'
 
 // Mock data
 const HEADER_CONTENT = {
-  title: "Wij bieden onafhankelijk hypotheekadvies",
+  title: 'Wij bieden onafhankelijk hypotheekadvies',
   usps: [
-    "100% onafhankelijk",
-    "Vrijblijvend gratis eerste hypotheekgesprek",
-    "Zowel particulier als zakelijk",
+    '100% onafhankelijk',
+    'Vrijblijvend gratis eerste hypotheekgesprek',
+    'Zowel particulier als zakelijk',
   ],
   image: HeaderImage,
 }
 
 const headerButtons = [
   {
-    label: "Maak een gratis afspraak",
-    url: "/hypotheken",
+    label: 'Maak een gratis afspraak',
+    url: '/hypotheken',
   },
 ]
 
