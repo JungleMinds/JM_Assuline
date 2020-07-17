@@ -1,15 +1,15 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
 // Components
-import SEO from "../components/seo"
-import Layout from "../components/layout"
-import Container from "../components/container"
+import SEO from '../components/seo'
+import Layout from '../components/layout'
+import Container from '../components/container'
 
 // Styles
-import * as textStyles from "../styles/textStyles"
-import colors from "../styles/colors"
+import * as textStyles from '../styles/textStyles'
+import colors from '../styles/colors'
 
 const StyleGuidePage = () => (
   <Layout>
@@ -91,7 +91,7 @@ const Color = styled.div<{ background: string }>`
 
   background-color: ${props => colors[props.background].rgb};
   color: ${props =>
-    props.background === "dark" || props.background === "darkest"
+    props.background === 'dark' || props.background === 'darkest'
       ? colors.white.rgb
       : colors.dark.rgb};
 `

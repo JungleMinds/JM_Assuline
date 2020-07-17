@@ -1,29 +1,29 @@
-import React from "react"
-import styled from "styled-components"
-import { Link } from "gatsby"
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'gatsby'
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import Image from '../components/image'
+import SEO from '../components/seo'
 
 // Components
-import Button from "../components/button"
-import Header from "../components/header"
-import HeaderImage from "../images/homeHeaderImage.png"
+import Button from '../components/button'
+import Header from '../components/header'
+import HeaderImage from '../images/homeHeaderImage.png'
 
 // Mock data
 const HEADER_CONTENT = {
-  title: "Persoonlijk advies op maat",
+  title: 'Persoonlijk advies op maat',
   paragraph:
-    "Voor uw hypotheek, verzekeringen en andere financiële zaken voor zowel consumenten als bedrijven.",
+    'Voor uw hypotheek, verzekeringen en andere financiële zaken voor zowel consumenten als bedrijven.',
   image: HeaderImage,
-  type: "Hypotheken",
+  type: 'Hypotheken',
 }
 
 const headerButtons = [
   {
-    label: "Neem contact op",
-    url: "/",
+    label: 'Neem contact op',
+    url: '/',
   },
 ]
 

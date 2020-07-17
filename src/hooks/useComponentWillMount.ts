@@ -1,8 +1,8 @@
-import { useRef } from "react"
+import { useRef } from 'react'
 
 const useComponentWillMount = (func: () => void) => {
   const willMount = useRef(true)
-  if (typeof window !== "undefined" && willMount.current) {
+  if (typeof window !== 'undefined' && willMount.current) {
     func()
   }
   willMount.current = false

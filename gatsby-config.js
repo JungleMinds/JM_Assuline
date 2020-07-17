@@ -1,4 +1,4 @@
-require("./config/env")
+require('./config/env')
 
 module.exports = {
   siteMetadata: {
@@ -11,7 +11,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ["COMMIT_HASH", "VERSION"], // Add ENV vars to whitelist here and they'll show up in your client-side
+        whitelist: ['COMMIT_HASH', 'VERSION'], // Add ENV vars to whitelist here and they'll show up in your client-side
       },
     },
     `gatsby-plugin-typescript`,
@@ -47,11 +47,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: 'gatsby-plugin-web-font-loader',
       options: {
         custom: {
-          families: ["CircularStd"],
-          urls: ["/fonts/fonts.css"],
+          families: ['CircularStd'],
+          urls: ['/fonts/fonts.css'],
         },
       },
     },
@@ -60,7 +60,7 @@ module.exports = {
       options: {
         headers: {
           // Security Headers
-          "/*": [
+          '/*': [
             `X-Frame-Options: SAMEORIGIN`,
             `X-XSS-Protection: 1; mode=block`,
             `X-Content-Type-Options: nosniff`,

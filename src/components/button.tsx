@@ -1,13 +1,13 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Components
-import IconComponent from "./icons/icon"
+import IconComponent from './icons/icon'
 
 // Styles
-import { yellow, yellowDark, dark, darkest } from "../styles/colors"
-import * as textStyles from "../styles/textStyles"
-import mediaQueries from "../styles/mediaQueries"
+import { yellow, yellowDark, dark, darkest } from '../styles/colors'
+import * as textStyles from '../styles/textStyles'
+import mediaQueries from '../styles/mediaQueries'
 
 // Types
 interface IProps {

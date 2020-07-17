@@ -1,39 +1,39 @@
-import React from "react"
-import styled from "styled-components"
-import { Link as LinkComponent } from "gatsby"
+import React from 'react'
+import styled from 'styled-components'
+import { Link as LinkComponent } from 'gatsby'
 
 // Components
-import IconComponent from "./icons/icon"
+import IconComponent from './icons/icon'
 
 // Styles
-import * as textStyles from "../styles/textStyles"
-import { dark, green } from "../styles/colors"
-import mediaQueries from "../styles/mediaQueries"
+import * as textStyles from '../styles/textStyles'
+import { dark, green } from '../styles/colors'
+import mediaQueries from '../styles/mediaQueries'
 
 // Types
-import { INavLinkItem } from "../types/entities"
+import { INavLinkItem } from '../types/entities'
 
 // Mock data
 const NAV_ITEMS: INavLinkItem[] = [
   {
-    url: "/",
-    label: "Home",
+    url: '/',
+    label: 'Home',
   },
   {
-    url: "/hypotheken",
-    label: "Hypotheken",
+    url: '/hypotheken',
+    label: 'Hypotheken',
   },
   {
-    url: "/verzekeren",
-    label: "Verzekeren",
+    url: '/verzekeren',
+    label: 'Verzekeren',
   },
   {
-    url: "/team",
-    label: "Team",
+    url: '/team',
+    label: 'Team',
   },
   {
-    url: "/contact",
-    label: "Contact",
+    url: '/contact',
+    label: 'Contact',
   },
 ]
 
@@ -104,7 +104,7 @@ const Link = styled(LinkComponent)`
 
   &.active {
     ::after {
-      content: "";
+      content: '';
       width: 100%;
       height: 2px;
       position: absolute;

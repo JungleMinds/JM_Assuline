@@ -20,8 +20,8 @@ const colors: IColor = {
       green: 38,
       blue: 35,
     },
-    rgb: "rgb(40,38,35)",
-    hex: "#282623",
+    rgb: 'rgb(40,38,35)',
+    hex: '#282623',
   },
   darkest: {
     channels: {
@@ -29,8 +29,8 @@ const colors: IColor = {
       green: 0,
       blue: 0,
     },
-    rgb: "rgb(0,0,0)",
-    hex: "#000",
+    rgb: 'rgb(0,0,0)',
+    hex: '#000',
   },
   yellow: {
     channels: {
@@ -38,8 +38,8 @@ const colors: IColor = {
       green: 182,
       blue: 0,
     },
-    rgb: "rgb(255,182,0)",
-    hex: "#FFB600",
+    rgb: 'rgb(255,182,0)',
+    hex: '#FFB600',
   },
   yellowDark: {
     channels: {
@@ -47,8 +47,8 @@ const colors: IColor = {
       green: 166,
       blue: 0,
     },
-    rgb: "rgb(255,166,0)",
-    hex: "#FFA600",
+    rgb: 'rgb(255,166,0)',
+    hex: '#FFA600',
   },
   white: {
     channels: {
@@ -56,8 +56,8 @@ const colors: IColor = {
       green: 255,
       blue: 255,
     },
-    rgb: "rgb(255,255,255)",
-    hex: "#FFF",
+    rgb: 'rgb(255,255,255)',
+    hex: '#FFF',
   },
   // Secondary
   green: {
@@ -66,8 +66,8 @@ const colors: IColor = {
       green: 117,
       blue: 111,
     },
-    rgb: "rgb(4,117,111)",
-    hex: "#04756F",
+    rgb: 'rgb(4,117,111)',
+    hex: '#04756F',
   },
   greenDark: {
     channels: {
@@ -75,8 +75,8 @@ const colors: IColor = {
       green: 105,
       blue: 100,
     },
-    rgb: "rgb(3,105,100)",
-    hex: "#036964",
+    rgb: 'rgb(3,105,100)',
+    hex: '#036964',
   },
   lightGrey: {
     channels: {
@@ -84,8 +84,8 @@ const colors: IColor = {
       green: 239,
       blue: 230,
     },
-    rgb: "rgb(242,239,230)",
-    hex: "#F2EFE6",
+    rgb: 'rgb(242,239,230)',
+    hex: '#F2EFE6',
   },
 }
 

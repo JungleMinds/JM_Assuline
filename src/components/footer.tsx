@@ -1,47 +1,47 @@
-import React from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
 // Components
-import IconComponent from "./icons/icon"
-import Connect from "../images/connect.png"
-import Kifid from "../images/kifid.png"
+import IconComponent from './icons/icon'
+import Connect from '../images/connect.png'
+import Kifid from '../images/kifid.png'
 
 // Styles
-import * as textStyles from "../styles/textStyles"
-import mediaQueries from "../styles/mediaQueries"
-import { green } from "../styles/colors"
+import * as textStyles from '../styles/textStyles'
+import mediaQueries from '../styles/mediaQueries'
+import { green } from '../styles/colors'
 
 // Types
-import { INavLinkItem } from "../types/entities"
+import { INavLinkItem } from '../types/entities'
 
 // Mock data
 const NAV_ITEMS: INavLinkItem[] = [
   {
-    url: "/",
-    label: "Home",
+    url: '/',
+    label: 'Home',
   },
   {
-    url: "/hypotheken",
-    label: "Hypotheken",
+    url: '/hypotheken',
+    label: 'Hypotheken',
   },
   {
-    url: "/verzekeren",
-    label: "Verzekeren",
+    url: '/verzekeren',
+    label: 'Verzekeren',
   },
   {
-    url: "/team",
-    label: "Team",
+    url: '/team',
+    label: 'Team',
   },
   {
-    url: "/contact",
-    label: "Contact",
+    url: '/contact',
+    label: 'Contact',
   },
 ]
 const ADDRESS_DATA: any = {
-  phone: "0297288198",
-  email: "info@assuline.nl",
-  location: "Herenweg 88, 3648 CL Wilnis",
+  phone: '0297288198',
+  email: 'info@assuline.nl',
+  location: 'Herenweg 88, 3648 CL Wilnis',
 }
 
 const Footer: React.FC = () => {

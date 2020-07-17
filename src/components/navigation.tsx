@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
-import styled from "styled-components"
+import React, { useState, useEffect } from 'react'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
 // Components
-import Icon from "./icons/icon"
-import Hamburger from "./hamburger"
-import NavLinks from "./navLinks"
+import Icon from './icons/icon'
+import Hamburger from './hamburger'
+import NavLinks from './navLinks'
 
 // Styles
-import colors, { white, yellow } from "../styles/colors"
-import mediaQueries, { breakpoints } from "../styles/mediaQueries"
+import colors, { white, yellow } from '../styles/colors'
+import mediaQueries, { breakpoints } from '../styles/mediaQueries'
 
 interface IProps {
   isOpen?: boolean
@@ -40,12 +40,12 @@ const Navigation: React.FC = () => {
   }
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize)
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener("resize", handleResize)
-      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [handleScroll, handleResize])
 
@@ -203,7 +203,7 @@ const Wrapper = styled.div<IProps>`
 
   ${mediaQueries.from.breakpoint.L`
     padding-top: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? "16px" : "32px"};
+      props.isScrolled ? '16px' : '32px'};
   `}
 
   ${mediaQueries.from.breakpoint.XL`
@@ -220,12 +220,12 @@ const LogoLinkContainer = styled.div<IProps>`
   `}
 
   ${mediaQueries.from.breakpoint.L`
-    ${(props: { isScrolled: boolean }) => props.isScrolled && "height: 96px;"}
+    ${(props: { isScrolled: boolean }) => props.isScrolled && 'height: 96px;'}
   `}
 
   ${mediaQueries.from.breakpoint.L`
     height: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? "96px" : "128px"};
+      props.isScrolled ? '96px' : '128px'};
   `}
 `
 
@@ -238,13 +238,13 @@ const NavContainer = styled.nav<IProps>`
     width: 66%;
     margin-left: 32px;
     padding-top: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? "6px" : "24px"};
+      props.isScrolled ? '6px' : '24px'};
   `}
 
   ${mediaQueries.from.breakpoint.L`
     width: 50%;
     ${(props: { isScrolled: boolean }) =>
-      !props.isScrolled && "padding-top: 32px;"}
+      !props.isScrolled && 'padding-top: 32px;'}
   `}
 
   ${mediaQueries.from.breakpoint.XL`
@@ -255,11 +255,11 @@ const NavContainer = styled.nav<IProps>`
 const MobileNavBackground = styled.div<IProps>`
   background: ${yellow};
   position: fixed;
-  top: ${({ isOpen }) => (isOpen ? "-182px" : "16px")};
-  left: ${({ isOpen }) => (isOpen ? "-200px" : "calc(100% - 72px)")};
+  top: ${({ isOpen }) => (isOpen ? '-182px' : '16px')};
+  left: ${({ isOpen }) => (isOpen ? '-200px' : 'calc(100% - 72px)')};
   border-radius: 50%;
-  width: ${({ isOpen }) => (isOpen ? "max(100vw + 342px, 680px)" : "56px")};
-  height: ${({ isOpen }) => (isOpen ? "max(100vw + 342px, 680px)" : "56px")};
+  width: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
+  height: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
   box-shadow: 0 4px 16px
     rgba(
       ${colors.darkest.channels.red},
@@ -270,15 +270,15 @@ const MobileNavBackground = styled.div<IProps>`
   transition: top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease;
 
   ${mediaQueries.from.breakpoint.S`
-    top: ${(props: { isOpen: boolean }) => (props.isOpen ? "-182px" : "24px")};
+    top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-182px' : '24px')};
     left: ${(props: { isOpen: boolean }) =>
-      props.isOpen ? "-200px" : "calc(100% - 76px)"};
+      props.isOpen ? '-200px' : 'calc(100% - 76px)'};
   `}
 
   ${mediaQueries.from.breakpoint.M`
-    top: ${(props: { isOpen: boolean }) => (props.isOpen ? "-587px" : "24px")};
+    top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-587px' : '24px')};
     left: ${(props: { isOpen: boolean }) =>
-      props.isOpen ? "-320px" : "calc(100% - 76px)"};
+      props.isOpen ? '-320px' : 'calc(100% - 76px)'};
   `}
 
   ${mediaQueries.from.breakpoint.L`
@@ -292,7 +292,7 @@ const MobileNavContainer = styled.nav<IProps>`
   left: 0;
   padding: 16px;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  ${({ isOpen }) => !isOpen && "pointer-events: none;"}
+  ${({ isOpen }) => !isOpen && 'pointer-events: none;'}
   transition: opacity 0.2s ease ${({ isOpen }) => isOpen && `.2s`};
 
   ${mediaQueries.from.breakpoint.S`

@@ -1,17 +1,17 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
 // Components
-import Header from "../components/header"
-import HeaderImage from "../images/hypothekenHeaderImage.png"
+import Header from '../components/header'
+import HeaderImage from '../images/hypothekenHeaderImage.png'
 
 // Mock data
 const HEADER_CONTENT = {
-  title: "Ontmoet het team van Assuline",
+  title: 'Ontmoet het team van Assuline',
   paragraph:
-    "Al 28 jaar geven wij advies op maat aan bedrijven en consumenten. Daarin vinden wij persoonlijk contact belangrijk. Niet iedere keer contact met een andere medewerker, maar een vaste specialist die direct de juiste service kan bieden.",
+    'Al 28 jaar geven wij advies op maat aan bedrijven en consumenten. Daarin vinden wij persoonlijk contact belangrijk. Niet iedere keer contact met een andere medewerker, maar een vaste specialist die direct de juiste service kan bieden.',
   image: HeaderImage,
 }
 

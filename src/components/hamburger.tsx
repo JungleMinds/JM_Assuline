@@ -1,11 +1,11 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 // Components
-import Icon from "./icons/icon"
+import Icon from './icons/icon'
 
 // Styles
-import mediaQueries from "../styles/mediaQueries"
+import mediaQueries from '../styles/mediaQueries'
 
 interface IProps {
   isOpen?: boolean

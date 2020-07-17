@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css } from 'styled-components'
 
 const aspectRatio = (width: number, height: number) => css`
   position: relative;
@@ -7,7 +7,7 @@ const aspectRatio = (width: number, height: number) => css`
     display: block;
     width: 100%;
     padding-top: ${(height / width) * 100}%;
-    content: "";
+    content: '';
   }
 `
 

@@ -5,16 +5,16 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from "react"
+import React from 'react'
 
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from 'gatsby'
 
 // Components
-import Navigation from "./navigation"
-import Footer from "./footer"
+import Navigation from './navigation'
+import Footer from './footer'
 
 // Styling
-import GlobalStyle from "../styles/index"
+import GlobalStyle from '../styles/index'
 
 const Layout: React.FC = ({ children }) => (
   <StaticQuery

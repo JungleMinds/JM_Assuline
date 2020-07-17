@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css } from 'styled-components'
 
 // Fonts
 const families = {
@@ -7,7 +7,7 @@ const families = {
 }
 
 const faces = css`
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 `
 
 const settings = css`
