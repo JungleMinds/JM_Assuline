@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { Link as LinkComponent } from 'gatsby'
 
 // Components
 import IconComponent from './icons/icon'
@@ -13,13 +14,24 @@ import mediaQueries from '../styles/mediaQueries'
 interface IProps {
   icon?: boolean
   className?: string
+  to?: string
 }
 
-const Button: React.FC<IProps> = ({ children, icon, className }) => {
-  return (
-    <Container className={className}>
-      <Label>{children}</Label>
+const Button: React.FC<IProps> = ({ children, icon, className, to }) => {
+  const Content = () => (
+    <>
+      <span>{children}</span>
       {icon && <Icon icon="arrow" width={24} height={16} color={dark} />}
+    </>
+  )
+
+  return to ? (
+    <Link className={className} to={to}>
+      <Content />
+    </Link>
+  ) : (
+    <Container className={className}>
+      <Content />
     </Container>
   )
 }
@@ -31,7 +43,7 @@ const Icon = styled(IconComponent)`
   transition: transform 0.2s ease-in-out;
 `
 
-const Container = styled.button`
+const style = css`
   display: inline-flex;
   align-items: center;
   background: ${yellow};
@@ -53,14 +65,20 @@ const Container = styled.button`
   }
 
   ${mediaQueries.from.breakpoint.XL`
-    padding: 12px 32px;
+  padding: 12px 32px;
 
-    :hover {
-      > ${Icon} {
-        transform: translateX(16px);
-      }
+  :hover {
+    > ${Icon} {
+      transform: translateX(16px);
     }
-  `}
+  }
+`}
 `
 
-const Label = styled.span``
+const Container = styled.button`
+  ${style}
+`
+
+const Link = styled(LinkComponent)`
+  ${style}
+`

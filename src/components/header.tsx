@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'gatsby'
 import styled, { keyframes } from 'styled-components'
 import useComponentWillMount from '../hooks/useComponentWillMount'
 
@@ -76,9 +75,13 @@ const Header: React.FC<IProps> = ({
         {buttons && (
           <ButtonWrapper>
             {buttons.map(button => (
-              <Link to={button.url} key={`header-button-${button.label}`}>
-                <StyledButton icon>{button.label}</StyledButton>
-              </Link>
+              <StyledButton
+                to={button.url}
+                key={`header-button-${button.label}`}
+                icon
+              >
+                {button.label}
+              </StyledButton>
             ))}
           </ButtonWrapper>
         )}

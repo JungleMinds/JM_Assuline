@@ -111,6 +111,8 @@ const ShadowBox = styled.div<IProps>`
     width: 100%;
     height: 160px;
     transition: height 0.2s ease;
+    z-index: 9;
+
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
       `
