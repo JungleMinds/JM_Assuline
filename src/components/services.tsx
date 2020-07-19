@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 // Components
 import ContainerComponent from './container'
-import Button from './button'
+import ButtonComponent from './button'
 
 // Styles
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
@@ -36,9 +35,9 @@ export const Service: React.FC<IService> = ({
         <Type>{type}</Type>
         <Title>{title}</Title>
         <Paragraph>{paragraph}</Paragraph>
-        <Link to={buttonUrl}>
-          <Button icon>{buttonLabel}</Button>
-        </Link>
+        <Button to={buttonUrl} icon>
+          {buttonLabel}
+        </Button>
       </ContentWrapper>
     </Wrapper>
   )
@@ -156,4 +155,8 @@ const Paragraph = styled.p`
   ${mediaQueries.from.breakpoint.S`
     margin-bottom: 32px;
   `}
+`
+
+const Button = styled(ButtonComponent)`
+  align-self: flex-start;
 `

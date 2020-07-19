@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
@@ -12,6 +11,7 @@ import Header from '../components/header'
 import Services from '../components/services'
 import Carousel from '../components/carousel'
 import Reviews from '../components/reviews'
+import ImageBanner from '../components/imageBanner'
 
 // Types
 import { ServiceTypes } from '../types/entities'
@@ -92,6 +92,14 @@ const REVIEWS_CONTENT = {
       "<p>Gebaseerd op 48 goedgekeurde geschreven reviews krijgen wij een gemiddeld cijfer van 9,8 op <a href='www.Advieskeuze.nl'>Advieskeuze.nl</a></p>",
   },
 }
+const CTA_BANNER_CONTENT = {
+  image: '/images/ctaBannerImage.png',
+  title: 'Al 28 jaar advies op maat',
+  button: {
+    label: 'Ons team',
+    url: '/team',
+  },
+}
 
 const Index = () => (
   <Layout>
@@ -106,17 +114,20 @@ const Index = () => (
     <Services services={SERVICES} />
     <Carousel images={CAROUSEL_DATA.images} heading={CAROUSEL_DATA.heading} />
     <Reviews {...REVIEWS_CONTENT} />
+    <ImageBanner
+      image={CTA_BANNER_CONTENT.image}
+      title={CTA_BANNER_CONTENT.title}
+      button={CTA_BANNER_CONTENT.button}
+    />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
     <ImageContainer>
       <Image />
     </ImageContainer>
-    <Link to="/styleguide">Go to styleguide</Link>
-    <br />
-    <Button>Lees Meer</Button>
-    <br />
-    <Button icon>Lees Meer</Button>
+    <Button to="/styleguide" icon>
+      Go to styleguide
+    </Button>
   </Layout>
 )
 
