@@ -6,6 +6,7 @@ import SEO from '../components/seo'
 // Components
 import Header from '../components/header'
 import Accordions from '../components/accordions'
+import FullGridImage from '../components/fullGridImage'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -54,6 +55,7 @@ const Hypoteken = () => {
         image={HEADER_CONTENT.image}
         type="Hypotheken"
       />
+      <FullGridImage image="/images/fullGridImage.png" />
       <Accordions data={ACCORDIONS_CONTENT} />
     </Layout>
   )
