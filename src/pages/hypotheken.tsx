@@ -5,8 +5,9 @@ import SEO from '../components/seo'
 
 // Components
 import Header from '../components/header'
-import Accordions from '../components/accordions'
+import Intro from '../components/intro'
 import FullGridImage from '../components/fullGridImage'
+import Accordions from '../components/accordions'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -25,6 +26,9 @@ const headerButtons = [
     url: '/hypotheken',
   },
 ]
+
+const INTRO_TEXT =
+  'Wij zijn <strong>al 28 jaar</strong> een onafhankelijk financieel adviesbureau en zijn niet gebonden aan een bank. Door onze persoonlijke manier van werken kennen onze specialisten uw situatie goed en kunnen we snel handelen wanneer dat nodig is.'
 
 const ACCORDIONS_CONTENT = [
   {
@@ -55,6 +59,7 @@ const Hypoteken = () => {
         image={HEADER_CONTENT.image}
         type="Hypotheken"
       />
+      <Intro paragraph={INTRO_TEXT} />
       <FullGridImage image="/images/fullGridImage.png" />
       <Accordions data={ACCORDIONS_CONTENT} />
     </Layout>
