@@ -24,4 +24,13 @@ export type HeaderTypes =
   | 'Contact'
 
 // SERVICES
+export interface IService {
+  title: string
+  paragraph: string
+  buttonLabel: string
+  buttonUrl: string
+  image: string
+  type: ServiceTypes
+}
+
 export type ServiceTypes = 'Hypotheken' | 'Verzekeren'

@@ -13,22 +13,13 @@ import * as textStyles from '../styles/textStyles'
 import { green } from '../styles/colors'
 
 // Types
-import { ServiceTypes } from '../types/entities'
+import { IService } from '../types/entities'
 
 interface IProps {
-  services: IServiceProps[]
+  services: IService[]
 }
 
-interface IServiceProps {
-  title: string
-  paragraph: string
-  buttonLabel: string
-  buttonUrl: string
-  image: string
-  type: ServiceTypes
-}
-
-export const Service: React.FC<IServiceProps> = ({
+export const Service: React.FC<IService> = ({
   title,
   paragraph,
   buttonLabel,
@@ -82,7 +73,6 @@ const ImageContainer = styled.div`
   margin: 0;
   margin-bottom: 24px;
   border-radius: 2px;
-  z-index: -1;
 
   ${mediaQueries.from.breakpoint.S`
     ${aspectRatio(720, 480)}
