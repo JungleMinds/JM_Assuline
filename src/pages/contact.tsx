@@ -1,22 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+// Utils
+import { normalizeData } from '../util/data'
 
 // Components
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Header from '../components/header'
 import Banner from '../components/banner'
-
-// Mock data
-const HEADER_CONTENT = {
-  title: 'Heeft u een vraag of wilt u een afspraak maken?',
-  paragraph: 'Stuur een mail naar info@assuline.nl of bel 0297 - 288198',
-  buttons: [
-    { label: 'Mail ons', url: 'mailto:janedoe@assuline.nl' },
-    { label: 'Bel ons', url: 'tel:0600000000' },
-  ],
-  image: '/images/contactHeaderImage.png',
-}
 
 const BANNER_CONTENT = {
   heading:
@@ -27,18 +19,57 @@ const BANNER_CONTENT = {
   },
 }
 
-const Contact = () => (
-  <Layout>
-    <SEO title="Contact" />
-    <Header
-      title={HEADER_CONTENT.title}
-      paragraph={HEADER_CONTENT.paragraph}
-      buttons={HEADER_CONTENT.buttons}
-      image={HEADER_CONTENT.image}
-      type="Contact"
-    />
-    <Banner {...BANNER_CONTENT} />
-  </Layout>
-)
+const Contact = ({ data }: any) => {
+  const [pageData, setPageData] = useState<any>(null)
+
+  useEffect(() => {
+    const transformed = normalizeData(data.prismicContactPage)
+    setPageData(transformed)
+  }, [data])
+
+  return (
+    <Layout>
+      <SEO title="Contact" />
+      <Header
+        title={pageData && pageData.header.title}
+        paragraph={pageData && pageData.header.intro}
+        buttons={pageData && pageData.header.buttons}
+        image={pageData && pageData.header.image}
+        type="Contact"
+      />
+      <Banner {...BANNER_CONTENT} />
+    </Layout>
+  )
+}
 
 export default Contact
+
+export const pageQuery = graphql`
+  query ContactQuery {
+    prismicContactPage {
+      data {
+        page_title {
+          text
+        }
+        header_intro {
+          raw
+        }
+        header_image {
+          url
+        }
+        header_buttonlabel
+        header_buttonlink {
+          url
+          slug
+          type
+        }
+        header_secondary_buttonlabel
+        header_secondary_buttonlink {
+          url
+          type
+          slug
+        }
+      }
+    }
+  }
+`

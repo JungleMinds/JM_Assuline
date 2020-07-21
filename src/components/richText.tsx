@@ -12,16 +12,18 @@ interface IProps {
 }
 const RichText: React.FC<IProps> = ({ content, className }) => {
   return (
-    <Content
-      className={className}
-      render={content}
-      linkResolver={linkResolver}
-    />
+    <Wrapper className={className}>
+      <RichTextComponent render={content} linkResolver={linkResolver} />
+    </Wrapper>
   )
 }
 
 export default RichText
 
-const Content = styled(RichTextComponent)`
+const Wrapper = styled.div`
   margin: 0;
+
+  > p {
+    margin: 0;
+  }
 `

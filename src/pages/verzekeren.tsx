@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+// Utils
+import { normalizeData } from '../util/data'
 
 // Components
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Header from '../components/header'
 import Intro from '../components/intro'
 import Banner from '../components/banner'
@@ -11,23 +14,6 @@ import Toggle from '../components/toggle'
 import CrossLinks from '../components/crossLinks'
 
 // Mock data
-const HEADER_CONTENT = {
-  title: 'Goed verzekerd, zowel particulier als zakelijk',
-  usps: [
-    'Totaalpakket aan verzekeringen',
-    'Snelle afwikkeling van schades',
-    'Zowel particulier als zakelijk',
-  ],
-  image: '/images/hypothekenHeaderImage.png',
-}
-
-const headerButtons = [
-  {
-    label: 'Neem contact op',
-    url: '/contact',
-  },
-]
-
 const INTRO_TEXT =
   'Wij zijn <strong>al 28 jaar</strong> een onafhankelijk financieel adviesbureau en zijn niet gebonden aan een bank. Door onze persoonlijke manier van werken kennen onze specialisten uw situatie goed en kunnen we snel handelen wanneer dat nodig is.'
 
@@ -219,15 +205,22 @@ const CROSSLINKS_CONTENT = {
   ],
 }
 
-const Verzekeren = () => {
+const Verzekeren = ({ data }: any) => {
+  const [pageData, setPageData] = useState<any>(null)
+
+  useEffect(() => {
+    const transformed = normalizeData(data.prismicAssurancePage)
+    setPageData(transformed)
+  }, [data])
+
   return (
     <Layout>
       <SEO title="Verzekeren" />
       <Header
-        title={HEADER_CONTENT.title}
-        usps={HEADER_CONTENT.usps}
-        buttons={headerButtons}
-        image={HEADER_CONTENT.image}
+        title={pageData && pageData.header.title}
+        usps={pageData && pageData.header.usps}
+        buttons={pageData && pageData.header.buttons}
+        image={pageData && pageData.header.image}
         type="Verzekeren"
       />
       <Intro paragraph={INTRO_TEXT} />
@@ -239,3 +232,26 @@ const Verzekeren = () => {
 }
 
 export default Verzekeren
+
+export const pageQuery = graphql`
+  query AssuranceQuery {
+    prismicAssurancePage {
+      data {
+        page_title {
+          text
+        }
+        header_usps {
+          raw
+        }
+        header_buttonlabel
+        header_buttonlink {
+          type
+          slug
+        }
+        header_image {
+          url
+        }
+      }
+    }
+  }
+`

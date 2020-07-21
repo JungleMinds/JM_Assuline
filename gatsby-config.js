@@ -91,6 +91,10 @@ module.exports = {
         // Gatsby. This is required.
         schemas: {
           home_page: require('./src/schemas/home_page.json'),
+          mortgage_page: require('./src/schemas/mortgage_page.json'),
+          assurance_page: require('./src/schemas/assurance_page.json'),
+          team_page: require('./src/schemas/team_page.json'),
+          contact_page: require('./src/schemas/contact_page.json'),
           content_page: require('./src/schemas/content_page.json'),
         },
 

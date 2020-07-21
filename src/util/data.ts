@@ -1,6 +1,6 @@
 export const normalizeData = ({ data }: any) => {
   const header = getHeaderData(data)
-  const body = getBodyData(data.body)
+  const body = data.body && getBodyData(data.body)
 
   return {
     header: {
@@ -8,6 +8,7 @@ export const normalizeData = ({ data }: any) => {
       intro: header.intro,
       image: header.image,
       buttons: header.buttons,
+      usps: header.usps,
     },
     body,
   }
@@ -15,7 +16,7 @@ export const normalizeData = ({ data }: any) => {
 
 const getHeaderData = (data: any) => {
   let primaryButton: any = null
-  const secondaryButton: any = null
+  let secondaryButton: any = null
   const buttons = []
 
   const headerObj = Object.keys(data)
@@ -30,11 +31,20 @@ const getHeaderData = (data: any) => {
         case 'header_intro':
           obj.intro = data[key]
           break
+        case 'header_usps':
+          obj.usps = data[key].raw.map((item: any) => item.text)
+          break
         case 'header_buttonlink':
           primaryButton = { ...primaryButton, url: linkResolver(data[key]) }
           break
         case 'header_buttonlabel':
           primaryButton = { ...primaryButton, label: data[key] }
+          break
+        case 'header_secondary_buttonlink':
+          secondaryButton = { ...secondaryButton, url: linkResolver(data[key]) }
+          break
+        case 'header_secondary_buttonlabel':
+          secondaryButton = { ...secondaryButton, label: data[key] }
           break
         case 'header_image':
           obj.image = data[key].url
@@ -52,7 +62,8 @@ const getHeaderData = (data: any) => {
 
   return {
     title: headerObj.title || '',
-    intro: headerObj.intro || '',
+    intro: headerObj.intro || undefined,
+    usps: headerObj.usps || undefined,
     buttons: primaryButton || secondaryButton ? buttons : undefined,
     image: headerObj.image,
   }
