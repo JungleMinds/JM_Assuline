@@ -124,6 +124,8 @@ export const pageQuery = graphql`
               }
               imagebanner_buttonlink {
                 url
+                type
+                slug
               }
               imagebanner_buttonlabel {
                 text

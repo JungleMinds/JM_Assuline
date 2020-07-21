@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+// Utils
+import { normalizeData } from '../util/data'
 
 // Components
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Header from '../components/header'
 import Intro from '../components/intro'
 import BusinessConsumer from '../components/businessConsumer'
@@ -14,24 +17,6 @@ import Accordions from '../components/accordions'
 
 // Types
 import { IllustrationTypes } from '../types/entities'
-
-// Mock data
-const HEADER_CONTENT = {
-  title: 'Wij bieden onafhankelijk hypotheekadvies',
-  usps: [
-    '100% onafhankelijk',
-    'Vrijblijvend gratis eerste hypotheekgesprek',
-    'Zowel particulier als zakelijk',
-  ],
-  image: '/images/hypothekenHeaderImage.png',
-}
-
-const headerButtons = [
-  {
-    label: 'Maak een gratis afspraak',
-    url: '/contact',
-  },
-]
 
 const INTRO_TEXT =
   'Wij zijn <strong>al 28 jaar</strong> een onafhankelijk financieel adviesbureau en zijn niet gebonden aan een bank. Door onze persoonlijke manier van werken kennen onze specialisten uw situatie goed en kunnen we snel handelen wanneer dat nodig is.'
@@ -125,15 +110,22 @@ const CROSSLINKS_CONTENT = {
   },
 }
 
-const Hypoteken = () => {
+const Hypotheken = ({ data }: any) => {
+  const [pageData, setPageData] = useState<any>(null)
+
+  useEffect(() => {
+    const transformed = normalizeData(data.prismicMortgagePage)
+    setPageData(transformed)
+  }, [data])
+
   return (
     <Layout>
       <SEO title="Hypotheken" />
       <Header
-        title={HEADER_CONTENT.title}
-        usps={HEADER_CONTENT.usps}
-        buttons={headerButtons}
-        image={HEADER_CONTENT.image}
+        title={pageData && pageData.header.title}
+        usps={pageData && pageData.header.usps}
+        buttons={pageData && pageData.header.buttons}
+        image={pageData && pageData.header.image}
         type="Hypotheken"
       />
       <Intro paragraph={INTRO_TEXT} />
@@ -147,4 +139,27 @@ const Hypoteken = () => {
   )
 }
 
-export default Hypoteken
+export default Hypotheken
+
+export const pageQuery = graphql`
+  query MortgageQuery {
+    prismicMortgagePage {
+      data {
+        page_title {
+          text
+        }
+        header_usps {
+          raw
+        }
+        header_buttonlabel
+        header_buttonlink {
+          type
+          slug
+        }
+        header_image {
+          url
+        }
+      }
+    }
+  }
+`

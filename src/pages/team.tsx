@@ -1,19 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+// Utils
+import { normalizeData } from '../util/data'
 
 // Components
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Header from '../components/header'
 import TeamMembers from '../components/teamMembers'
-
-// Mock data
-const HEADER_CONTENT = {
-  title: 'Ontmoet het team van Assuline',
-  paragraph:
-    'Al 28 jaar geven wij advies op maat aan bedrijven en consumenten. Daarin vinden wij persoonlijk contact belangrijk. Niet iedere keer contact met een andere medewerker, maar een vaste specialist die direct de juiste service kan bieden.',
-  image: '/images/hypothekenHeaderImage.png',
-}
 
 const TEAM_MEMBERS = [
   {
@@ -60,17 +55,44 @@ const TEAM_MEMBERS = [
   },
 ]
 
-const Team = () => (
-  <Layout>
-    <SEO title="Team" />
-    <Header
-      title={HEADER_CONTENT.title}
-      image={HEADER_CONTENT.image}
-      paragraph={HEADER_CONTENT.paragraph}
-      type="Team"
-    />
-    <TeamMembers data={TEAM_MEMBERS} />
-  </Layout>
-)
+const Team = ({ data }: any) => {
+  const [pageData, setPageData] = useState<any>(null)
+
+  useEffect(() => {
+    const transformed = normalizeData(data.prismicTeamPage)
+    setPageData(transformed)
+  }, [data])
+
+  return (
+    <Layout>
+      <SEO title="Team" />
+      <Header
+        title={pageData && pageData.header.title}
+        paragraph={pageData && pageData.header.intro}
+        image={pageData && pageData.header.image}
+        type="Team"
+      />
+      <TeamMembers data={TEAM_MEMBERS} />
+    </Layout>
+  )
+}
 
 export default Team
+
+export const pageQuery = graphql`
+  query TeamQuery {
+    prismicTeamPage {
+      data {
+        page_title {
+          text
+        }
+        header_intro {
+          raw
+        }
+        header_image {
+          url
+        }
+      }
+    }
+  }
+`

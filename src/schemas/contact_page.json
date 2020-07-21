@@ -1,0 +1,56 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "slug"
+      }
+    },
+    "page_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title"
+      }
+    },
+    "header_intro": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "strong, hyperlink",
+        "label": "Intro"
+      }
+    },
+    "header_buttonlabel": {
+      "type": "Text",
+      "config": {
+        "label": "Button label"
+      }
+    },
+    "header_buttonlink": {
+      "type": "Link",
+      "config": {
+        "label": "Button link"
+      }
+    },
+    "header_secondary_buttonlabel": {
+      "type": "Text",
+      "config": {
+        "label": "Secondary button label"
+      }
+    },
+    "header_secondary_buttonlink": {
+      "type": "Link",
+      "config": {
+        "label": "Secondary button link"
+      }
+    },
+    "header_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Image"
+      }
+    }
+  }
+}
