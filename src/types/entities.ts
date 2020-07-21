@@ -34,3 +34,9 @@ export interface IService {
 }
 
 export type ServiceTypes = 'Hypotheken' | 'Verzekeren'
+
+// ACCORDIONS
+export interface IAccordionItem {
+  title: string
+  paragraph: string
+}

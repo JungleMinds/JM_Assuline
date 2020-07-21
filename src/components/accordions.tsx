@@ -10,15 +10,16 @@ import * as textStyles from '../styles/textStyles'
 import mediaQueries from '../styles/mediaQueries'
 
 // Types
+import { IAccordionItem } from '../types/entities'
+
 interface IProps {
-  data: AccordionsArray
+  data: IAccordionItem[]
 }
 
-type AccordionsArray = Array<{ title: string; paragraph: string }>
-type AccordionColumns = Array<Array<{ title: string; paragraph: string }>>
+type AccordionColumns = IAccordionItem[][]
 
 const Accordions: React.FC<IProps> = ({ data }) => {
-  const [sortedAccordions, setSortedAccordions] = useState<AccordionsArray>([])
+  const [sortedAccordions, setSortedAccordions] = useState<IAccordionItem[]>([])
   const [accordionsColumns, setAccordionsColumns] = useState<AccordionColumns>(
     []
   )
