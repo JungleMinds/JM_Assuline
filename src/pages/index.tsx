@@ -11,6 +11,7 @@ import Button from '../components/button'
 import Header from '../components/header'
 import Services from '../components/services'
 import Carousel from '../components/carousel'
+import Reviews from '../components/reviews'
 
 // Types
 import { ServiceTypes } from '../types/entities'
@@ -61,6 +62,36 @@ const CAROUSEL_DATA = {
   heading:
     'Wij vergelijken rentepercentages en voorwaarden bij meer dan 20 geldverstrekkers',
 }
+const REVIEWS_CONTENT = {
+  reviews: [
+    {
+      image: {
+        src: '/images/hypothekenHeaderImage.png',
+        alt: 'Review from this person',
+      },
+      text:
+        '“Mijn adviseur bij Assuline heeft mij ontzettend snel en goed geholpen bij het afsluiten van mijn verzekeringspakket.”',
+      author: 'Michelle Terpstra',
+      location: 'Amsterdam',
+    },
+    {
+      image: {
+        src: '/images/hypothekenHeaderImage.png',
+        alt: 'Review from this person',
+      },
+      text:
+        '“Onze adviseur heeft echt goed met ons meegedacht. Wij hadden alle vertrouwen in Assuline, en dat bleek terecht te zijn.”',
+      author: 'Frank & Marjan',
+      location: 'Bussum',
+    },
+  ],
+  grade: {
+    active: true,
+    score: 9.8,
+    text:
+      "<p>Gebaseerd op 48 goedgekeurde geschreven reviews krijgen wij een gemiddeld cijfer van 9,8 op <a href='www.Advieskeuze.nl'>Advieskeuze.nl</a></p>",
+  },
+}
 
 const Index = () => (
   <Layout>
@@ -74,6 +105,7 @@ const Index = () => (
     />
     <Services services={SERVICES} />
     <Carousel images={CAROUSEL_DATA.images} heading={CAROUSEL_DATA.heading} />
+    <Reviews {...REVIEWS_CONTENT} />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>

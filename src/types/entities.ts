@@ -15,6 +15,27 @@ export interface IButton {
   url: string
 }
 
+export interface IImage {
+  src: string
+  alt: string
+}
+
+export interface IReview {
+  image: IImage
+  text: string
+  author: string
+  location: string
+}
+
+export interface IReviews {
+  reviews: IReview[]
+  grade: {
+    active: boolean
+    score: number
+    text: string
+  }
+}
+
 // HEADER
 export type HeaderTypes =
   | 'Home'

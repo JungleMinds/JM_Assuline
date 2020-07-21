@@ -6,6 +6,7 @@ import styledNormalize from 'styled-normalize'
 import * as fonts from './fonts'
 import * as textStyles from './textStyles'
 import { dark } from './colors'
+import { underline } from './animations'
 
 const GlobalStyle = createGlobalStyle`
   ${styledNormalize}
@@ -38,6 +39,12 @@ const GlobalStyle = createGlobalStyle`
   a {
     color: ${dark};
     text-decoration: none;
+  }
+
+  p {
+    a {
+      ${underline}
+    }
   }
 `
 
