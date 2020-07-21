@@ -5,6 +5,7 @@ import SliderComponent from 'react-slick'
 // Components
 import ContainerComponent from './container'
 import IconComponent from './icons/icon'
+import RichText from './richText'
 
 // Styles
 import 'slick-carousel/slick/slick.css'
@@ -16,7 +17,7 @@ import { yellow, green } from '../styles/colors'
 // Types
 interface IProps {
   images: string[]
-  heading?: string
+  heading?: any
 }
 
 const Carousel: React.FC<IProps> = ({ images, heading }) => {
@@ -45,7 +46,9 @@ const Carousel: React.FC<IProps> = ({ images, heading }) => {
           </ImageContainer>
         ))}
       </Slider>
-      <Heading>{heading}</Heading>
+      <Heading>
+        <RichText content={heading.raw} />
+      </Heading>
     </Container>
   )
 }

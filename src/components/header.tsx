@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components'
 import ContainerComponent from './container'
 import ButtonComponent from './button'
 import IconComponent from './icons/icon'
+import RichText from './richText'
 
 // Styles
 import * as textStyles from '../styles/textStyles'
@@ -38,10 +39,16 @@ const Header: React.FC<IProps> = ({
       <Lines icon="lines" color={yellow} />
     </ImageContainer>
     <Wrapper>
-      <Title type={type} numOfChar={title.length}>
-        {title}
-      </Title>
-      {paragraph && <Text type={type}>{paragraph}</Text>}
+      {title && (
+        <Title type={type} numOfChar={title.length}>
+          {title}
+        </Title>
+      )}
+      {paragraph && (
+        <Text type={type}>
+          <RichText content={paragraph.raw} />
+        </Text>
+      )}
       {usps && (
         <List>
           {usps.map(item => (
@@ -196,7 +203,7 @@ const Icon = styled(IconComponent)`
   flex: 0 0 ${({ width }) => width}px;
 `
 
-const Text = styled.p<{ type: string }>`
+const Text = styled.div<{ type: string }>`
   ${props =>
     props.type === 'Home' ? textStyles.plainLoud : textStyles.plainNormal}
   margin: 0;
