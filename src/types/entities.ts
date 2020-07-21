@@ -33,18 +33,18 @@ export interface IStaticFile {
 }
 
 export interface IReview {
-  image: IImage
-  text: string
-  author: string
+  image: string
+  text: any
+  name: string
   location: string
 }
 
 export interface IReviews {
-  reviews: IReview[]
+  items: IReview[]
   grade: {
-    active: boolean
+    visible: boolean
     score: number
-    text: string
+    text: any
   }
 }
 
@@ -65,9 +65,8 @@ export type HeaderTypes =
 // SERVICES
 export interface IService {
   title: string
-  paragraph: string
-  buttonLabel: string
-  buttonUrl: string
+  paragraph: any
+  button: IButton
   image: string
   type: ServiceTypes
 }

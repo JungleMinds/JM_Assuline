@@ -12,7 +12,7 @@ const underline = css`
     position: absolute;
     content: '';
     left: 0;
-    bottom: -0.1rem;
+    bottom: 0;
     display: block;
     width: 100%;
     height: 1px;

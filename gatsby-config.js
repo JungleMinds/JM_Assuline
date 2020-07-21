@@ -75,17 +75,32 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
+        // The name of your prismic.io repository. This is required.
         repositoryName: process.env.PRISMIC_REPO_NAME,
+
+        // An API access token to your prismic.io repository. This is required.
         accessToken: process.env.PRISMIC_TOKEN,
+
+        // Set a link resolver function used to process links in your content.
+        // Fields with rich text formatting or links to internal content use this
+        // function to generate the correct link URL.
+        // See: https://prismic.io/docs/javascript/query-the-api/link-resolving
         linkResolver: ({ node }) => () => `/${node.uid}`,
+
+        // Provide an object of Prismic custom type JSON schemas to load into
+        // Gatsby. This is required.
         schemas: {
+          home_page: require('./src/schemas/home_page.json'),
           content_page: require('./src/schemas/content_page.json'),
         },
+
+        // Set the prefix for the filename where type paths for your schemas are
+        // stored. The filename will include the MD5 hash of your schemas after
+        // the prefix.
+        // This defaults to 'prismic-typepaths---${repositoryName}'.
+        typePathsFilenamePrefix: `prismic-typepaths---${process.env.PRISMIC_REPO_NAME}`,
       },
     },
     `gatsby-plugin-robots-txt`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

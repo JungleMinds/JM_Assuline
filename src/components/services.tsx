@@ -4,6 +4,7 @@ import styled from 'styled-components'
 // Components
 import ContainerComponent from './container'
 import ButtonComponent from './button'
+import RichTextComponent from './richText'
 
 // Styles
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
@@ -21,27 +22,26 @@ interface IProps {
 export const Service: React.FC<IService> = ({
   title,
   paragraph,
-  buttonLabel,
-  buttonUrl,
+  button,
   image,
   type,
-}) => {
-  return (
-    <Wrapper>
-      <ImageContainer>
-        <Image background={image} />
-      </ImageContainer>
-      <ContentWrapper>
-        <Type>{type}</Type>
-        <Title>{title}</Title>
-        <Paragraph>{paragraph}</Paragraph>
-        <Button to={buttonUrl} icon>
-          {buttonLabel}
-        </Button>
-      </ContentWrapper>
-    </Wrapper>
-  )
-}
+}) => (
+  <Wrapper>
+    <ImageContainer>
+      <Image background={image} />
+    </ImageContainer>
+    <ContentWrapper>
+      <Type>{type}</Type>
+      <Title>{title}</Title>
+      <Paragraph>
+        <RichText content={paragraph.raw} />
+      </Paragraph>
+      <Button to={button.url} icon>
+        {button.label}
+      </Button>
+    </ContentWrapper>
+  </Wrapper>
+)
 
 const Services: React.FC<IProps> = ({ services }) => {
   return (
@@ -153,10 +153,7 @@ const Title = styled.h1`
   `}
 `
 
-const Paragraph = styled.p`
-  margin: 0;
-  margin-bottom: 24px;
-
+const Paragraph = styled.div`
   ${mediaQueries.from.breakpoint.S`
     margin-bottom: 32px;
   `}
@@ -164,6 +161,10 @@ const Paragraph = styled.p`
   ${mediaQueries.from.breakpoint.L`
     margin-bottom: 40px;
   `}
+`
+
+const RichText = styled(RichTextComponent)`
+  margin-bottom: 24px;
 `
 
 const Button = styled(ButtonComponent)`
