@@ -12,6 +12,7 @@ import Services from '../components/services'
 import Carousel from '../components/carousel'
 import Reviews from '../components/reviews'
 import ImageBanner from '../components/imageBanner'
+import ContactForm from '../components/contactForm'
 
 // Types
 import { ServiceTypes } from '../types/entities'
@@ -101,6 +102,11 @@ const CTA_BANNER_CONTENT = {
   },
 }
 
+const FORM_CONTENT = {
+  title: 'Wij waarderen persoonlijk contact',
+  buttonLabel: 'Neem contact met mij op',
+}
+
 const Index = () => (
   <Layout>
     <SEO title="Home" />
@@ -119,6 +125,7 @@ const Index = () => (
       title={CTA_BANNER_CONTENT.title}
       button={CTA_BANNER_CONTENT.button}
     />
+    <ContactForm {...FORM_CONTENT} />
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
