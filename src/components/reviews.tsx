@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 // Components
 import TextComponent from './text'
+import RichText from './richText'
 
 // Styling
 import { green, white } from '../styles/colors'
@@ -13,29 +14,34 @@ import { plainSubtle, headingLoud } from '../styles/textStyles'
 // Typing
 import { IReviews, IReview } from 'src/types/entities'
 
-const Reviews: React.FC<IReviews> = ({ reviews, grade }: IReviews) => {
+const Reviews: React.FC<IReviews> = ({ items, grade }: IReviews) => {
   return (
     <Container>
-      {reviews.map((review: IReview) => (
-        <Block key={`review-${review.author}`}>
+      {items.map((review: IReview) => (
+        <Block key={`review-${review.name}`}>
           <AspectContainer>
-            <Image background={review.image.src} />
+            <Image background={review.image} />
           </AspectContainer>
           <Details>
-            <Text underline>{review.text}</Text>
+            <Text underline>
+              <RichText content={review.text.raw} />
+            </Text>
             <Author>
-              {review.author} — {review.location}
+              {review.name} — {review.location}
             </Author>
           </Details>
         </Block>
       ))}
-      {grade && grade.active && (
+      {grade && grade.visible && (
         <Block>
           <AspectContainer>
             <Grade>{grade.score}</Grade>
           </AspectContainer>
           <Details>
-            <Text htmlText={grade.text} />
+            <Text>
+              <RichText content={grade.text.raw} />
+            </Text>
+            {/* <Text dangerouslySetInnerHTML={{ __html: grade.text }} /> */}
           </Details>
         </Block>
       )}

@@ -6,14 +6,14 @@
         "label": "slug"
       }
     },
-    "title": {
+    "page_title": {
       "type": "StructuredText",
       "config": {
         "single": "heading1",
         "label": "Title"
       }
     },
-    "heading_intro": {
+    "header_intro": {
       "type": "StructuredText",
       "config": {
         "multi": "strong, hyperlink",
@@ -38,6 +38,195 @@
         "constraint": {},
         "thumbnails": [],
         "label": "Image"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "services": [],
+          "image_banner": [],
+          "carousel": [],
+          "reviews": []
+        },
+        "choices": {
+          "services": {
+            "type": "Slice",
+            "fieldset": "Services",
+            "description": "Description of provided services",
+            "icon": "art_track",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "service_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "service_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Name",
+                  "placeholder": "Name of the service"
+                }
+              },
+              "service_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "service_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Description"
+                }
+              },
+              "service_buttonlabel": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Label"
+                }
+              },
+              "service_buttonlink": {
+                "type": "Link",
+                "config": {
+                  "label": "Link"
+                }
+              }
+            }
+          },
+          "carousel": {
+            "type": "Slice",
+            "fieldset": "Carousel",
+            "description": "Carousel of images with text",
+            "icon": "photo_library",
+            "display": "list",
+            "non-repeat": {
+              "carousel_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {
+              "carousel_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            }
+          },
+          "image_banner": {
+            "type": "Slice",
+            "fieldset": "Image Banner",
+            "description": "Banner with an image, text and a link button",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {
+              "imagebanner_text": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Text"
+                }
+              },
+              "imagebanner_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "imagebanner_buttonlabel": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Label"
+                }
+              },
+              "imagebanner_buttonlink": {
+                "type": "Link",
+                "config": {
+                  "label": "Link"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "reviews": {
+            "type": "Slice",
+            "fieldset": "Reviews",
+            "description": "Selected reviews",
+            "icon": "chat",
+            "display": "list",
+            "non-repeat": {
+              "review_site_toggle": {
+                "type": "Boolean",
+                "config": {
+                  "default_value": true,
+                  "label": "Show site review"
+                }
+              },
+              "review_site_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Text"
+                }
+              },
+              "review_site_score": {
+                "type": "Text",
+                "config": {
+                  "label": "Score"
+                }
+              }
+            },
+            "repeat": {
+              "review_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "review_name": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading6",
+                  "label": "Name"
+                }
+              },
+              "review_city": {
+                "type": "Text",
+                "config": {
+                  "label": "City"
+                }
+              },
+              "review_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Text"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
