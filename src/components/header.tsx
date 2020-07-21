@@ -103,7 +103,6 @@ const Container = styled(ContainerComponent)`
 
   ${mediaQueries.from.breakpoint.L`
     flex-direction: row-reverse;
-    margin-bottom: 56px;
   `}
 
   ${mediaQueries.from.breakpoint.XL`
