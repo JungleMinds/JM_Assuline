@@ -6,7 +6,7 @@ import { Link as LinkComponent } from 'gatsby'
 import IconComponent from './icons/icon'
 
 // Styles
-import { yellow, yellowDark, dark, darkest } from '../styles/colors'
+import { yellow, yellowDark, dark, darkest, lightGrey } from '../styles/colors'
 import * as textStyles from '../styles/textStyles'
 import mediaQueries from '../styles/mediaQueries'
 
@@ -15,9 +15,18 @@ interface IProps {
   icon?: boolean
   className?: string
   to?: string
+  disabled?: boolean
+  type?: 'button' | 'submit'
 }
 
-const Button: React.FC<IProps> = ({ children, icon, className, to }) => {
+const Button: React.FC<IProps> = ({
+  children,
+  icon,
+  className,
+  to,
+  disabled,
+  type,
+}) => {
   const Content = () => (
     <>
       <span>{children}</span>
@@ -41,7 +50,7 @@ const Button: React.FC<IProps> = ({ children, icon, className, to }) => {
     )
   } else {
     result = (
-      <Container className={className}>
+      <Container className={className} disabled={disabled} type={type}>
         <Content />
       </Container>
     )
@@ -91,6 +100,21 @@ const style = css`
 
 const Container = styled.button`
   ${style}
+
+  :disabled {
+    background: ${lightGrey};
+    cursor: wait;
+
+    > span,
+    > ${Icon} {
+      opacity: 0.4;
+    }
+
+    :hover {
+      background: ${lightGrey};
+      color: ${dark};
+    }
+  }
 `
 
 const GatsbyLink = styled(LinkComponent)`

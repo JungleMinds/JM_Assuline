@@ -6,7 +6,6 @@ import mediaQueries from '../../styles/mediaQueries'
 import { white, yellow, dark } from '../../styles/colors'
 
 // Types
-// Types
 import { IBaseIcon } from '../../types/entities'
 interface IIconProps extends IBaseIcon {
   inverse?: boolean

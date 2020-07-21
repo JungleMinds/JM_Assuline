@@ -1,13 +1,13 @@
-const fs = require("fs")
-const path = require("path")
-const execSync = require("child_process").execSync
+const fs = require('fs')
+const path = require('path')
+const execSync = require('child_process').execSync
 
-const dotEnvFile = path.resolve(".env")
+const dotEnvFile = path.resolve('.env')
 
 const NODE_ENV = process.env.NODE_ENV
 if (!NODE_ENV) {
   throw new Error(
-    "The NODE_ENV environment variable is required but was not specified."
+    'The NODE_ENV environment variable is required but was not specified.'
   )
 }
 
@@ -18,7 +18,7 @@ var dotenvFiles = [
   // Don't include `.env.local` for `test` environment
   // since normally you expect tests to produce the same
   // results for everyone
-  NODE_ENV !== "test" && `${dotEnvFile}.local`,
+  NODE_ENV !== 'test' && `${dotEnvFile}.local`,
   dotEnvFile,
 ].filter(Boolean)
 
@@ -29,8 +29,8 @@ var dotenvFiles = [
 // https://github.com/motdotla/dotenv-expand
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
-    require("dotenv-expand")(
-      require("dotenv").config({
+    require('dotenv-expand')(
+      require('dotenv').config({
         path: dotenvFile,
       })
     )
@@ -40,7 +40,7 @@ dotenvFiles.forEach(dotenvFile => {
 // Add git versions if possible
 process.env.COMMIT_HASH =
   process.env.COMMIT_HASH ||
-  execSync("git rev-parse HEAD")
+  execSync('git rev-parse HEAD')
     .toString()
     .trim()
 

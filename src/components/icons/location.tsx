@@ -2,12 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Types
-interface IIconProps {
-  width?: number
-  height?: number
-  color?: string
-  className?: string
-}
+import { IBaseIcon as IIconProps } from '../../types/entities'
 
 const Location = ({ width, height, color, className }: IIconProps) => (
   <Svg

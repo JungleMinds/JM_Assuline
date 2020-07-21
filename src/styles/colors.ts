@@ -87,6 +87,16 @@ const colors: IColor = {
     rgb: 'rgb(242,239,230)',
     hex: '#F2EFE6',
   },
+  // Form
+  red: {
+    channels: {
+      red: 255,
+      green: 43,
+      blue: 0,
+    },
+    rgb: 'rgb(255,43,0)',
+    hex: '#FF4900',
+  },
 }
 
 export const dark = colors.dark.rgb
@@ -97,5 +107,6 @@ export const white = colors.white.rgb
 export const green = colors.green.rgb
 export const greenDark = colors.greenDark.rgb
 export const lightGrey = colors.lightGrey.rgb
+export const red = colors.red.rgb
 
 export default colors

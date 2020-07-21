@@ -1,3 +1,5 @@
+import { iconMap } from '../components/icons/icon'
+
 export interface IBaseIcon {
   width?: number
   height?: number
@@ -86,3 +88,22 @@ export interface ITeamMember {
   phone: string
   email: string
 }
+
+// CONTACT FORM
+export interface IInputProps {
+  icon: keyof typeof iconMap
+  placeholder: string
+  type?: string
+  name: string
+  onChange?: any
+  onBlur?: any
+  value?: string
+  hasError?: undefined | boolean
+  touched?: boolean
+}
+
+export type IContactForm = {
+  [key in FieldName]: string
+}
+
+export type FieldName = 'name' | 'email' | 'phone'

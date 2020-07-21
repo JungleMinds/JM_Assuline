@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "lib": ["dom", "es2015", "es2016"],
     "typeRoots": ["./node_modules/@types/"],
-    "types": ["jest"]
+    "types": ["jest", "node"]
   },
   "include": ["typings", "src/**/*"],
   "exclude": [".cache", "public", "node_modules", "gatsby-*.js"]

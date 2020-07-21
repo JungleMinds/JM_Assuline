@@ -5,11 +5,8 @@ import styled from 'styled-components'
 import mediaQueries from '../../styles/mediaQueries'
 
 // Types
-interface IIconProps {
-  width?: number
-  height?: number
-  color?: string
-  className?: string
+import { IBaseIcon } from '../../types/entities'
+interface IIconProps extends IBaseIcon {
   large?: boolean
 }
 

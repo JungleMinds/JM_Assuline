@@ -15,6 +15,8 @@ import Chevron from './chevron'
 import ImageOverlay from './imageOverlay'
 import Pictogram from './pictogram'
 import Download from './download'
+import User from './user'
+import ErrorIcon from './error'
 
 // Styles
 import { dark } from '../../styles/colors'
@@ -34,7 +36,7 @@ type IProps = IIconProps & {
   icon: keyof typeof iconMap
 }
 
-const iconMap = {
+export const iconMap = {
   arrow: Arrow,
   logo: Logo,
   menu: Menu,
@@ -49,6 +51,8 @@ const iconMap = {
   overlay: ImageOverlay,
   pictogram: Pictogram,
   download: Download,
+  user: User,
+  error: ErrorIcon,
 }
 
 const Icon = ({
