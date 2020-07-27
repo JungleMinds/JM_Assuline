@@ -19,7 +19,7 @@ const HEADER_CONTENT = {
 
 const Contact = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Contact" />
     <Header
       title={HEADER_CONTENT.title}
       paragraph={HEADER_CONTENT.paragraph}

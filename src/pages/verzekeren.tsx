@@ -5,6 +5,7 @@ import SEO from '../components/seo'
 
 // Components
 import Header from '../components/header'
+import Intro from '../components/intro'
 import Toggle from '../components/toggle'
 
 // Mock data
@@ -24,6 +25,9 @@ const headerButtons = [
     url: '/verzekeren',
   },
 ]
+
+const INTRO_TEXT =
+  'Wij zijn <strong>al 28 jaar</strong> een onafhankelijk financieel adviesbureau en zijn niet gebonden aan een bank. Door onze persoonlijke manier van werken kennen onze specialisten uw situatie goed en kunnen we snel handelen wanneer dat nodig is.'
 
 const ACCORDIONS_CONTENT = {
   particulier: [
@@ -182,7 +186,7 @@ const TOGGLE_CONTENT = {
 const Verzekeren = () => {
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Verzekeren" />
       <Header
         title={HEADER_CONTENT.title}
         usps={HEADER_CONTENT.usps}
@@ -190,6 +194,7 @@ const Verzekeren = () => {
         image={HEADER_CONTENT.image}
         type="Verzekeren"
       />
+      <Intro paragraph={INTRO_TEXT} />
       <Toggle {...TOGGLE_CONTENT} />
     </Layout>
   )

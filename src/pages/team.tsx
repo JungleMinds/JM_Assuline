@@ -16,7 +16,7 @@ const HEADER_CONTENT = {
 
 const Team = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Team" />
     <Header
       title={HEADER_CONTENT.title}
       image={HEADER_CONTENT.image}
