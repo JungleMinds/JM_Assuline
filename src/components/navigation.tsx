@@ -132,6 +132,7 @@ const Container = styled.div<IProps>`
   position: relative;
   background: ${white};
   padding: 0 16px;
+  margin-bottom: 16px;
   max-height: 160px;
   z-index: 9;
 
@@ -166,6 +167,7 @@ const Container = styled.div<IProps>`
     max-width: 1920px;
     padding-left: 24px;
     padding-right: 24px;
+    margin-bottom: 0;
     transform: translateX(-50%);
     transition: max-height 0.2s ease;
     ${(props: { isScrolled: boolean }) =>
