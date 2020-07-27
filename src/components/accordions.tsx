@@ -23,6 +23,7 @@ const Accordions: React.FC<IProps> = ({ data }) => {
   const [accordionsColumns, setAccordionsColumns] = useState<AccordionColumns>(
     []
   )
+  const [activeItem, setActiveItem] = useState<string>()
 
   useEffect(() => {
     const accordionsContent = [...data]
@@ -44,23 +45,45 @@ const Accordions: React.FC<IProps> = ({ data }) => {
         accordionsColumns.map((accordions, index) => (
           <Wrapper key={`accordions-wrapper-${index}`} count={data.length}>
             {accordions.map(
-              (accordion: { title: string; paragraph: string }) => (
-                <Accordion
-                  key={`accordion-item-${accordion.title}`}
-                  {...accordion}
-                />
-              )
+              (accordion: { title: string; paragraph: string }) => {
+                const handleClick = () => {
+                  if (activeItem === `accordion-item-${accordion.title}`) {
+                    setActiveItem('')
+                  } else {
+                    setActiveItem(`accordion-item-${accordion.title}`)
+                  }
+                }
+                return (
+                  <Accordion
+                    key={`accordion-item-${accordion.title}`}
+                    isOpen={activeItem === `accordion-item-${accordion.title}`}
+                    handleClick={handleClick}
+                    {...accordion}
+                  />
+                )
+              }
             )}
           </Wrapper>
         ))
       ) : (
         <Wrapper count={data.length}>
-          {sortedAccordions.map(accordion => (
-            <Accordion
-              key={`accordion-item-${accordion.title}`}
-              {...accordion}
-            />
-          ))}
+          {sortedAccordions.map(accordion => {
+            const handleClick = () => {
+              if (activeItem === `accordion-item-${accordion.title}`) {
+                setActiveItem('')
+              } else {
+                setActiveItem(`accordion-item-${accordion.title}`)
+              }
+            }
+            return (
+              <Accordion
+                key={`accordion-item-${`accordion-item-${accordion.title}`}`}
+                isOpen={activeItem === `accordion-item-${accordion.title}`}
+                handleClick={handleClick}
+                {...accordion}
+              />
+            )
+          })}
         </Wrapper>
       )}
     </Container>
