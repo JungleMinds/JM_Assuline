@@ -118,6 +118,10 @@ const Container = styled(ContainerComponent)`
   ${mediaQueries.from.breakpoint.XL`
     padding: 0 20px;
     margin-bottom: 160px;
+
+    > ${Slider} {
+      width: calc(50% - 12px);
+    }
   `}
 `
 
@@ -140,5 +144,9 @@ const Heading = styled.h2`
 
   ${mediaQueries.from.breakpoint.L`
     width: calc(50% - 16px);
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    width: calc(50% - 116px);
   `}
 `
