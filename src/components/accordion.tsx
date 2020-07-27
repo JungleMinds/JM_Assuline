@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 // Components
 import IconComponent from './icons/icon'
 
 // Styles
-import { yellow, lightGrey } from '../styles/colors'
+import { yellow, lightGrey, darkest, yellowDark, dark } from '../styles/colors'
 import * as textStyles from '../styles/textStyles'
 import mediaQueries from '../styles/mediaQueries'
 
@@ -14,26 +14,27 @@ interface IProps {
   title: string
   paragraph: string
   className?: string
+  isOpen: boolean
+  handleClick(): void
 }
 
-const Accordion: React.FC<IProps> = ({ title, paragraph, className }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleClick = () => {
-    setIsOpen(prevState => !prevState)
-  }
-  return (
-    <Container isOpen={isOpen} className={className}>
-      <LabelWrapper isOpen={isOpen}>
-        <IconContainer onClick={handleClick}>
-          <Icon icon="chevron" width={16} height={16} isOpen={isOpen} />
-        </IconContainer>
-        <Label onClick={handleClick}>{title}</Label>
-      </LabelWrapper>
-      {isOpen && <Paragraph onClick={handleClick}>{paragraph}</Paragraph>}
-    </Container>
-  )
-}
+const Accordion: React.FC<IProps> = ({
+  title,
+  paragraph,
+  className,
+  isOpen,
+  handleClick,
+}) => (
+  <Container isOpen={isOpen} className={className}>
+    <LabelWrapper isOpen={isOpen}>
+      <IconContainer onClick={handleClick}>
+        <Icon icon="chevron" width={16} height={16} isOpen={isOpen} />
+      </IconContainer>
+      <Label onClick={handleClick}>{title}</Label>
+    </LabelWrapper>
+    {isOpen && <Paragraph onClick={handleClick}>{paragraph}</Paragraph>}
+  </Container>
+)
 
 export default Accordion
 
@@ -63,16 +64,10 @@ const Container = styled.li<{ isOpen: boolean }>`
   `}
 `
 
-const LabelWrapper = styled.div<{ isOpen: boolean }>`
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  ${props => props.isOpen && 'margin-bottom: 8px;'}
-`
-
 const Label = styled.p`
   margin: 0;
+  color: ${dark};
+  transition: color 0.2s ease-in-out;
   cursor: pointer;
 `
 
@@ -98,6 +93,7 @@ const IconContainer = styled.div`
   background: ${yellow};
   flex: 0 0 32px;
   cursor: pointer;
+  transition: background 0.2s ease-in-out;
 
   ${mediaQueries.from.breakpoint.L`
     width: 40px;
@@ -107,4 +103,24 @@ const IconContainer = styled.div`
   `}
 `
 
-const Icon = styled(IconComponent)``
+const Icon = styled(IconComponent)`
+  stroke-width: 3;
+`
+
+const LabelWrapper = styled.div<{ isOpen: boolean }>`
+  height: 40px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  ${props => props.isOpen && 'margin-bottom: 8px;'}
+
+  :hover {
+    ${IconContainer} {
+      background: ${yellowDark};
+    }
+
+    ${Label} {
+      color: ${darkest};
+    }
+  }
+`
