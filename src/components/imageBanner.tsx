@@ -54,7 +54,6 @@ const Container = styled.section`
   ${mediaQueries.from.px(1920)`
     max-width: 1920px;
     margin: 0 auto;
-    border-radius: 2px;
   `}
 `
 
@@ -101,6 +100,7 @@ const Image = styled.div<{ background?: string }>`
         ${colors.darkest.channels.blue},
         0.24);
       content: '';
+      border-radius: 2px;
     }
   `}
 
@@ -185,7 +185,7 @@ const DesktopButton = styled(Link)`
         max-width: 7rem;
         margin-right: 8px;
         opacity: 1;
-        transition: max-width 0.4s ease opacity 0.4s 0.2s ease;
+        transition: max-width 0.4s ease, opacity 0.4s 0.2s ease;
       }
     }
   `}
