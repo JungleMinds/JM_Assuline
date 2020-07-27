@@ -66,7 +66,7 @@ const ACCORDIONS_CONTENT = [
 const Hypoteken = () => {
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Hypotheken" />
       <Header
         title={HEADER_CONTENT.title}
         usps={HEADER_CONTENT.usps}

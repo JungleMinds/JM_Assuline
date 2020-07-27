@@ -4,7 +4,7 @@ import useComponentWillMount from '../hooks/useComponentWillMount'
 
 // Components
 import ContainerComponent from './container'
-import Button from './button'
+import ButtonComponent from './button'
 import IconComponent from './icons/icon'
 
 // Styles
@@ -75,13 +75,13 @@ const Header: React.FC<IProps> = ({
         {buttons && (
           <ButtonWrapper>
             {buttons.map(button => (
-              <StyledButton
+              <Button
                 to={button.url}
                 key={`header-button-${button.label}`}
                 icon
               >
                 {button.label}
-              </StyledButton>
+              </Button>
             ))}
           </ButtonWrapper>
         )}
@@ -136,12 +136,8 @@ const ImageContainer = styled.div`
 
   ${mediaQueries.from.breakpoint.L`
     ${aspectRatio(512, 512)}
+    margin-bottom: 0;
     flex: 1 0 50%;
-    border-radius: 2px 0 0 2px;
-  `}
-
-  ${mediaQueries.from.px(1920)`
-    border-radius: 2px;
   `}
 `
 
@@ -168,10 +164,10 @@ const Lines = styled(IconComponent)`
 `
 
 const Wrapper = styled.div`
-  padding: 0 16px 24px;
+  padding: 0 16px;
 
   ${mediaQueries.from.breakpoint.M`
-    padding: 0 24px 112px;
+    padding: 0 24px;
   `}
 
   ${mediaQueries.from.breakpoint.L`
@@ -242,8 +238,17 @@ const ButtonWrapper = styled.div`
   `}
 `
 
-const StyledButton = styled(Button)`
+const Button = styled(ButtonComponent)`
+  align-self: flex-start;
   margin-bottom: 16px;
+
+  :last-of-type {
+    margin-bottom: 0;
+  }
+
+  :only-child {
+    margin-bottom: 0;
+  }
 
   ${mediaQueries.from.px(375)`
     margin-bottom: 0;
