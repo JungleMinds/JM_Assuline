@@ -1,6 +1,8 @@
 import { css } from 'styled-components'
 
-import { dark } from './colors'
+// Styles
+import { dark, green } from './colors'
+import mediaQueries from './mediaQueries'
 
 const underline = css`
   position: relative;
@@ -13,10 +15,16 @@ const underline = css`
     bottom: -0.1rem;
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: ${dark};
-    transition: 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: transform 1.1s cubic-bezier(0.19, 1, 0.22, 1);
   }
+
+  ${mediaQueries.to.breakpoint.M`
+    &::before {
+      content: none;
+    }
+  `}
 
   &::before {
     transform: scaleX(0);
@@ -29,12 +37,16 @@ const underline = css`
   }
 
   &:hover {
+    color: ${green};
+
     &::before {
+      background: ${green};
       transform: scaleX(1);
       transition-delay: 0.25s;
     }
 
     &::after {
+      background: ${green};
       transform: scaleX(0);
       transition-delay: 0s;
     }

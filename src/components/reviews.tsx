@@ -43,10 +43,17 @@ const Reviews: React.FC<IReviews> = ({ reviews, grade }: IReviews) => {
 export default Reviews
 
 const Container = styled.div`
-  margin: 160px auto;
-
+  margin: 0 44px 18px;
   display: flex;
   flex-direction: column;
+
+  ${mediaQueries.from.breakpoint.M`
+    margin: 0 24px 18px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    margin-bottom: 120px;
+  `}
 `
 
 const AspectContainer = styled.div`
@@ -59,6 +66,11 @@ const AspectContainer = styled.div`
   ${mediaQueries.from.breakpoint.M`
     margin: 0;
     margin-right: 24px;
+    min-width: 256px;
+    min-height: 256px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
     min-width: 288px;
     min-height: 288px;
   `}
@@ -85,7 +97,7 @@ const Grade = styled.div`
 `
 
 const Block = styled.div`
-  margin: 0 auto 40px;
+  margin: 0 auto 24px;
   max-width: 298px;
   display: flex;
   flex-direction: column;
@@ -93,6 +105,7 @@ const Block = styled.div`
   ${mediaQueries.from.breakpoint.M`
     flex-direction: row;
     max-width: 720px;
+    margin-bottom: 40px;
 
     :nth-child(even) {
       flex-direction: row-reverse;
@@ -113,14 +126,30 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  ${mediaQueries.from.breakpoint.M`
+    flex-basis: 441px;
+  `}
+
+  ${mediaQueries.from.breakpoint.L`
+    flex-basis: 529px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    flex-basis: 496px;
+  `}
 `
 
 const Text = styled.div<{ underline?: boolean }>`
   ${plainNormal};
   margin: 0;
   position: relative;
-  padding-bottom: 16px;
+  padding-bottom: 14px;
   margin-bottom: 8px;
+
+  > p {
+    margin: 0;
+  }
 
   ${props =>
     props.underline &&
