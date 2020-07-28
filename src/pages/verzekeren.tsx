@@ -171,14 +171,14 @@ const TOGGLE_CONTENT = {
     image: '/images/toggleImageParticulier.png',
     title: 'Particuliere verzekeringen',
     text:
-      'Een verzekering nodig die hier niet bij staat? Neem contact met ons op, dan maken we het in orde',
+      '<p>Een verzekering nodig die hier niet bij staat? Neem <a href="/contact">contact</a> met ons op, dan maken we het in orde</p>',
     accordions: ACCORDIONS_CONTENT.particulier,
   },
   business: {
     image: '/images/toggleImageZakelijk.png',
     title: 'Zakelijke verzekeringen',
     text:
-      'Een verzekering nodig die hier niet bij staat? Neem contact met ons op, dan maken we het in orde',
+      '<p>Een verzekering nodig die hier niet bij staat? Neem <a href="/contact">contact</a> met ons op, dan maken we het in orde</p>',
     accordions: ACCORDIONS_CONTENT.zakelijk,
   },
 }

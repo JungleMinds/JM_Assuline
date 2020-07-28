@@ -3,13 +3,15 @@ import styled from 'styled-components'
 
 // Components
 import ContainerComponent from './container'
+import IconComponent from './icons/icon'
 import Accordions from './accordions'
+import TextComponent from './text'
 
 // Styles
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
 import mediaQueries from '../styles/mediaQueries'
 import * as textStyles from '../styles/textStyles'
-import { white, yellow } from '../styles/colors'
+import { white, yellow, green } from '../styles/colors'
 
 // Types
 import { IAccordionItem } from '../types/entities'
@@ -94,6 +96,7 @@ const Toggle: React.FC<IProps> = props => {
             visible={choice === 'business'}
             background={props.business.image}
           />
+          <Overlay icon="overlay" color={white} width={1240} height={26} />
           <ToggleContainer>
             <Labels
               width={toggleDimensions.w}
@@ -101,11 +104,11 @@ const Toggle: React.FC<IProps> = props => {
               diff={toggleDimensions.diff}
               choice={choice}
             >
-              <Label ref={privateLabel} onClick={handleToggle}>
+              <Label ref={privateLabel} onClick={handleToggle} choice={choice}>
                 <Short>Particulier</Short>
                 <Long>Particuliere verzekeringen</Long>
               </Label>
-              <Label ref={businessLabel} onClick={handleToggle}>
+              <Label ref={businessLabel} onClick={handleToggle} choice={choice}>
                 <Short>Zakelijk</Short>
                 <Long>Zakelijke verzekeringen</Long>
               </Label>
@@ -113,7 +116,7 @@ const Toggle: React.FC<IProps> = props => {
           </ToggleContainer>
         </ImageContainer>
         <Title>{props[choice].title}</Title>
-        <Text>{props[choice].text}</Text>
+        <Text htmlText={props[choice].text} />
       </Container>
       <Accordions data={props[choice].accordions} />
     </>
@@ -141,6 +144,7 @@ const ImageContainer = styled.div`
   margin: 0;
   margin-bottom: 24px;
   border-radius: 2px;
+  overflow: hidden;
 
   ${mediaQueries.from.breakpoint.M`
     ${aspectRatio(720, 424)}
@@ -164,6 +168,13 @@ const Image = styled.div<{ background?: string; visible: boolean }>`
   background-image: url('${({ background }) => background}');
   background-size: cover;
   background-position: center center;
+`
+
+const Overlay = styled(IconComponent)`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `
 
 const ToggleContainer = styled.div`
@@ -208,13 +219,19 @@ const Labels = styled.div<{
   }
 `
 
-const Label = styled.span`
+const Label = styled.span<{ choice: string }>`
   ${textStyles.highlight}
   padding: 10px 24px;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
   cursor: pointer;
+  transition: color 0.2s ease;
+
+  ${props =>
+      props.choice === 'private' ? ':last-of-type' : ':first-of-type'}:hover {
+    color: ${green};
+  }
 
   ${mediaQueries.from.breakpoint.XL`
     padding: 10px 32px;
@@ -243,7 +260,7 @@ const Title = styled.h1`
   `}
 `
 
-const Text = styled.p`
+const Text = styled(TextComponent)`
   ${textStyles.plainLoud}
   margin: 0;
   margin-bottom: 24px;

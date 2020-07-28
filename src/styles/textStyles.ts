@@ -18,6 +18,11 @@ export const headingLoud = css`
     line-height: 1.2;
   `}
 
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
+
   ${mediaQueries.from.breakpoint.M`
     font-size: 72px;
     line-height: 1;
@@ -39,6 +44,11 @@ export const headingBig = css`
   ${mediaQueries.from.px(375)`
     font-size: 40px;
     line-height: 1.2;
+  `}
+
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
   `}
 
   ${mediaQueries.from.breakpoint.M`
@@ -65,6 +75,11 @@ export const headingNormal = css`
     line-height: 1.25;
   `}
 
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
+
   ${mediaQueries.from.breakpoint.M`
     font-size: 40px;
     line-height: 1.2;
@@ -88,6 +103,11 @@ export const headingSubtle = css`
     line-height: 1.333;
   `}
 
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
+
   ${mediaQueries.from.breakpoint.M`
     font-size: 32px;
     line-height: 1.25;
@@ -109,6 +129,11 @@ export const highlight = css`
     line-height: 1.25;
   `}
 
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
+
   ${mediaQueries.from.breakpoint.XL`
     font-size: 20px;
     line-height: 1.2;
@@ -121,6 +146,11 @@ export const highlightSubtle = css`
   font-weight: bold;
   overflow-wrap: break-word;
   hyphens: auto;
+
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
 
   ${mediaQueries.from.breakpoint.XL`
     font-size: 16px;
@@ -137,6 +167,11 @@ export const plainLoud = css`
   font-weight: normal;
   overflow-wrap: break-word;
   hyphens: auto;
+
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
 
   ${mediaQueries.from.breakpoint.M`
     font-size: 20px;
@@ -156,6 +191,11 @@ export const plainNormal = css`
   overflow-wrap: break-word;
   hyphens: auto;
 
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
+
   ${mediaQueries.from.breakpoint.M`
     font-size: 18px;
     line-height: 1.667;
@@ -173,6 +213,11 @@ export const plainSubtle = css`
   font-weight: normal;
   overflow-wrap: break-word;
   hyphens: auto;
+
+  ${mediaQueries.from.breakpoint.S`
+    overflow-wrap: normal;
+    hyphens: manual;
+  `}
 
   ${mediaQueries.from.breakpoint.XL`
     font-size: 16px;
