@@ -103,9 +103,6 @@ const Container = styled(ContainerComponent)`
   ${mediaQueries.from.breakpoint.M`
     padding: 0 24px;
     margin-bottom: 80px;
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -142,7 +139,7 @@ const Heading = styled.h2`
   ${textStyles.headingSubtle}
   margin: 0;
 
-  ${mediaQueries.from.breakpoint.L`
+  ${mediaQueries.from.breakpoint.M`
     width: calc(50% - 16px);
   `}
 
