@@ -13,6 +13,7 @@ import Check from './check'
 import Indicator from './indicator'
 import Chevron from './chevron'
 import ImageOverlay from './imageOverlay'
+import Pictogram from './pictogram'
 
 // Styles
 import { dark } from '../../styles/colors'
@@ -45,6 +46,7 @@ const iconMap = {
   indicator: Indicator,
   chevron: Chevron,
   overlay: ImageOverlay,
+  pictogram: Pictogram,
 }
 
 const Icon = ({
