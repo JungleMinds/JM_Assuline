@@ -28,7 +28,7 @@ const HEADER_CONTENT = {
 const headerButtons = [
   {
     label: 'Neem contact op',
-    url: '/',
+    url: '/contact',
   },
 ]
 

@@ -24,7 +24,7 @@ const HEADER_CONTENT = {
 const headerButtons = [
   {
     label: 'Maak een gratis afspraak',
-    url: '/hypotheken',
+    url: '/contact',
   },
 ]
 

@@ -25,15 +25,29 @@ const Button: React.FC<IProps> = ({ children, icon, className, to }) => {
     </>
   )
 
-  return to ? (
-    <Link className={className} to={to}>
-      <Content />
-    </Link>
-  ) : (
-    <Container className={className}>
-      <Content />
-    </Container>
-  )
+  let result
+
+  if (to && (to.includes('tel:') || to.includes('mailto:'))) {
+    result = (
+      <Link className={className} href={to}>
+        <Content />
+      </Link>
+    )
+  } else if (to) {
+    result = (
+      <GatsbyLink className={className} to={to}>
+        <Content />
+      </GatsbyLink>
+    )
+  } else {
+    result = (
+      <Container className={className}>
+        <Content />
+      </Container>
+    )
+  }
+
+  return result
 }
 
 export default Button
@@ -79,6 +93,10 @@ const Container = styled.button`
   ${style}
 `
 
-const Link = styled(LinkComponent)`
+const GatsbyLink = styled(LinkComponent)`
+  ${style}
+`
+
+const Link = styled.a`
   ${style}
 `

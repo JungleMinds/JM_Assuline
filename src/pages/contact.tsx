@@ -11,8 +11,8 @@ const HEADER_CONTENT = {
   title: 'Heeft u een vraag of wilt u een afspraak maken?',
   paragraph: 'Stuur een mail naar info@assuline.nl of bel 0297 - 288198',
   buttons: [
-    { label: 'Mail ons', url: '/contact' },
-    { label: 'Bel ons', url: '/contact' },
+    { label: 'Mail ons', url: 'mailto:janedoe@assuline.nl' },
+    { label: 'Bel ons', url: 'tel:0600000000' },
   ],
   image: '/images/contactHeaderImage.png',
 }
