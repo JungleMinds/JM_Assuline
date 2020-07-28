@@ -3,15 +3,16 @@ import styled from 'styled-components'
 
 // Components
 import ContainerComponent from './container'
+import IconComponent from './icons/icon'
 
 // Styles
-import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
+import aspectRatio from '../styles/aspectRatio'
+import { green, white } from '../styles/colors'
 import mediaQueries from '../styles/mediaQueries'
 import * as textStyles from '../styles/textStyles'
 
 // Types
 interface IProps {
-  image: string
   business: IContent
   consumer: IContent
 }
@@ -21,11 +22,11 @@ interface IContent {
   paragraph: string
 }
 
-const BusinessConsumer: React.FC<IProps> = ({ image, business, consumer }) => {
+const BusinessConsumer: React.FC<IProps> = ({ business, consumer }) => {
   return (
     <Container>
       <ImageContainer>
-        <Image background={image} />
+        <Pictogram icon="pictogram" color={white} />
       </ImageContainer>
       <Wrapper>
         <Title>{business.title}</Title>
@@ -60,6 +61,7 @@ const Container = styled(ContainerComponent)`
 const ImageContainer = styled.div`
   ${aspectRatio(288, 312)}
   margin: 0;
+  background-color: ${green};
   border-radius: 2px;
 
   ${mediaQueries.from.breakpoint.M`
@@ -76,13 +78,12 @@ const ImageContainer = styled.div`
   `}
 `
 
-const Image = styled.div<{ background?: string }>`
-  ${aspectRatioChild}
-  border-radius: 2px;
-
-  background-image: url('${({ background }) => background}');
-  background-size: cover;
-  background-position: center center;
+const Pictogram = styled(IconComponent)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 80%;
+  transform: translateX(-50%) translateY(-50%);
 `
 
 const Wrapper = styled.div`
