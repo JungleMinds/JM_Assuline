@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// Components
+import TextComponent from './text'
+
 // Styling
-import { green, white, dark } from '../styles/colors'
+import { green, white } from '../styles/colors'
 import mediaQueries from '../styles/mediaQueries'
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
-import { plainNormal, plainSubtle, headingLoud } from '../styles/textStyles'
+import { plainSubtle, headingLoud } from '../styles/textStyles'
 
 // Typing
 import { IReviews, IReview } from 'src/types/entities'
@@ -32,7 +35,7 @@ const Reviews: React.FC<IReviews> = ({ reviews, grade }: IReviews) => {
             <Grade>{grade.score}</Grade>
           </AspectContainer>
           <Details>
-            <Text dangerouslySetInnerHTML={{ __html: grade.text }} />
+            <Text htmlText={grade.text} />
           </Details>
         </Block>
       )}
@@ -140,30 +143,9 @@ const Details = styled.div`
   `}
 `
 
-const Text = styled.div<{ underline?: boolean }>`
-  ${plainNormal};
-  margin: 0;
-  position: relative;
+const Text = styled(TextComponent)`
   padding-bottom: 14px;
   margin-bottom: 8px;
-
-  > p {
-    margin: 0;
-  }
-
-  ${props =>
-    props.underline &&
-    `
-      :after {
-        position: absolute;
-        content: "";
-        background: ${dark};
-        width: 40px;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-      }
-  `}
 `
 
 const Author = styled.div`
