@@ -5,6 +5,10 @@ export interface IBaseIcon {
   color?: string
 }
 
+export interface IBaseIllustration {
+  className?: string
+}
+
 export interface INavLinkItem {
   url: string
   label: string
