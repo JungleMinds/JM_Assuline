@@ -6,9 +6,10 @@ import SEO from '../components/seo'
 // Components
 import Header from '../components/header'
 import Intro from '../components/intro'
-import FullGridImage from '../components/fullGridImage'
-import Accordions from '../components/accordions'
 import BusinessConsumer from '../components/businessConsumer'
+import FullGridImage from '../components/fullGridImage'
+import HowWeWork from '../components/howWeWork'
+import Accordions from '../components/accordions'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -63,6 +64,34 @@ const ACCORDIONS_CONTENT = [
   },
 ]
 
+const HOW_WE_WORK_CONTENT = {
+  heading: 'Zo werken wij',
+  cards: [
+    {
+      illustration: 'orientate',
+      title: '1. Een gratis oriënterend gesprek',
+      paragraph:
+        'Maak een gratis eerste afspraak en bespreek uw wensen. We geven je direct antwoord op de meest dringende vragen zoals financiële haalbaarheid,  maandlasten afhankelijk van de hypotheekduur.',
+    },
+    {
+      illustration: 'advisor',
+      title: '2. Onze specialisten gaan aan de slag',
+      paragraph:
+        'Wanneer u de benodigde documenten hebt aangeleverd gaan onze adviseurs op zoek naar de beste hypotheek voor uw situatie. Wij vergelijken rentepercentages en voorwaarden bij vele geldverstrekkers.',
+    },
+    {
+      illustration: 'completion',
+      title: '3. Afronding van uw hypotheek',
+      paragraph:
+        'Kies de hypotheek die het beste bij uw situatie past. Onze adviseur sluit de hypotheek af en is altijd beschikbaar voor vragen, ook na afronding. Ook verzekeren bij Assuline? Dat kan meteen geregeld worden.',
+    },
+  ],
+  button: {
+    label: 'Maak een gratis afspraak',
+    url: '/contact',
+  },
+}
+
 const Hypoteken = () => {
   return (
     <Layout>
@@ -76,6 +105,8 @@ const Hypoteken = () => {
       />
       <Intro paragraph={INTRO_TEXT} />
       <BusinessConsumer {...BUSINESS_CONSUMER_CONTENT} />
+      <FullGridImage image="/images/fullGridImage.png" />
+      <HowWeWork data={HOW_WE_WORK_CONTENT} />
       <FullGridImage image="/images/fullGridImage.png" />
       <Accordions data={ACCORDIONS_CONTENT} />
     </Layout>
