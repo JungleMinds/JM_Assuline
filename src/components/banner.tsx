@@ -1,0 +1,155 @@
+import React from 'react'
+import styled from 'styled-components'
+
+// Components
+import ContainerComponent from './container'
+import PictogramComponent from './pictograms/pictogram'
+import ButtonComponent from './button'
+import IconComponent from './icons/icon'
+
+// Styles
+import { white, green } from '../styles/colors'
+import * as textStyles from '../styles/textStyles'
+import aspectRation from '../styles/aspectRatio'
+import mediaQueries from '../styles/mediaQueries'
+
+// Types
+import { IButton, IStaticFile } from '../types/entities'
+interface IProps {
+  data: {
+    heading: string
+    button?: IButton
+    asset: IStaticFile
+  }
+}
+
+const Banner: React.FC<IProps> = ({ data }) => {
+  return (
+    <Container>
+      <Wrapper>
+        <PictogramWrapper>
+          <Pictogram pictogram="banner" color={white} />
+        </PictogramWrapper>
+        <Heading>{data.heading}</Heading>
+        {data.button && (
+          <Button to={data.button.url} icon>
+            {data.button.label}
+          </Button>
+        )}
+      </Wrapper>
+      <LinkWrapper>
+        <Icon icon="download" />
+        <DownloadLink href={data.asset.url}>{data.asset.label}</DownloadLink>
+      </LinkWrapper>
+    </Container>
+  )
+}
+
+export default Banner
+
+const Container = styled(ContainerComponent)`
+  margin: 0 24px 64px;
+
+  ${mediaQueries.from.breakpoint.M`
+    margin: 0 0 80px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    margin: 0 auto 160px;
+    padding: 0 20px;
+  `}
+`
+
+const Wrapper = styled.div`
+  padding: 32px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: ${green};
+  border-radius: 2px;
+
+  ${mediaQueries.from.breakpoint.M`
+    padding: 48px 40px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    margin-bottom: 40px;
+    padding: 48px 80px;
+    flex-direction: row;
+    align-items: center;
+  `}
+`
+
+const PictogramWrapper = styled.div`
+  ${aspectRation(224, 78)}
+  margin-bottom: 32px;
+  width: 224px;
+  flex: 0 0 78px;
+
+  ${mediaQueries.from.breakpoint.M`
+    ${aspectRation(312, 106)}
+    margin-bottom: 40px;
+    width: 312px;
+    flex: 0 0 106px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    ${aspectRation(232, 106)}
+    margin-bottom: 0;
+    margin-right: 104px;
+    flex: 0 0 232px;
+  `}
+`
+
+const Pictogram = styled(PictogramComponent)`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+`
+
+const Heading = styled.h2`
+  ${textStyles.headingSubtle}
+  margin: 0 0 32px;
+  color: ${white};
+  max-width: 100%;
+
+  :last-child {
+    margin: 0;
+  }
+
+  ${mediaQueries.from.breakpoint.XL`
+    margin-right: 104px;
+    margin-bottom: 0;
+
+    :last-child {
+      margin-right: 104px;
+    }
+  `}
+`
+
+const Button = styled(ButtonComponent)`
+  background: ${white};
+  flex-shrink: 0;
+
+  :hover {
+    background: ${white};
+  }
+`
+
+const LinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const Icon = styled(IconComponent)`
+  margin-right: 16px;
+  flex: 0 0 24px;
+`
+
+const DownloadLink = styled.a`
+  ${textStyles.highlight}
+`

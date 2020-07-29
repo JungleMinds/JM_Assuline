@@ -6,6 +6,7 @@ import SEO from '../components/seo'
 // Components
 import Header from '../components/header'
 import Intro from '../components/intro'
+import Banner from '../components/banner'
 import Toggle from '../components/toggle'
 
 // Mock data
@@ -28,6 +29,19 @@ const headerButtons = [
 
 const INTRO_TEXT =
   'Wij zijn <strong>al 28 jaar</strong> een onafhankelijk financieel adviesbureau en zijn niet gebonden aan een bank. Door onze persoonlijke manier van werken kennen onze specialisten uw situatie goed en kunnen we snel handelen wanneer dat nodig is.'
+
+const BANNER_CONTENT = {
+  heading:
+    'Een verzekering wijzigen of een schade melden? Wij regelen het voor u.',
+  button: {
+    label: 'Mail of bel ons',
+    url: '/contact',
+  },
+  asset: {
+    url: '/assets/europees_schadeformulier.pdf',
+    label: 'Aanrijdingsformulier downloaden — PDF',
+  },
+}
 
 const ACCORDIONS_CONTENT = {
   particulier: [
@@ -195,6 +209,7 @@ const Verzekeren = () => {
         type="Verzekeren"
       />
       <Intro paragraph={INTRO_TEXT} />
+      <Banner data={BANNER_CONTENT} />
       <Toggle {...TOGGLE_CONTENT} />
     </Layout>
   )

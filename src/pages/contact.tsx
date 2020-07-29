@@ -5,6 +5,7 @@ import SEO from '../components/seo'
 
 // Components
 import Header from '../components/header'
+import Banner from '../components/banner'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -17,6 +18,15 @@ const HEADER_CONTENT = {
   image: '/images/contactHeaderImage.png',
 }
 
+const BANNER_CONTENT = {
+  heading:
+    'Een verzekering wijzigen of een schade melden? Stuur ons een mail of bel en wij regelen het voor u.',
+  asset: {
+    url: '/assets/europees_schadeformulier.pdf',
+    label: 'Aanrijdingsformulier downloaden — PDF',
+  },
+}
+
 const Contact = () => (
   <Layout>
     <SEO title="Contact" />
@@ -27,6 +37,7 @@ const Contact = () => (
       image={HEADER_CONTENT.image}
       type="Contact"
     />
+    <Banner data={BANNER_CONTENT} />
   </Layout>
 )
 

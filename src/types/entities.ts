@@ -5,6 +5,11 @@ export interface IBaseIcon {
   color?: string
 }
 
+export interface IBasePictogram {
+  color?: string
+  className?: string
+}
+
 export interface INavLinkItem {
   url: string
   label: string
@@ -18,6 +23,11 @@ export interface IButton {
 export interface IImage {
   src: string
   alt: string
+}
+
+export interface IStaticFile {
+  url: string
+  label: string
 }
 
 export interface IReview {
