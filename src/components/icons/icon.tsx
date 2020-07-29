@@ -14,6 +14,7 @@ import Indicator from './indicator'
 import Chevron from './chevron'
 import ImageOverlay from './imageOverlay'
 import Pictogram from './pictogram'
+import Download from './download'
 
 // Styles
 import { dark } from '../../styles/colors'
@@ -47,6 +48,7 @@ const iconMap = {
   chevron: Chevron,
   overlay: ImageOverlay,
   pictogram: Pictogram,
+  download: Download,
 }
 
 const Icon = ({
