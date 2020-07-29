@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
-// Utils
-import sendEmail from '../util/sendEmail'
-
 // Components
 import IconComponent from './icons/icon'
 import ContainerComponent from './container'
@@ -55,19 +52,22 @@ const ContactForm: React.FC<IProps> = ({
     values: IContactForm,
     { setSubmitting }: any
   ) => {
-    try {
-      setError(false)
-      await sendEmail(values)
-      setSuccess(true)
-    } catch (err) {
-      setError(true)
-      console.error(err)
-      if (err.response) {
-        console.error(err.response.body)
-      }
-    } finally {
-      setSubmitting(false)
-    }
+    setError(false)
+    await fetch('/.netlify/functions/mail', {
+      method: 'POST',
+      body: JSON.stringify(values),
+    })
+      .then(_ => setSuccess(true))
+      .catch(err => {
+        setError(true)
+        console.error(err)
+        if (err.response) {
+          console.error(err.response.body)
+        }
+      })
+      .finally(() => {
+        setSubmitting(false)
+      })
   }
 
   return (
