@@ -60,7 +60,9 @@ const Header: React.FC<IProps> = ({
         <Lines icon="lines" color={yellow} large={isWide} />
       </ImageContainer>
       <Wrapper>
-        <Title type={type}>{title}</Title>
+        <Title type={type} numOfChar={title.length}>
+          {title}
+        </Title>
         {paragraph && <Text type={type}>{paragraph}</Text>}
         {usps && (
           <List>
@@ -182,9 +184,11 @@ const Wrapper = styled.div`
   `}
 `
 
-const Title = styled.h1<{ type: string }>`
+const Title = styled.h1<{ type: string; numOfChar: number }>`
   ${props =>
-    props.type === 'Home' ? textStyles.headingLoud : textStyles.headingBig}
+    props.type === 'Home' && props.numOfChar < 40
+      ? textStyles.headingLoud
+      : textStyles.headingBig}
   margin: 0;
   margin-bottom: 16px;
 

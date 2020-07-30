@@ -78,3 +78,11 @@ export interface IBaseIllustration {
 }
 
 export type IllustrationTypes = 'orientation' | 'advisor' | 'completion'
+
+// TEAM
+export interface ITeamMember {
+  image: string
+  name: string
+  phone: string
+  email: string
+}
