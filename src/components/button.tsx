@@ -17,6 +17,8 @@ interface IProps {
   to?: string
   disabled?: boolean
   type?: 'button' | 'submit'
+  color?: string
+  target?: string
 }
 
 const Button: React.FC<IProps> = ({
@@ -26,19 +28,26 @@ const Button: React.FC<IProps> = ({
   to,
   disabled,
   type,
+  color,
+  target,
 }) => {
   const Content = () => (
     <>
       <span>{children}</span>
-      {icon && <Icon icon="arrow" width={24} height={16} color={dark} />}
+      {icon && (
+        <Icon icon="arrow" width={24} height={16} color={color || dark} />
+      )}
     </>
   )
 
   let result
 
-  if (to && (to.includes('tel:') || to.includes('mailto:'))) {
+  if (
+    to &&
+    (to.includes('tel:') || to.includes('mailto:') || to.includes('http'))
+  ) {
     result = (
-      <Link className={className} href={to}>
+      <Link className={className} href={to} target={target}>
         <Content />
       </Link>
     )
@@ -63,7 +72,10 @@ export default Button
 
 const Icon = styled(IconComponent)`
   margin-left: 8px;
+  flex: 0 0 24px;
   transition: transform 0.2s ease-in-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 `
 
 const style = css`
@@ -77,6 +89,8 @@ const style = css`
   color: ${dark};
   ${textStyles.highlight}
   transition: background 0.2s ease-in-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 
   :hover {
     background: ${yellowDark};

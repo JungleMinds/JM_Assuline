@@ -48,6 +48,12 @@ export interface IReviews {
   }
 }
 
+export interface IBaseCard {
+  title: string
+  button: IButton
+  className?: string
+}
+
 // HEADER
 export type HeaderTypes =
   | 'Home'
