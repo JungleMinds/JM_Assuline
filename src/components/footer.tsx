@@ -36,7 +36,8 @@ const NAV_ITEMS: INavLinkItem[] = [
     label: 'Contact',
   },
 ]
-const ADDRESS_DATA: any = {
+
+const ADDRESS_DATA = {
   phone: '0297288198',
   email: 'info@assuline.nl',
   location: 'Herenweg 88, 3648 CL Wilnis',
