@@ -8,6 +8,7 @@ import Header from '../components/header'
 import Intro from '../components/intro'
 import Banner from '../components/banner'
 import Toggle from '../components/toggle'
+import CrossLinks from '../components/crossLinks'
 
 // Mock data
 const HEADER_CONTENT = {
@@ -197,6 +198,27 @@ const TOGGLE_CONTENT = {
   },
 }
 
+const CROSSLINKS_CONTENT = {
+  cards: [
+    {
+      image: '/images/hypothekenHeaderImage.png',
+      title: 'Wij bieden onafhankelijk hypotheekadvies',
+      button: {
+        url: '/hypotheken',
+        label: 'Naar hypotheken',
+      },
+    },
+    {
+      image: '/images/ctaBannerImage.png',
+      title: 'Ontmoet het team van Assuline',
+      button: {
+        url: '/team',
+        label: 'Ons team',
+      },
+    },
+  ],
+}
+
 const Verzekeren = () => {
   return (
     <Layout>
@@ -211,6 +233,7 @@ const Verzekeren = () => {
       <Intro paragraph={INTRO_TEXT} />
       <Banner {...BANNER_CONTENT} />
       <Toggle {...TOGGLE_CONTENT} />
+      <CrossLinks data={CROSSLINKS_CONTENT} />
     </Layout>
   )
 }
