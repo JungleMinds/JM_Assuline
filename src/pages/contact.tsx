@@ -37,7 +37,7 @@ const Contact = () => (
       image={HEADER_CONTENT.image}
       type="Contact"
     />
-    <Banner data={BANNER_CONTENT} />
+    <Banner {...BANNER_CONTENT} />
   </Layout>
 )
 
