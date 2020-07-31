@@ -10,6 +10,22 @@ import SEO from '../components/seo'
 import Header from '../components/header'
 import Body from '../components/body'
 
+import Location from '../components/location'
+
+// Mock data
+const LOCATION_CONTENT = {
+  image: '/images/mapImage.png',
+  companyName: 'Assuline BV.',
+  address: {
+    streetAndNumber: 'Herenweg 88',
+    postCodeAndLocation: '3645 CL Wilnis',
+    postbus: 'Postbus 202',
+    postbusCodeAndLocation: '3640 AE Mijdrecht',
+  },
+  phone: '0297288198',
+  email: 'info@assuline.nl',
+}
+
 const Contact = ({ data }: any) => {
   const [pageData, setPageData] = useState<any>(null)
 
@@ -29,6 +45,7 @@ const Contact = ({ data }: any) => {
         type="Contact"
       />
       <Body items={pageData && pageData.body} />
+      <Location {...LOCATION_CONTENT} />
     </Layout>
   )
 }
