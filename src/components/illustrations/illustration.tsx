@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Components
-import Orientate from './orientate'
+import Orientation from './orientation'
 import Advisor from './advisor'
 import Completion from './completion'
 
@@ -13,7 +13,7 @@ type IProps = IIllustrationProps & {
 }
 
 const illustrationMap = {
-  orientate: Orientate,
+  orientation: Orientation,
   advisor: Advisor,
   completion: Completion,
 }

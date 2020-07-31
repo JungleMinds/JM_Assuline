@@ -12,17 +12,17 @@ import mediaQueries from '../styles/mediaQueries'
 import aspectRatio from '../styles/aspectRatio'
 
 // Types
-import { IButton } from '../types/entities'
+import { IButton, IllustrationTypes } from '../types/entities'
 interface IProps {
   data: {
     heading: string
-    cards: ICard[]
+    steps: IStep[]
     button: IButton
   }
 }
 
-interface ICard {
-  illustration: string
+interface IStep {
+  illustration: IllustrationTypes
   title: string
   paragraph: string
 }
@@ -31,17 +31,17 @@ const HowWeWork: React.FC<IProps> = ({ data }) => {
   return (
     <Container>
       <Heading>{data.heading}</Heading>
-      <Cards>
-        {data.cards.map((card: any) => (
-          <Card key={`card-item-${card.title}`}>
+      <Steps>
+        {data.steps.map(step => (
+          <Step key={`step-item-${step.title}`}>
             <IllustratorWrapper>
-              <Illustration illustration={card.illustration} />
+              <Illustration illustration={step.illustration} />
             </IllustratorWrapper>
-            <Title>{card.title}</Title>
-            <Paragraph>{card.paragraph}</Paragraph>
-          </Card>
+            <Title>{step.title}</Title>
+            <Paragraph>{step.paragraph}</Paragraph>
+          </Step>
         ))}
-      </Cards>
+      </Steps>
       <Button to={data.button.url} icon>
         {data.button.label}
       </Button>
@@ -77,7 +77,7 @@ const Heading = styled.h1`
   `}
 `
 
-const Cards = styled.div`
+const Steps = styled.div`
   ${mediaQueries.from.breakpoint.M`
     display: flex;
     flex-flow: row wrap;
@@ -85,7 +85,7 @@ const Cards = styled.div`
   `}
 `
 
-const Card = styled.div`
+const Step = styled.div`
   margin-bottom: 24px;
 
   ${mediaQueries.from.breakpoint.M`

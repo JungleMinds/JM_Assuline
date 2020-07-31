@@ -11,6 +11,9 @@ import FullGridImage from '../components/fullGridImage'
 import HowWeWork from '../components/howWeWork'
 import Accordions from '../components/accordions'
 
+// Types
+import { IllustrationTypes } from '../types/entities'
+
 // Mock data
 const HEADER_CONTENT = {
   title: 'Wij bieden onafhankelijk hypotheekadvies',
@@ -66,21 +69,21 @@ const ACCORDIONS_CONTENT = [
 
 const HOW_WE_WORK_CONTENT = {
   heading: 'Zo werken wij',
-  cards: [
+  steps: [
     {
-      illustration: 'orientate',
+      illustration: 'orientation' as IllustrationTypes,
       title: '1. Een gratis oriënterend gesprek',
       paragraph:
         'Maak een gratis eerste afspraak en bespreek uw wensen. We geven je direct antwoord op de meest dringende vragen zoals financiële haalbaarheid,  maandlasten afhankelijk van de hypotheekduur.',
     },
     {
-      illustration: 'advisor',
+      illustration: 'advisor' as IllustrationTypes,
       title: '2. Onze specialisten gaan aan de slag',
       paragraph:
         'Wanneer u de benodigde documenten hebt aangeleverd gaan onze adviseurs op zoek naar de beste hypotheek voor uw situatie. Wij vergelijken rentepercentages en voorwaarden bij vele geldverstrekkers.',
     },
     {
-      illustration: 'completion',
+      illustration: 'completion' as IllustrationTypes,
       title: '3. Afronding van uw hypotheek',
       paragraph:
         'Kies de hypotheek die het beste bij uw situatie past. Onze adviseur sluit de hypotheek af en is altijd beschikbaar voor vragen, ook na afronding. Ook verzekeren bij Assuline? Dat kan meteen geregeld worden.',
