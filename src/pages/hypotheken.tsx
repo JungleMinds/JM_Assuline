@@ -97,7 +97,7 @@ const HOW_WE_WORK_CONTENT = {
 }
 
 const CROSSLINKS_CONTENT = {
-  cards: [
+  crossLinks: [
     {
       image: '/images/hypothekenHeaderImage.png',
       title: 'Goed verzekerd, zowel particulier als zakelijk',
@@ -142,7 +142,7 @@ const Hypoteken = () => {
       <HowWeWork data={HOW_WE_WORK_CONTENT} />
       <FullGridImage image="/images/fullGridImage.png" />
       <Accordions data={ACCORDIONS_CONTENT} />
-      <CrossLinks data={CROSSLINKS_CONTENT} />
+      <CrossLinks {...CROSSLINKS_CONTENT} />
     </Layout>
   )
 }

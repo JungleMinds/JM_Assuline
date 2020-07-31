@@ -199,7 +199,7 @@ const TOGGLE_CONTENT = {
 }
 
 const CROSSLINKS_CONTENT = {
-  cards: [
+  crossLinks: [
     {
       image: '/images/hypothekenHeaderImage.png',
       title: 'Wij bieden onafhankelijk hypotheekadvies',
@@ -233,7 +233,7 @@ const Verzekeren = () => {
       <Intro paragraph={INTRO_TEXT} />
       <Banner {...BANNER_CONTENT} />
       <Toggle {...TOGGLE_CONTENT} />
-      <CrossLinks data={CROSSLINKS_CONTENT} />
+      <CrossLinks {...CROSSLINKS_CONTENT} />
     </Layout>
   )
 }

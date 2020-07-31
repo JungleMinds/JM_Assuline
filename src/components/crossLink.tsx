@@ -6,25 +6,26 @@ import styled from 'styled-components'
 import ButtonComponent from './button'
 
 // Styles
-import { lightGrey, yellowDark, darkest } from '../styles/colors'
+import { lightGrey } from '../styles/colors'
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
 import * as textStyles from '../styles/textStyles'
 import mediaQueries from '../styles/mediaQueries'
+import { hoverStyle } from './button'
 
 // Types
-import { IBaseCard } from '../types/entities'
+import { ICrossLink } from '../types/entities'
 
-interface IProps extends IBaseCard {
+interface IProps extends ICrossLink {
   image: string
-  expandableButton?: boolean
+  expandButton?: boolean
 }
 
-const Card: React.FC<IProps> = ({
+const CrossLink: React.FC<IProps> = ({
   image,
   title,
   button,
   className,
-  expandableButton,
+  expandButton,
 }) => {
   return (
     <Container to={button.url} className={className}>
@@ -33,7 +34,7 @@ const Card: React.FC<IProps> = ({
       </ImageContainer>
       <Wrapper>
         <Title>{title}</Title>
-        <Button icon isExpandable={expandableButton}>
+        <Button icon isExpandable={expandButton}>
           {button.label}
         </Button>
       </Wrapper>
@@ -41,7 +42,7 @@ const Card: React.FC<IProps> = ({
   )
 }
 
-export default Card
+export default CrossLink
 
 const Wrapper = styled.div`
   padding: 0 32px;
@@ -81,12 +82,7 @@ const Container = styled(Link)`
 
   :hover {
     > ${Wrapper} > ${Button} {
-      background: ${yellowDark};
-      color: ${darkest};
-
-      > svg {
-        transform: translateX(8px);
-      }
+      ${hoverStyle}
     }
   }
 

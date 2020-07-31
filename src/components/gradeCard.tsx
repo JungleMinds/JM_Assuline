@@ -6,14 +6,15 @@ import ButtonComponent from './button'
 import IconComponent from './icons/icon'
 
 // Styles
-import { green, greenDark, white } from '../styles/colors'
+import { green, white } from '../styles/colors'
 import * as textStyles from '../styles/textStyles'
 import mediaQueries from '../styles/mediaQueries'
+import { inverseHoverStyle } from './button'
 
 // Types
-import { IBaseCard } from '../types/entities'
+import { ICrossLink } from '../types/entities'
 
-interface IProps extends IBaseCard {
+interface IProps extends ICrossLink {
   review?: string
 }
 
@@ -29,7 +30,7 @@ const GradeCard: React.FC<IProps> = ({ review, title, button, className }) => {
         <Score>{review}</Score>
         <Title>{title}</Title>
       </Wrapper>
-      <Button icon color={green}>
+      <Button icon inverse>
         {button.label}
       </Button>
       <XLButton>
@@ -43,8 +44,6 @@ const GradeCard: React.FC<IProps> = ({ review, title, button, className }) => {
 export default GradeCard
 
 const Button = styled(ButtonComponent)`
-  background: ${white};
-  color: ${green};
   justify-content: space-between;
   width: 100%;
   max-width: 400px;
@@ -100,13 +99,7 @@ const Container = styled.a`
 
   :hover {
     > ${Button} {
-      background: ${white};
-      color: ${greenDark};
-
-      > svg {
-        color: ${greenDark};
-        transform: translateX(8px);
-      }
+      ${inverseHoverStyle}
     }
   }
 

@@ -2,35 +2,39 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Component
-import CardComponent from './card'
+import CardComponent from './crossLink'
 import GradeCardComponent from './gradeCard'
 
 // Styles
 import mediaQueries from '../styles/mediaQueries'
 
 // Types
-import { IBaseCard } from '../types/entities'
+import { ICrossLink } from '../types/entities'
 
+interface ICrossLinkWithImage extends ICrossLink {
+  image: string
+}
+interface ICrossLinkReview extends ICrossLink {
+  review?: string
+}
 interface IProps {
-  data: {
-    cards: Array<IBaseCard & { image: string }>
-    review?: IBaseCard & { review?: string }
-  }
+  crossLinks: ICrossLinkWithImage[]
+  review?: ICrossLinkReview
 }
 
-const CrossLinks: React.FC<IProps> = ({ data }) => {
+const CrossLinks: React.FC<IProps> = ({ crossLinks, review }) => {
   return (
     <Container>
       <Wrapper>
-        {data.cards.map(card => (
-          <Card
-            key={`card-item-${card.title}`}
-            {...card}
-            expandableButton={!!data.review}
+        {crossLinks.map(crossLink => (
+          <CrossLink
+            key={`crossLink-item-${crossLink.title}`}
+            {...crossLink}
+            expandButton={!!review}
           />
         ))}
       </Wrapper>
-      {data.review && <GradeCard {...data.review} />}
+      {review && <GradeCard {...review} />}
     </Container>
   )
 }
@@ -63,7 +67,7 @@ const Wrapper = styled.div`
   `}
 `
 
-const Card = styled(CardComponent)`
+const CrossLink = styled(CardComponent)`
   ${mediaQueries.from.breakpoint.M`
     width: calc(50% - 12px);
   `}
