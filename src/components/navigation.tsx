@@ -116,7 +116,7 @@ const ShadowBox = styled.div<IProps>`
     width: 100%;
     height: 160px;
     transition: height 0.2s ease;
-    z-index: 9;
+    z-index: 10;
 
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
@@ -139,7 +139,7 @@ const Container = styled.div<IProps>`
   padding: 0 16px;
   margin-bottom: 16px;
   max-height: 160px;
-  z-index: 9;
+  z-index: 10;
 
   ::before {
     content: "";
