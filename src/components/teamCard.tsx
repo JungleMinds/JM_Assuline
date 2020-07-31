@@ -38,11 +38,11 @@ const TeamCard: React.FC<IProps> = ({
       <Address>
         <Contact href={`tel:${phone}`}>
           <Icon icon="phone" />
-          <Span>{modifyPhone(phone)}</Span>
+          <Label>{modifyPhone(phone)}</Label>
         </Contact>
         <Contact href={`mailto:${email}`}>
           <Icon icon="mail" />
-          <Span>{email}</Span>
+          <Label>{email}</Label>
         </Contact>
       </Address>
     </Container>
@@ -118,7 +118,7 @@ const Icon = styled(IconComponent)`
   backface-visibility: hidden;
 `
 
-const Span = styled.span`
+const Label = styled.span`
   ${textStyles.highlight}
 `
 
