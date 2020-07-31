@@ -5,10 +5,6 @@ export interface IBaseIcon {
   color?: string
 }
 
-export interface IBaseIllustration {
-  className?: string
-}
-
 export interface INavLinkItem {
   url: string
   label: string
@@ -65,3 +61,10 @@ export interface IAccordionItem {
   title: string
   paragraph: string
 }
+
+// HOW WE WORK
+export interface IBaseIllustration {
+  className?: string
+}
+
+export type IllustrationTypes = 'orientation' | 'advisor' | 'completion'

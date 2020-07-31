@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { IBaseIllustration as IProps } from '../../types/entities'
 
-export const Orientate: React.FC<IProps> = ({ className }) => (
+export const Orientation: React.FC<IProps> = ({ className }) => (
   <Svg
     viewBox="0 -8 348 235"
     xmlns="http://www.w3.org/2000/svg"
@@ -261,6 +261,6 @@ export const Orientate: React.FC<IProps> = ({ className }) => (
   </Svg>
 )
 
-export default Orientate
+export default Orientation
 
 const Svg = styled.svg``
