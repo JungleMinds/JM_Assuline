@@ -16,30 +16,28 @@ import mediaQueries from '../styles/mediaQueries'
 // Types
 import { IButton, IStaticFile } from '../types/entities'
 interface IProps {
-  data: {
-    heading: string
-    button?: IButton
-    asset: IStaticFile
-  }
+  heading: string
+  button?: IButton
+  asset: IStaticFile
 }
 
-const Banner: React.FC<IProps> = ({ data }) => {
+const Banner: React.FC<IProps> = ({ heading, button, asset }) => {
   return (
     <Container>
       <Wrapper>
         <PictogramWrapper>
           <Pictogram pictogram="banner" color={white} />
         </PictogramWrapper>
-        <Heading>{data.heading}</Heading>
-        {data.button && (
-          <Button to={data.button.url} icon>
-            {data.button.label}
+        <Heading>{heading}</Heading>
+        {button && (
+          <Button to={button.url} icon>
+            {button.label}
           </Button>
         )}
       </Wrapper>
       <LinkWrapper>
         <Icon icon="download" />
-        <DownloadLink href={data.asset.url}>{data.asset.label}</DownloadLink>
+        <DownloadLink href={asset.url}>{asset.label}</DownloadLink>
       </LinkWrapper>
     </Container>
   )

@@ -209,7 +209,7 @@ const Verzekeren = () => {
         type="Verzekeren"
       />
       <Intro paragraph={INTRO_TEXT} />
-      <Banner data={BANNER_CONTENT} />
+      <Banner {...BANNER_CONTENT} />
       <Toggle {...TOGGLE_CONTENT} />
     </Layout>
   )
