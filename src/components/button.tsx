@@ -6,7 +6,16 @@ import { Link as LinkComponent } from 'gatsby'
 import IconComponent from './icons/icon'
 
 // Styles
-import { yellow, yellowDark, dark, darkest, lightGrey } from '../styles/colors'
+import {
+  yellow,
+  yellowDark,
+  dark,
+  darkest,
+  green,
+  white,
+  greenDark,
+  lightGrey,
+} from '../styles/colors'
 import * as textStyles from '../styles/textStyles'
 import mediaQueries from '../styles/mediaQueries'
 
@@ -17,8 +26,8 @@ interface IProps {
   to?: string
   disabled?: boolean
   type?: 'button' | 'submit'
-  color?: string
   target?: string
+  inverse?: boolean
 }
 
 const Button: React.FC<IProps> = ({
@@ -28,15 +37,13 @@ const Button: React.FC<IProps> = ({
   to,
   disabled,
   type,
-  color,
   target,
+  inverse,
 }) => {
   const Content = () => (
     <>
       <span>{children}</span>
-      {icon && (
-        <Icon icon="arrow" width={24} height={16} color={color || dark} />
-      )}
+      {icon && <Icon icon="arrow" width={24} height={16} />}
     </>
   )
 
@@ -47,19 +54,24 @@ const Button: React.FC<IProps> = ({
     (to.includes('tel:') || to.includes('mailto:') || to.includes('http'))
   ) {
     result = (
-      <Link className={className} href={to} target={target}>
+      <Link className={className} href={to} target={target} inverse={inverse}>
         <Content />
       </Link>
     )
   } else if (to) {
     result = (
-      <GatsbyLink className={className} to={to}>
+      <GatsbyLink className={className} to={to} inverse={inverse}>
         <Content />
       </GatsbyLink>
     )
   } else {
     result = (
-      <Container className={className} disabled={disabled} type={type}>
+      <Container
+        className={className}
+        disabled={disabled}
+        type={type}
+        inverse={inverse}
+      >
         <Content />
       </Container>
     )
@@ -98,22 +110,9 @@ const style = css`
 
     > ${Icon} {
       transform: translateX(8px);
+      fill: ${darkest};
     }
   }
-
-  ${mediaQueries.from.breakpoint.XL`
-  padding: 12px 32px;
-
-  :hover {
-    > ${Icon} {
-      transform: translateX(16px);
-    }
-  }
-`}
-`
-
-const Container = styled.button`
-  ${style}
 
   :disabled {
     background: ${lightGrey};
@@ -129,12 +128,110 @@ const Container = styled.button`
       color: ${dark};
     }
   }
+
+  ${mediaQueries.from.breakpoint.XL`
+  padding: 12px 32px;
+
+  :hover {
+    > ${Icon} {
+      transform: translateX(16px);
+    }
+  }
+`}
 `
 
-const GatsbyLink = styled(LinkComponent)`
-  ${style}
+const inverseStyle = css`
+  display: inline-flex;
+  align-items: center;
+  background: ${white};
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  color: ${green};
+  ${textStyles.highlight}
+  transition: background 0.2s ease-in-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  > ${Icon} {
+    fill: ${green};
+  }
+
+  :hover {
+    color: ${greenDark};
+
+    > ${Icon} {
+      transform: translateX(8px);
+      fill: ${greenDark};
+    }
+  }
+
+  :disabled {
+    background: ${lightGrey};
+    cursor: wait;
+
+    > span,
+    > ${Icon} {
+      opacity: 0.4;
+    }
+
+    :hover {
+      background: ${lightGrey};
+      color: ${dark};
+    }
+  }
+
+  ${mediaQueries.from.breakpoint.XL`
+  padding: 12px 32px;
+
+    :hover {
+      > ${Icon} {
+        transform: translateX(16px);
+      }
+    }
+  `}
 `
 
-const Link = styled.a`
-  ${style}
+export const hoverStyle = css`
+  background: ${yellowDark};
+  color: ${darkest};
+
+  > ${Icon} {
+    transform: translateX(8px);
+    fill: ${darkest};
+  }
+
+  ${mediaQueries.from.breakpoint.XL`
+    > ${Icon} {
+      transform: translateX(16px);
+    }
+  `}
+`
+
+export const inverseHoverStyle = css`
+  color: ${greenDark};
+
+  > ${Icon} {
+    transform: translateX(8px);
+    fill: ${greenDark};
+  }
+
+  ${mediaQueries.from.breakpoint.XL`
+    > ${Icon} {
+      transform: translateX(16px);
+    }
+  `}
+`
+
+const Container = styled.button<{ inverse?: boolean }>`
+  ${({ inverse }) => (inverse ? inverseStyle : style)}
+`
+
+const GatsbyLink = styled(LinkComponent)<{ inverse?: boolean }>`
+  ${({ inverse }) => (inverse ? inverseStyle : style)}
+`
+
+const Link = styled.a<{ inverse?: boolean }>`
+  ${({ inverse }) => (inverse ? inverseStyle : style)}
 `

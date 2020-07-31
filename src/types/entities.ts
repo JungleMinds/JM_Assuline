@@ -48,7 +48,7 @@ export interface IReviews {
   }
 }
 
-export interface IBaseCard {
+export interface ICrossLink {
   title: string
   button: IButton
   className?: string
