@@ -15,7 +15,7 @@ interface IProps {
   paragraph: string
   className?: string
   isOpen: boolean
-  handleClick(): void
+  handleClick: () => void
 }
 
 const Accordion: React.FC<IProps> = ({
