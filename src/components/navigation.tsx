@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Icon from './icons/icon'
 import Hamburger from './hamburger'
 import NavLinks from './navLinks'
+import StickyPhoneButton from './stickyPhoneButton'
 
 // Styles
 import colors, { white, yellow } from '../styles/colors'
@@ -15,6 +16,9 @@ interface IProps {
   isOpen?: boolean
   isScrolled?: boolean
 }
+
+// Mock data
+const PHONE_NUMBER = '0623442344'
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -91,6 +95,7 @@ const Navigation: React.FC = () => {
           </MobileNavContainer>
         </Container>
       </ShadowBox>
+      <StickyPhoneButton phoneNumber={PHONE_NUMBER} />
     </>
   )
 }
