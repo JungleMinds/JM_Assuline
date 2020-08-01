@@ -8,52 +8,7 @@ import { normalizeData } from '../util/data'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Header from '../components/header'
-import TeamMembers from '../components/teamMembers'
-
-const TEAM_MEMBERS = [
-  {
-    image: '/images/team/fenny.png',
-    name: 'Fenny Bijlsma',
-    phone: '0623442344',
-    email: 'fenny@assuline.nl',
-  },
-  {
-    image: '/images/team/bonnie.png',
-    name: 'Rainier Onderwater',
-    phone: '0623442344',
-    email: 'rainier@assuline.nl',
-  },
-  {
-    image: '/images/team/frederike.png',
-    name: 'Frederike Feddema',
-    phone: '0623442344',
-    email: 'frederike@assuline.nl',
-  },
-  {
-    image: '/images/team/bianca.png',
-    name: 'Ronald Lucassen',
-    phone: '0623442344',
-    email: 'ronald@assuline.nl',
-  },
-  {
-    image: '/images/team/edwin.png',
-    name: 'Jane Doe',
-    phone: '0623442344',
-    email: 'fenny@assuline.nl',
-  },
-  {
-    image: '/images/team/fenny.png',
-    name: 'John Doe',
-    phone: '0623442344',
-    email: 'frederike@assuline.nl',
-  },
-  {
-    image: '/images/team/edwin.png',
-    name: 'Lorem Ipsum',
-    phone: '0623442344',
-    email: 'ronald@assuline.nl',
-  },
-]
+import Body from '../components/body'
 
 const Team = ({ data }: any) => {
   const [pageData, setPageData] = useState<any>(null)
@@ -72,7 +27,7 @@ const Team = ({ data }: any) => {
         image={pageData && pageData.header.image}
         type="Team"
       />
-      <TeamMembers data={TEAM_MEMBERS} />
+      <Body items={pageData && pageData.body} />
     </Layout>
   )
 }
@@ -91,6 +46,31 @@ export const pageQuery = graphql`
         }
         header_image {
           url
+        }
+        body {
+          ... on PrismicTeamPageBodyTeam {
+            __typename
+            items {
+              team_item_name {
+                text
+              }
+              team_item_phone
+              team_item_email
+              team_item_image {
+                url
+              }
+            }
+          }
+          ... on PrismicTeamPageBodyContactForm {
+            __typename
+            primary {
+              form_visible
+              form_title {
+                text
+              }
+              form_buttonlabel
+            }
+          }
         }
       }
     }

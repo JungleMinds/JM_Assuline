@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import ContainerComponent from './container'
 import IconComponent from './icons/icon'
 import Accordions from './accordions'
-import TextComponent from './text'
+import RichText from './richText'
 
 // Styles
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
@@ -19,7 +19,8 @@ import { IAccordionItem } from '../types/entities'
 interface IBranch {
   image: string
   title: string
-  text: string
+  short: string
+  text: any
   accordions: IAccordionItem[]
 }
 
@@ -105,20 +106,22 @@ const Toggle: React.FC<IProps> = props => {
               choice={choice}
             >
               <Label ref={privateLabel} onClick={handleToggle} choice={choice}>
-                <Short>Particulier</Short>
-                <Long>Particuliere verzekeringen</Long>
+                <Short>{props.private.short}</Short>
+                <Long>{props.private.title}</Long>
               </Label>
               <Label ref={businessLabel} onClick={handleToggle} choice={choice}>
-                <Short>Zakelijk</Short>
-                <Long>Zakelijke verzekeringen</Long>
+                <Short>{props.business.short}</Short>
+                <Long>{props.business.title}</Long>
               </Label>
             </Labels>
           </ToggleContainer>
         </ImageContainer>
         <Title>{props[choice].title}</Title>
-        <Text htmlText={props[choice].text} />
+        <Paragraph>
+          <RichText content={props[choice].text.raw} />
+        </Paragraph>
       </Container>
-      <Accordions data={props[choice].accordions} />
+      <Accordions items={props[choice].accordions} />
     </>
   )
 }
@@ -260,7 +263,7 @@ const Title = styled.h1`
   `}
 `
 
-const Text = styled(TextComponent)`
+const Paragraph = styled.div`
   ${textStyles.plainLoud}
   margin: 0;
   margin-bottom: 24px;

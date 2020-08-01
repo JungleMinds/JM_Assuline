@@ -15,10 +15,10 @@ import { inverseHoverStyle } from './button'
 import { ICrossLink } from '../types/entities'
 
 interface IProps extends ICrossLink {
-  review?: string
+  score?: string
 }
 
-const GradeCard: React.FC<IProps> = ({ review, title, button, className }) => {
+const GradeCard: React.FC<IProps> = ({ score, title, button, className }) => {
   return (
     <Container
       href={button.url}
@@ -27,7 +27,7 @@ const GradeCard: React.FC<IProps> = ({ review, title, button, className }) => {
       referrerPolicy="no-referrer"
     >
       <Wrapper>
-        <Score>{review}</Score>
+        <Score>{score}</Score>
         <Title>{title}</Title>
       </Wrapper>
       <Button icon inverse>

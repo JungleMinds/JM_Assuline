@@ -15,7 +15,7 @@ interface ICrossLinkWithImage extends ICrossLink {
   image: string
 }
 interface ICrossLinkReview extends ICrossLink {
-  review?: string
+  score?: string
 }
 interface IProps {
   crossLinks: ICrossLinkWithImage[]

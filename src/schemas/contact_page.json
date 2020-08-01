@@ -51,6 +51,89 @@
         "thumbnails": [],
         "label": "Image"
       }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {},
+        "choices": {
+          "call_to_action_banner": {
+            "type": "Slice",
+            "fieldset": "Call To Action Banner",
+            "description": "Banner to take the user to the contact page, with a possible download.",
+            "icon": "forward",
+            "display": "list",
+            "non-repeat": {
+              "banner_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "banner_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button label"
+                }
+              },
+              "banner_button_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button link"
+                }
+              },
+              "banner_download_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Download label"
+                }
+              },
+              "banner_download_link": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Download link"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "contact_form": {
+            "type": "Slice",
+            "fieldset": "Contact Form",
+            "description": "A visitor will leave their details to be contacted later.",
+            "icon": "perm_phone_msg",
+            "display": "list",
+            "non-repeat": {
+              "form_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "Hide",
+                  "placeholder_true": "Show",
+                  "default_value": true,
+                  "label": "Visible to visitors"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "form_buttonlabel": {
+                "type": "Text",
+                "config": {
+                  "label": "form_buttonlabel"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
     }
   }
 }

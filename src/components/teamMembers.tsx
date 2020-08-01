@@ -19,7 +19,7 @@ const TeamMembers: React.FC<IProps> = ({ data }) => {
   return (
     <Container>
       {data.map(teamMember => (
-        <TeamCard key={`team-member-${teamMember.name}`} {...teamMember} />
+        <Card key={`team-member-${teamMember.name}`} {...teamMember} />
       ))}
     </Container>
   )
@@ -41,4 +41,10 @@ const Container = styled(ContainerComponent)`
     margin: 0 auto;
     padding: 0 20px;
   `}
+`
+
+const Card = styled(TeamCard)`
+  &:last-of-type {
+    align-self: flex-start;
+  }
 `

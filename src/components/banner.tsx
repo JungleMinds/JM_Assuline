@@ -18,7 +18,7 @@ import { IButton, IStaticFile } from '../types/entities'
 interface IProps {
   heading: string
   button?: IButton
-  asset: IStaticFile
+  asset?: IStaticFile
 }
 
 const Banner: React.FC<IProps> = ({ heading, button, asset }) => {
@@ -35,10 +35,12 @@ const Banner: React.FC<IProps> = ({ heading, button, asset }) => {
           </Button>
         )}
       </Wrapper>
-      <DownloadLink href={asset.url} target="_blank">
-        <Icon icon="download" />
-        <Label>{asset.label}</Label>
-      </DownloadLink>
+      {asset && (
+        <DownloadLink href={asset.url} target="_blank">
+          <Icon icon="download" />
+          <Label>{asset.label}</Label>
+        </DownloadLink>
+      )}
     </Container>
   )
 }

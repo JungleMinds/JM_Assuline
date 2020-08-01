@@ -8,16 +8,7 @@ import { normalizeData } from '../util/data'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Header from '../components/header'
-import Banner from '../components/banner'
-
-const BANNER_CONTENT = {
-  heading:
-    'Een verzekering wijzigen of een schade melden? Stuur ons een mail of bel en wij regelen het voor u.',
-  asset: {
-    url: '/assets/europees_schadeformulier.pdf',
-    label: 'Aanrijdingsformulier downloaden — PDF',
-  },
-}
+import Body from '../components/body'
 
 const Contact = ({ data }: any) => {
   const [pageData, setPageData] = useState<any>(null)
@@ -37,7 +28,7 @@ const Contact = ({ data }: any) => {
         image={pageData && pageData.header.image}
         type="Contact"
       />
-      <Banner {...BANNER_CONTENT} />
+      <Body items={pageData && pageData.body} />
     </Layout>
   )
 }
@@ -68,6 +59,32 @@ export const pageQuery = graphql`
           url
           type
           slug
+        }
+        body {
+          ... on PrismicContactPageBodyCallToActionBanner {
+            __typename
+            primary {
+              banner_title {
+                text
+              }
+              banner_download_label
+              banner_download_link {
+                url
+                type
+                slug
+              }
+            }
+          }
+          ... on PrismicContactPageBodyContactForm {
+            __typename
+            primary {
+              form_visible
+              form_title {
+                text
+              }
+              form_buttonlabel
+            }
+          }
         }
       }
     }

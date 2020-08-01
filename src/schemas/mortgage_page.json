@@ -39,6 +39,311 @@
         "thumbnails": [],
         "label": "Image"
       }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "intro": [],
+          "contact_form": [],
+          "image": [],
+          "accordions": [],
+          "for_who": [],
+          "how_we_work": [],
+          "crosslinks": []
+        },
+        "choices": {
+          "carousel": {
+            "type": "Slice",
+            "fieldset": "Carousel",
+            "description": "Carousel of images with text",
+            "icon": "photo_library",
+            "display": "list",
+            "non-repeat": {
+              "carousel_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {
+              "carousel_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "image"
+                }
+              }
+            }
+          },
+          "contact_form": {
+            "type": "Slice",
+            "fieldset": "Contact Form",
+            "description": "A visitor can leave their details to be contacted later.",
+            "icon": "perm_phone_msg",
+            "display": "list",
+            "non-repeat": {
+              "form_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "Hide",
+                  "placeholder_true": "Show",
+                  "default_value": true,
+                  "label": "Visible to visitors"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "form_buttonlabel": {
+                "type": "Text",
+                "config": {
+                  "label": "form_buttonlabel"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "intro": {
+            "type": "Slice",
+            "fieldset": "Intro",
+            "description": "Intro paragraph to show some content",
+            "icon": "view_headline",
+            "display": "list",
+            "non-repeat": {
+              "intro_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "image": {
+            "type": "Slice",
+            "fieldset": "Image",
+            "description": "A simple component to display an image",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {
+              "image_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "accordions": {
+            "type": "Slice",
+            "fieldset": "Accordions",
+            "description": "A list of toggleable content accordions",
+            "icon": "format_list_bulleted",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "accordion_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "accordion_content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Content"
+                }
+              }
+            }
+          },
+          "for_who": {
+            "type": "Slice",
+            "fieldset": "For who",
+            "description": "How does Assuline help businesses and consumers",
+            "icon": "business",
+            "display": "list",
+            "non-repeat": {
+              "forwho_business_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Business title"
+                }
+              },
+              "forwho_business_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "strong, hyperlink",
+                  "label": "Business description"
+                }
+              },
+              "forwho_consumer_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Consumer title"
+                }
+              },
+              "forwho_consumer_description": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "strong, hyperlink",
+                  "label": "Consumer description"
+                }
+              },
+              "forwho_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "how_we_work": {
+            "type": "Slice",
+            "fieldset": "How we work",
+            "description": "What are the steps in an Assuline process",
+            "icon": "format_list_numbered",
+            "display": "list",
+            "non-repeat": {
+              "how_we_work_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "how_we_work_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button label"
+                }
+              },
+              "how_we_work_button_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button link"
+                }
+              }
+            },
+            "repeat": {
+              "how_we_work_step_category": {
+                "type": "Select",
+                "config": {
+                  "options": ["orientation", "advisor", "completion"],
+                  "default_value": "orientation",
+                  "label": "Step category"
+                }
+              },
+              "how_we_work_step_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Step title"
+                }
+              },
+              "how_we_work_step_content": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "strong, hyperlink",
+                  "label": "Step content"
+                }
+              }
+            }
+          },
+          "crosslinks": {
+            "type": "Slice",
+            "fieldset": "Crosslinks",
+            "description": "A block to navigate to other pages",
+            "icon": "compare_arrows",
+            "display": "list",
+            "non-repeat": {
+              "crosslink_review_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "hide",
+                  "placeholder_true": "show",
+                  "default_value": true,
+                  "label": "Review visible"
+                }
+              },
+              "crosslink_review_score": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Review score"
+                }
+              },
+              "crosslink_review_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Review title"
+                }
+              },
+              "crosslink_review_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Review button label"
+                }
+              },
+              "crosslink_review_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Review link"
+                }
+              }
+            },
+            "repeat": {
+              "crosslink_item_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Crosslink image"
+                }
+              },
+              "crosslink_item_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Crosslink title"
+                }
+              },
+              "crosslink_item_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Crosslink button label"
+                }
+              },
+              "crosslink_item_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Crosslink link"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

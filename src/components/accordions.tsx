@@ -13,12 +13,12 @@ import mediaQueries from '../styles/mediaQueries'
 import { IAccordionItem } from '../types/entities'
 
 interface IProps {
-  data: IAccordionItem[]
+  items: IAccordionItem[]
 }
 
 type AccordionColumns = IAccordionItem[][]
 
-const Accordions: React.FC<IProps> = ({ data }) => {
+const Accordions: React.FC<IProps> = ({ items }) => {
   const [sortedAccordions, setSortedAccordions] = useState<IAccordionItem[]>([])
   const [accordionsColumns, setAccordionsColumns] = useState<AccordionColumns>(
     []
@@ -26,7 +26,7 @@ const Accordions: React.FC<IProps> = ({ data }) => {
   const [activeItem, setActiveItem] = useState<string>()
 
   useEffect(() => {
-    const accordionsContent = [...data]
+    const accordionsContent = [...items]
     const sortedData = accordionsContent.sort((a, b) =>
       a.title > b.title ? 1 : -1
     )
@@ -37,13 +37,13 @@ const Accordions: React.FC<IProps> = ({ data }) => {
           [...sortedData].slice(Math.ceil(sortedData.length / 2)),
         ])
       : setSortedAccordions(sortedData)
-  }, [data])
+  }, [items])
 
   return (
     <Container>
       {accordionsColumns.length > 0 ? (
         accordionsColumns.map((accordions, index) => (
-          <Wrapper key={`accordions-wrapper-${index}`} count={data.length}>
+          <Wrapper key={`accordions-wrapper-${index}`} count={items.length}>
             {accordions.map((accordion: IAccordionItem) => {
               const key: string = `accordion-item-${accordion.title}`
               const handleClick = () => {
@@ -61,7 +61,7 @@ const Accordions: React.FC<IProps> = ({ data }) => {
           </Wrapper>
         ))
       ) : (
-        <Wrapper count={data.length}>
+        <Wrapper count={items.length}>
           {sortedAccordions.map((accordion: IAccordionItem) => {
             const key: string = `accordion-item-${accordion.title}`
             const handleClick = () => {
