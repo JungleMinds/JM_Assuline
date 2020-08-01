@@ -39,6 +39,274 @@
         "thumbnails": [],
         "label": "Image"
       }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "call_to_action_banner": [],
+          "toggle": [],
+          "toggle_business": [],
+          "toggle_private": [],
+          "services_toggle": []
+        },
+        "choices": {
+          "intro": {
+            "type": "Slice",
+            "fieldset": "Intro",
+            "description": "Intro paragraph to show some content",
+            "icon": "view_headline",
+            "display": "list",
+            "non-repeat": {
+              "intro_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "contact_form": {
+            "type": "Slice",
+            "fieldset": "Contact Form",
+            "description": "A visitor will leave their details to be contacted later.",
+            "icon": "perm_phone_msg",
+            "display": "list",
+            "non-repeat": {
+              "form_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "Hide",
+                  "placeholder_true": "Show",
+                  "default_value": true,
+                  "label": "Visible to visitors"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "form_buttonlabel": {
+                "type": "Text",
+                "config": {
+                  "label": "form_buttonlabel"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "call_to_action_banner": {
+            "type": "Slice",
+            "fieldset": "Call To Action Banner",
+            "description": "Banner to take the user to the contact page, with a possible download.",
+            "icon": "forward",
+            "display": "list",
+            "non-repeat": {
+              "banner_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "banner_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button label"
+                }
+              },
+              "banner_button_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button link"
+                }
+              },
+              "banner_download_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Download label"
+                }
+              },
+              "banner_download_link": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Download link"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "services_toggle": {
+            "type": "Slice",
+            "fieldset": "Services Toggle",
+            "description": "Toggle to display the services and their assurances",
+            "icon": "format_line_spacing",
+            "display": "list",
+            "non-repeat": {
+              "toggle_private_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Private title"
+                }
+              },
+              "toggle_private_title_short": {
+                "type": "Text",
+                "config": {
+                  "label": "Private short title"
+                }
+              },
+              "toggle_private_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Private description"
+                }
+              },
+              "toggle_private_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Private image"
+                }
+              },
+              "toggle_business_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Business title"
+                }
+              },
+              "toggle_business_title_short": {
+                "type": "Text",
+                "config": {
+                  "label": "Business short title"
+                }
+              },
+              "toggle_business_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Business description"
+                }
+              },
+              "toggle_business_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Business image"
+                }
+              }
+            },
+            "repeat": {
+              "toggle_item_type": {
+                "type": "Select",
+                "config": {
+                  "options": ["Particulier", "Zakelijk"],
+                  "default_value": "Particulier",
+                  "label": "Type"
+                }
+              },
+              "toggle_item_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "toggle_item_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "label": "Description"
+                }
+              }
+            }
+          },
+          "crosslinks": {
+            "type": "Slice",
+            "fieldset": "Crosslinks",
+            "description": "A block to navigate to other pages",
+            "icon": "compare_arrows",
+            "display": "list",
+            "non-repeat": {
+              "crosslink_review_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "hide",
+                  "placeholder_true": "show",
+                  "default_value": true,
+                  "label": "Review visible"
+                }
+              },
+              "crosslink_review_score": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Review score"
+                }
+              },
+              "crosslink_review_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Review title"
+                }
+              },
+              "crosslink_review_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Review button label"
+                }
+              },
+              "crosslink_review_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Review link"
+                }
+              }
+            },
+            "repeat": {
+              "crosslink_item_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Crosslink image"
+                }
+              },
+              "crosslink_item_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Crosslink title"
+                }
+              },
+              "crosslink_item_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Crosslink button label"
+                }
+              },
+              "crosslink_item_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Crosslink link"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

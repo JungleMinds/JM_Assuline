@@ -8,24 +8,8 @@ import { normalizeData } from '../util/data'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Header from '../components/header'
-import ImageBanner from '../components/imageBanner'
-import ContactForm from '../components/contactForm'
 import Body from '../components/body'
 import Button from '../components/button'
-
-const CTA_BANNER_CONTENT = {
-  image: '/images/ctaBannerImage.png',
-  title: 'Al 28 jaar advies op maat',
-  button: {
-    label: 'Ons team',
-    url: '/team',
-  },
-}
-
-const FORM_CONTENT = {
-  title: 'Wij waarderen persoonlijk contact',
-  buttonLabel: 'Neem contact met mij op',
-}
 
 const Index = ({ data }: any) => {
   const [pageData, setPageData] = useState<any>(null)
@@ -45,14 +29,7 @@ const Index = ({ data }: any) => {
         image={pageData && pageData.header.image}
         type="Home"
       />
-
       <Body items={pageData && pageData.body} />
-      <ImageBanner
-        image={CTA_BANNER_CONTENT.image}
-        title={CTA_BANNER_CONTENT.title}
-        button={CTA_BANNER_CONTENT.button}
-      />
-      <ContactForm {...FORM_CONTENT} />
       <Button to="/styleguide" icon>
         Go to styleguide
       </Button>
@@ -154,6 +131,15 @@ export const pageQuery = graphql`
               review_image {
                 url
               }
+            }
+          }
+          ... on PrismicHomePageBodyContactForm {
+            primary {
+              form_visible
+              form_title {
+                text
+              }
+              form_buttonlabel
             }
           }
         }

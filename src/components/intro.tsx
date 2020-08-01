@@ -1,22 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// Components
+import RichText from './richText'
+
 // Styles
 import mediaQueries from '../styles/mediaQueries'
 import * as textStyles from '../styles/textStyles'
 import { dark } from '../styles/colors'
 
 interface IProps {
-  paragraph: string
+  paragraph: any
 }
 
 const Intro: React.FC<IProps> = ({ paragraph }) => (
-  <Paragraph dangerouslySetInnerHTML={{ __html: paragraph }}></Paragraph>
+  <Paragraph>
+    <RichText content={paragraph.raw} />
+  </Paragraph>
 )
 
 export default Intro
 
-const Paragraph = styled.p`
+const Paragraph = styled.div`
   ${textStyles.plainLoud}
   margin: 0 44px 64px;
   padding-left: 8px;

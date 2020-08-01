@@ -27,6 +27,86 @@
         "thumbnails": [],
         "label": "Image"
       }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "team": []
+        },
+        "choices": {
+          "team": {
+            "type": "Slice",
+            "fieldset": "Team",
+            "description": "A list of all Assuline employees",
+            "icon": "people",
+            "display": "list",
+            "non-repeat": {},
+            "repeat": {
+              "team_item_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "team_item_name": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Name"
+                }
+              },
+              "team_item_phone": {
+                "type": "Text",
+                "config": {
+                  "label": "Phone"
+                }
+              },
+              "team_item_email": {
+                "type": "Text",
+                "config": {
+                  "label": "Email"
+                }
+              }
+            }
+          },
+          "contact_form": {
+            "type": "Slice",
+            "fieldset": "Contact Form",
+            "description": "A visitor will leave their details to be contacted later.",
+            "icon": "perm_phone_msg",
+            "display": "list",
+            "non-repeat": {
+              "form_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "Hide",
+                  "placeholder_true": "Show",
+                  "default_value": true,
+                  "label": "Visible to visitors"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "form_buttonlabel": {
+                "type": "Text",
+                "config": {
+                  "label": "form_buttonlabel"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
     }
   }
 }

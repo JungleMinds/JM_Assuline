@@ -4,6 +4,7 @@ import styled from 'styled-components'
 // Components
 import ContainerComponent from './container'
 import IconComponent from './icons/icon'
+import RichText from './richText'
 
 // Styles
 import aspectRatio from '../styles/aspectRatio'
@@ -19,7 +20,7 @@ interface IProps {
 
 interface IContent {
   title: string
-  paragraph: string
+  paragraph: any
 }
 
 const BusinessConsumer: React.FC<IProps> = ({ business, consumer }) => {
@@ -30,9 +31,13 @@ const BusinessConsumer: React.FC<IProps> = ({ business, consumer }) => {
       </ImageContainer>
       <Wrapper>
         <Title>{business.title}</Title>
-        <Paragraph>{business.paragraph}</Paragraph>
+        <Paragraph>
+          <RichText content={business.paragraph.raw} />
+        </Paragraph>
         <Title>{consumer.title}</Title>
-        <Paragraph>{consumer.paragraph}</Paragraph>
+        <Paragraph>
+          <RichText content={consumer.paragraph.raw} />
+        </Paragraph>
       </Wrapper>
     </Container>
   )
@@ -109,7 +114,7 @@ const Title = styled.h1`
   margin-bottom: 16px;
 `
 
-const Paragraph = styled.p`
+const Paragraph = styled.div`
   ${textStyles.plainNormal}
   margin: 0;
 

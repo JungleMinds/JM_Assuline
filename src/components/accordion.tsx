@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 // Components
 import IconComponent from './icons/icon'
+import RichText from './richText'
 
 // Styles
 import { yellow, lightGrey, darkest, yellowDark, dark } from '../styles/colors'
@@ -12,7 +13,7 @@ import mediaQueries from '../styles/mediaQueries'
 // Types
 interface IProps {
   title: string
-  paragraph: string
+  paragraph: any
   className?: string
   isOpen: boolean
   handleClick: () => void
@@ -32,7 +33,11 @@ const Accordion: React.FC<IProps> = ({
       </IconContainer>
       <Label onClick={handleClick}>{title}</Label>
     </LabelWrapper>
-    {isOpen && <Paragraph onClick={handleClick}>{paragraph}</Paragraph>}
+    {isOpen && (
+      <Paragraph onClick={handleClick}>
+        <RichText content={paragraph.raw} />
+      </Paragraph>
+    )}
   </Container>
 )
 
@@ -71,7 +76,7 @@ const Label = styled.p`
   cursor: pointer;
 `
 
-const Paragraph = styled.p`
+const Paragraph = styled.div`
   ${textStyles.plainSubtle}
   padding: 0 24px;
   margin: 0;

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import ContainerComponent from './container'
 import IllustrationComponent from './illustrations/illustration'
 import Button from './button'
+import RichText from './richText'
 
 // Styles
 import * as textStyles from '../styles/textStyles'
@@ -14,36 +15,36 @@ import aspectRatio from '../styles/aspectRatio'
 // Types
 import { IButton, IllustrationTypes } from '../types/entities'
 interface IProps {
-  data: {
-    heading: string
-    steps: IStep[]
-    button: IButton
-  }
+  heading: string
+  steps: IStep[]
+  button: IButton
 }
 
 interface IStep {
   illustration: IllustrationTypes
   title: string
-  paragraph: string
+  paragraph: any
 }
 
-const HowWeWork: React.FC<IProps> = ({ data }) => {
+const HowWeWork: React.FC<IProps> = ({ heading, steps, button }) => {
   return (
     <Container>
-      <Heading>{data.heading}</Heading>
+      <Heading>{heading}</Heading>
       <Steps>
-        {data.steps.map(step => (
+        {steps.map(step => (
           <Step key={`step-item-${step.title}`}>
             <IllustratorWrapper>
               <Illustration illustration={step.illustration} />
             </IllustratorWrapper>
             <Title>{step.title}</Title>
-            <Paragraph>{step.paragraph}</Paragraph>
+            <Paragraph>
+              <RichText content={step.paragraph.raw} />
+            </Paragraph>
           </Step>
         ))}
       </Steps>
-      <Button to={data.button.url} icon>
-        {data.button.label}
+      <Button to={button.url} icon>
+        {button.label}
       </Button>
     </Container>
   )
@@ -121,7 +122,7 @@ const Title = styled.h2`
   margin: 0 0 16px;
 `
 
-const Paragraph = styled.p`
+const Paragraph = styled.div`
   ${textStyles.plainSubtle}
   margin: 0;
 `

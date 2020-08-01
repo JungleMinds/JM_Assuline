@@ -48,7 +48,8 @@
           "services": [],
           "image_banner": [],
           "carousel": [],
-          "reviews": []
+          "reviews": [],
+          "contact_form": []
         },
         "choices": {
           "services": {
@@ -225,6 +226,38 @@
                 }
               }
             }
+          },
+          "contact_form": {
+            "type": "Slice",
+            "fieldset": "Contact Form",
+            "description": "A visitor will leave their details to be contacted later.",
+            "icon": "perm_phone_msg",
+            "display": "list",
+            "non-repeat": {
+              "form_visible": {
+                "type": "Boolean",
+                "config": {
+                  "placeholder_false": "Hide",
+                  "placeholder_true": "Show",
+                  "default_value": true,
+                  "label": "Visible to visitors"
+                }
+              },
+              "form_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "form_buttonlabel": {
+                "type": "Text",
+                "config": {
+                  "label": "form_buttonlabel"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

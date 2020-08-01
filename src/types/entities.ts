@@ -76,7 +76,7 @@ export type ServiceTypes = 'Hypotheken' | 'Verzekeren'
 // ACCORDIONS
 export interface IAccordionItem {
   title: string
-  paragraph: string
+  paragraph: any
 }
 
 // HOW WE WORK

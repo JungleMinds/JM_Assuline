@@ -89,7 +89,40 @@ const generateDataObjectForComponent = (component: any) => {
   if (component.__typename.endsWith('Reviews')) {
     return handleReviewsData(component)
   }
+  if (component.__typename.endsWith('ContactForm')) {
+    return handleContactFormData(component)
+  }
+  if (component.__typename.endsWith('Intro')) {
+    return handleIntroData(component)
+  }
+  if (component.__typename.endsWith('ForWho')) {
+    return handleForWhoData(component)
+  }
+  if (component.__typename.endsWith('Image')) {
+    return handleImageData(component)
+  }
+  if (component.__typename.endsWith('HowWeWork')) {
+    return handleHowWeWorkData(component)
+  }
+  if (component.__typename.endsWith('Accordions')) {
+    return handleAccordionsData(component)
+  }
+  if (component.__typename.endsWith('CallToActionBanner')) {
+    return handleCallToActionBannerData(component)
+  }
+  if (component.__typename.endsWith('ServicesToggle')) {
+    return handleToggleData(component)
+  }
+  if (component.__typename.endsWith('Crosslinks')) {
+    return handleCrosslinksData(component)
+  }
+  if (component.__typename.endsWith('Team')) {
+    return handleTeamData(component)
+  }
+  // TODO: Add Location componment
 }
+
+// TODO: Validation from CMS data
 
 // Components: Services
 const handleServicesData = (data: any) => ({
@@ -136,8 +169,136 @@ const handleReviewsData = (data: any) => ({
     image: item.review_image.url,
   })),
 })
+// Components: Contact Form
+const handleContactFormData = (data: any) => ({
+  type: 'contactForm',
+  visible: data.primary.form_visible,
+  title: data.primary.form_title.text,
+  label: data.primary.form_buttonlabel,
+})
+// Components: Intro
+const handleIntroData = (data: any) => ({
+  type: 'intro',
+  paragraph: data.primary.intro_text,
+})
+// Components: For Who
+const handleForWhoData = (data: any) => ({
+  type: 'forWho',
+  image: data.primary.forwho_image.url,
+  business: {
+    title: data.primary.forwho_business_title.text,
+    paragraph: data.primary.forwho_business_description,
+  },
+  consumer: {
+    title: data.primary.forwho_consumer_title.text,
+    paragraph: data.primary.forwho_consumer_description,
+  },
+})
+// Components: Image
+const handleImageData = (data: any) => ({
+  type: 'image',
+  image: data.primary.image_image.url,
+})
+// Components: How We Work
+const handleHowWeWorkData = (data: any) => ({
+  type: 'howWeWork',
+  heading: data.primary.how_we_work_title.text,
+  steps: data.items.map((item: any, index: number) => ({
+    illustration: item.how_we_work_step_category,
+    title: `${index + 1}. ${item.how_we_work_step_title.text}`,
+    paragraph: item.how_we_work_step_content,
+  })),
+  button: {
+    label: data.primary.how_we_work_button_label,
+    url: linkResolver(data.primary.how_we_work_button_link),
+  },
+})
+// Component: Accordions
+const handleAccordionsData = (data: any) => ({
+  type: 'accordions',
+  items: data.items.map((item: any) => ({
+    title: item.accordion_title.text,
+    paragraph: item.accordion_content,
+  })),
+})
+// Component: Call To Action Banner
+const handleCallToActionBannerData = (data: any) => ({
+  type: 'callToActionBanner',
+  heading: data.primary.banner_title.text,
+  button: data.primary.banner_button_link
+    ? {
+        label: data.primary.banner_button_label,
+        url: linkResolver(data.primary.banner_button_link),
+      }
+    : undefined,
+  asset: {
+    label: data.primary.banner_download_label,
+    url: linkResolver(data.primary.banner_download_link),
+  },
+})
+// Component: Toggle
+const handleToggleData = (data: any) => ({
+  type: 'servicesToggle',
+  private: {
+    title: data.primary.toggle_private_title.text,
+    short: data.primary.toggle_private_title_short,
+    text: data.primary.toggle_private_description,
+    image: data.primary.toggle_private_image.url,
+    accordions: data.items
+      .filter((item: any) => item.toggle_item_type === 'Particulier')
+      .map((item: any) => ({
+        title: item.toggle_item_title.text,
+        paragraph: item.toggle_item_description,
+      })),
+  },
+  business: {
+    title: data.primary.toggle_business_title.text,
+    short: data.primary.toggle_business_title_short,
+    text: data.primary.toggle_business_description,
+    image: data.primary.toggle_business_image.url,
+    accordions: data.items
+      .filter((item: any) => item.toggle_item_type === 'Zakelijk')
+      .map((item: any) => ({
+        title: item.toggle_item_title.text,
+        paragraph: item.toggle_item_description,
+      })),
+  },
+})
+// Component: Crosslinks
+const handleCrosslinksData = (data: any) => ({
+  type: 'crossLinks',
+  review: data.primary.crosslink_review_visible
+    ? {
+        score: data.primary.crosslink_review_score.text,
+        title: data.primary.crosslink_review_title.text,
+        button: {
+          label: data.primary.crosslink_review_button_label,
+          url: linkResolver(data.primary.crosslink_review_link),
+        },
+      }
+    : undefined,
+  crossLinks: data.items.map((item: any) => ({
+    title: item.crosslink_item_title.text,
+    image: item.crosslink_item_image.url,
+    button: {
+      label: item.crosslink_item_button_label,
+      url: linkResolver(item.crosslink_item_link),
+    },
+  })),
+})
+// Components: Team
+const handleTeamData = (data: any) => ({
+  type: 'team',
+  data: data.items.map((item: any) => ({
+    name: item.team_item_name.text,
+    phone: item.team_item_phone,
+    email: item.team_item_email,
+    image: item.team_item_image.url,
+  })),
+})
 
 // Links
+// TODO: Improve link resolver - links are not handled correctly from the CMS data
 export const linkResolver = (link: any) => {
   let result = '/'
   if (link.type) {

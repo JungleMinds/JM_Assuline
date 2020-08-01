@@ -41,7 +41,6 @@ const Reviews: React.FC<IReviews> = ({ items, grade }: IReviews) => {
             <Text>
               <RichText content={grade.text.raw} />
             </Text>
-            {/* <Text dangerouslySetInnerHTML={{ __html: grade.text }} /> */}
           </Details>
         </Block>
       )}

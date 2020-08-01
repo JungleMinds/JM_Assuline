@@ -10,13 +10,12 @@ interface IProps {
   content: any
   className?: string
 }
-const RichText: React.FC<IProps> = ({ content, className }) => {
-  return (
+const RichText: React.FC<IProps> = ({ content, className }) =>
+  content ? (
     <Wrapper className={className}>
       <RichTextComponent render={content} linkResolver={linkResolver} />
     </Wrapper>
-  )
-}
+  ) : null
 
 export default RichText
 

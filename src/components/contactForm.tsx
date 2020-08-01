@@ -19,13 +19,11 @@ import { IContactForm, FieldName } from '../types/entities'
 
 interface IProps {
   title: string
-  buttonLabel: string
+  label: string
+  visible: boolean
 }
 
-const ContactForm: React.FC<IProps> = ({
-  title,
-  buttonLabel = 'Neem contact met mij op',
-}) => {
+const ContactForm: React.FC<IProps> = ({ title, label, visible }) => {
   const initialValues: IContactForm = {
     name: '',
     email: '',
@@ -70,7 +68,7 @@ const ContactForm: React.FC<IProps> = ({
       })
   }
 
-  return (
+  return visible ? (
     <Container>
       <Title>{title}</Title>
       <Formik
@@ -167,7 +165,7 @@ const ContactForm: React.FC<IProps> = ({
                   touched={!!touched.phone}
                 />
                 <Button type="submit" disabled={isSubmitting}>
-                  {buttonLabel}
+                  {label}
                 </Button>
               </Wrapper>
             </Form>
@@ -175,7 +173,7 @@ const ContactForm: React.FC<IProps> = ({
         }}
       </Formik>
     </Container>
-  )
+  ) : null
 }
 
 export default ContactForm
