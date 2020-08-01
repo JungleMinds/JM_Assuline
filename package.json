@@ -16,7 +16,7 @@
     "build": "yarn build:gatsby && yarn build:functions",
     "build:gatsby": "gatsby build",
     "build:functions": "netlify-lambda build src/functions",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "start": "npm run develop",
     "start:functions": "NODE_ENV=development netlify-lambda serve src/functions",
     "serve": "NODE_ENV=production gatsby serve",
