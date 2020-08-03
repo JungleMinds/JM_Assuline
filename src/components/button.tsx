@@ -28,6 +28,7 @@ interface IProps {
   type?: 'button' | 'submit'
   target?: string
   inverse?: boolean
+  onClick?: () => void
 }
 
 const Button: React.FC<IProps> = ({
@@ -39,6 +40,7 @@ const Button: React.FC<IProps> = ({
   type,
   target,
   inverse,
+  onClick,
 }) => {
   const Content = () => (
     <>
@@ -71,6 +73,7 @@ const Button: React.FC<IProps> = ({
         disabled={disabled}
         type={type}
         inverse={inverse}
+        onClick={onClick}
       >
         <Content />
       </Container>
