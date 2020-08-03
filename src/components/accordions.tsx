@@ -103,6 +103,7 @@ const Container = styled(ContainerComponent)`
 
   ${mediaQueries.from.breakpoint.XL`
     padding: 0 20px;
+    margin-bottom: 144px;
   `}
 `
 
