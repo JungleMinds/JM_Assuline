@@ -35,10 +35,10 @@ const Banner: React.FC<IProps> = ({ heading, button, asset }) => {
           </Button>
         )}
       </Wrapper>
-      <LinkWrapper>
+      <DownloadLink href={asset.url} target="_blank">
         <Icon icon="download" />
-        <DownloadLink href={asset.url}>{asset.label}</DownloadLink>
-      </LinkWrapper>
+        <Label>{asset.label}</Label>
+      </DownloadLink>
     </Container>
   )
 }
@@ -138,16 +138,30 @@ const Button = styled(ButtonComponent)`
   }
 `
 
-const LinkWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-
 const Icon = styled(IconComponent)`
   margin-right: 16px;
   flex: 0 0 24px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+`
+
+const Label = styled.span`
+  ${textStyles.highlight}
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 `
 
 const DownloadLink = styled.a`
-  ${textStyles.highlight}
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+
+  :hover {
+    color: ${green};
+    transform: translateX(16px);
+
+    > ${Icon} {
+      stroke: ${green};
+    }
+  }
 `
