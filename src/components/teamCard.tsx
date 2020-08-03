@@ -70,19 +70,19 @@ const Container = styled.div`
 `
 
 const ImageContainer = styled.div`
-  ${aspectRatio(288, 370)}
+  ${aspectRatio(288, 368)}
   margin-bottom: 24px;
 
   ${mediaQueries.from.breakpoint.M`
-    ${aspectRatio(348, 448)}
+    ${aspectRatio(348, 446)}
   `}
 
   ${mediaQueries.from.breakpoint.L`
-    ${aspectRatio(304, 391)}
+    ${aspectRatio(304, 389)}
   `}
 
   ${mediaQueries.from.breakpoint.XL`
-    ${aspectRatio(392, 504)}
+    ${aspectRatio(392, 502)}
   `}
 `
 
