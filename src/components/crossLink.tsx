@@ -65,6 +65,7 @@ const Button = styled(ButtonComponent)<{ isExpandable?: boolean }>`
   justify-content: space-between;
   width: 100%;
   max-width: 400px;
+  text-align: left;
 
   ${mediaQueries.from.breakpoint.XL`
     ${(props: { isExpandable: boolean }) =>

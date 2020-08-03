@@ -117,7 +117,7 @@ const Container = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 80px 16px 32px;
+  padding: 0 16px 32px;
   ${textStyles.highlight}
 
   ${mediaQueries.from.breakpoint.M`
@@ -126,7 +126,7 @@ const Container = styled.footer`
   `}
 
   ${mediaQueries.from.breakpoint.XL`
-    padding: 160px 64px 32px;
+    padding: 0 64px 32px;
   `}
 `
 

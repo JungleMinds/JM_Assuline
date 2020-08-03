@@ -42,10 +42,10 @@ const CrossLinks: React.FC<IProps> = ({ crossLinks, review }) => {
 export default CrossLinks
 
 const Container = styled.section`
-  margin: 0 44px 40px;
+  margin: 0 44px 64px;
 
   ${mediaQueries.from.breakpoint.M`
-    margin: 0 24px 56px;
+    margin: 0 24px 80px;
   `}
 
   ${mediaQueries.from.breakpoint.XL`
