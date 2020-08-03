@@ -12,9 +12,18 @@ import { StaticQuery, graphql } from 'gatsby'
 // Components
 import Navigation from './navigation'
 import Footer from './footer'
+import CookieMessage from './cookieMessage'
 
 // Styling
 import GlobalStyle from '../styles/index'
+
+// Mock data
+const COOKIE_MESSAGE_CONTENT = {
+  title: 'Wij gebruiken cookies',
+  message: 'Om onze website optimaal te tonen en het verkeer te analyseren.',
+  buttonLabel: { long: 'Ik begrijp het', short: 'Ok' },
+  rememberPeriodInWeeks: '1',
+}
 
 const Layout: React.FC = ({ children }) => (
   <StaticQuery
@@ -32,6 +41,7 @@ const Layout: React.FC = ({ children }) => (
         <GlobalStyle />
         <Navigation />
         <main>{children}</main>
+        <CookieMessage {...COOKIE_MESSAGE_CONTENT} />
         <Footer />
       </>
     )}

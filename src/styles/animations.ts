@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, keyframes } from 'styled-components'
 
 // Styles
 import { dark, green } from './colors'
@@ -53,4 +53,21 @@ const underline = css`
   }
 `
 
-export { underline }
+const appearKeyframe = keyframes`
+  100% {
+    opacity: 1;
+    max-height: 100px;
+    transform: translateY(0);
+  }
+`
+
+type Appear = 'top' | 'bottom'
+
+const appear = (from: Appear) => css`
+  opacity: 0;
+  max-height: 0;
+  transform: ${from === 'top' ? 'translateY(-100%)' : 'translateY(100%)'};
+  animation: ${appearKeyframe} 0.5s 0.5s ease forwards;
+`
+
+export { underline, appear }
