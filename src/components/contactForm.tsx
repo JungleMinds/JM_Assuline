@@ -225,7 +225,7 @@ const Notification = styled.div`
   align-items: center;
   width: 100%;
   min-height: 40px;
-  padding: 5px 16px;
+  padding: 8px 16px;
   margin-bottom: 16px;
   background-color: ${lightGrey};
   border-radius: 2px;

@@ -51,9 +51,13 @@ const Container = styled.section`
     position: relative;
   `}
 
+  ${mediaQueries.from.breakpoint.XL`
+    margin-bottom: 160px;
+  `}
+
   ${mediaQueries.from.px(1920)`
     max-width: 1920px;
-    margin: 0 auto;
+    margin: 0 auto 160px;
   `}
 `
 
