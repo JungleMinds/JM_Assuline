@@ -17,6 +17,7 @@ import Pictogram from './pictogram'
 import Download from './download'
 import User from './user'
 import ErrorIcon from './error'
+import Close from './close'
 
 // Styles
 import { dark } from '../../styles/colors'
@@ -32,6 +33,7 @@ export interface IIconProps extends IBaseIcon {
   footer?: boolean
   large?: boolean
   iteration?: Iteration
+  onClick?: () => void
 }
 
 type IProps = IIconProps & {
@@ -55,6 +57,7 @@ export const iconMap = {
   download: Download,
   user: User,
   error: ErrorIcon,
+  close: Close,
 }
 
 const Icon = ({
