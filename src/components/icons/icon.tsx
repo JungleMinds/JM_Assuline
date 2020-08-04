@@ -17,12 +17,14 @@ import Pictogram from './pictogram'
 import Download from './download'
 import User from './user'
 import ErrorIcon from './error'
+import Close from './close'
 
 // Styles
 import { dark } from '../../styles/colors'
 
 // Types
 import { IBaseIcon } from '../../types/entities'
+
 export interface IIconProps extends IBaseIcon {
   isOpen?: boolean
   inverse?: boolean
@@ -30,6 +32,7 @@ export interface IIconProps extends IBaseIcon {
   isScrolled?: boolean
   footer?: boolean
   large?: boolean
+  onClick?: () => void
 }
 
 type IProps = IIconProps & {
@@ -53,6 +56,7 @@ export const iconMap = {
   download: Download,
   user: User,
   error: ErrorIcon,
+  close: Close,
 }
 
 const Icon = ({

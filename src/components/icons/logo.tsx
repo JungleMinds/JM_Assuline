@@ -83,6 +83,13 @@ const Svg = styled.svg<IIconProps>`
 
   ${mediaQueries.from.breakpoint.L`
       width: ${(props: { isScrolled: boolean; footer: boolean }) =>
+        props.footer ? '200px' : props.isScrolled ? '219px' : '236px'};
+      height: ${(props: { isScrolled: boolean; footer: boolean }) =>
+        props.footer ? '88px' : props.isScrolled ? '96px' : '104px'};
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+      width: ${(props: { isScrolled: boolean; footer: boolean }) =>
         props.footer ? '200px' : props.isScrolled ? '219px' : '291px'};
       height: ${(props: { isScrolled: boolean; footer: boolean }) =>
         props.footer ? '88px' : props.isScrolled ? '96px' : '128px'};

@@ -31,10 +31,11 @@ const Button = styled.button<IProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  position: absolute;
   top: 16px;
   right: 16px;
   cursor: pointer;
+  pointer-events: auto;
 
   :focus {
     outline: none;

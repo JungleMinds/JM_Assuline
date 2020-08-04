@@ -12,9 +12,21 @@ import { StaticQuery, graphql } from 'gatsby'
 // Components
 import Navigation from './navigation'
 import Footer from './footer'
+import ToastBar from './toastBar'
 
 // Styling
 import GlobalStyle from '../styles/index'
+
+// Mock data
+const TOAST_BAR_CONTENT = {
+  message: 'Een update omtrend onze Corona maatregelen',
+  link: {
+    url: '/covid-19',
+    label: 'Lees meer',
+  },
+  visible: true,
+  rememberPeriodInWeeks: '1',
+}
 
 const Layout: React.FC = ({ children }) => (
   <StaticQuery
@@ -30,6 +42,7 @@ const Layout: React.FC = ({ children }) => (
     render={() => (
       <>
         <GlobalStyle />
+        <ToastBar {...TOAST_BAR_CONTENT} />
         <Navigation />
         <main>{children}</main>
         <Footer />

@@ -35,9 +35,9 @@ const Navigation: React.FC = () => {
     const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
 
     if (window.innerWidth >= breakpoints.L) {
-      if (top > 72 && !isScrolled) {
+      if (top > 82 && !isScrolled) {
         setIsScrolled(true)
-      } else if (top < 72 && isScrolled) {
+      } else if (top < 82 && isScrolled) {
         setIsScrolled(false)
       }
     }
@@ -59,27 +59,10 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <ContentPusher />
-      <ShadowBox isScrolled={isScrolled}>
-        <Container isOpen={isOpen} isScrolled={isScrolled}>
+      <ScreenLayer isOpen={isOpen}>
+        <HideOverflowX>
           <MobileNavBackground isOpen={isOpen} />
-          <Wrapper isScrolled={isScrolled}>
-            <LogoLinkContainer isScrolled={isScrolled}>
-              <Link to="/">
-                <Icon
-                  icon="logo"
-                  width={200.2}
-                  height={88}
-                  isScrolled={isScrolled}
-                  payoff={!isScrolled}
-                />
-              </Link>
-            </LogoLinkContainer>
-            <NavContainer isScrolled={isScrolled}>
-              <NavLinks subtle={isScrolled} />
-            </NavContainer>
-            <Hamburger isOpen={isOpen} handleClick={handleClick} />
-          </Wrapper>
+          <Hamburger isOpen={isOpen} handleClick={handleClick} />
           <MobileNavContainer isOpen={isOpen}>
             <Link to="/">
               <MobileNavLogo
@@ -93,8 +76,38 @@ const Navigation: React.FC = () => {
             </Link>
             <NavLinks />
           </MobileNavContainer>
-        </Container>
-      </ShadowBox>
+        </HideOverflowX>
+        <ContentPusher />
+        <ShadowBox isScrolled={isScrolled}>
+          <Container isOpen={isOpen} isScrolled={isScrolled}>
+            <Wrapper isScrolled={isScrolled}>
+              <DesktopLogo isScrolled={isScrolled}>
+                <Link to="/">
+                  <Icon
+                    icon="logo"
+                    width={200.2}
+                    height={88}
+                    isScrolled={isScrolled}
+                    payoff={!isScrolled}
+                  />
+                </Link>
+              </DesktopLogo>
+              <NavContainer isScrolled={isScrolled}>
+                <NavLinks subtle={isScrolled} />
+              </NavContainer>
+            </Wrapper>
+          </Container>
+        </ShadowBox>
+      </ScreenLayer>
+      <MobileLogo to="/">
+        <Icon
+          icon="logo"
+          width={200.2}
+          height={88}
+          isScrolled={isScrolled}
+          payoff={!isScrolled}
+        />
+      </MobileLogo>
       <StickyPhoneButton phoneNumber={PHONE_NUMBER} />
     </>
   )
@@ -102,15 +115,119 @@ const Navigation: React.FC = () => {
 
 export default Navigation
 
+const ScreenLayer = styled.div<{ isOpen: boolean }>`
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+
+  ::before {
+    content: '';
+    pointer-events: none;
+    opacity: ${props => (props.isOpen ? 1 : 0)};
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(
+      ${colors.dark.channels.red},
+      ${colors.dark.channels.green},
+      ${colors.dark.channels.blue},
+      0.16
+    );
+    transition: opacity 0.2s ease;
+  }
+`
+
+const HideOverflowX = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  pointer-events: none;
+
+  ${mediaQueries.from.breakpoint.L`
+    display: none;
+  `}
+`
+
+const MobileNavBackground = styled.div<IProps>`
+  background: ${yellow};
+  position: absolute;
+  top: ${({ isOpen }) => (isOpen ? '-182px' : '16px')};
+  left: ${({ isOpen }) => (isOpen ? '-200px' : 'calc(100% - 72px)')};
+  border-radius: 50%;
+  width: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
+  height: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
+  box-shadow: 0 4px 16px
+    rgba(
+      ${colors.darkest.channels.red},
+      ${colors.darkest.channels.green},
+      ${colors.darkest.channels.blue},
+      0.16
+    );
+  transition: top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease;
+
+  ${mediaQueries.from.breakpoint.S`
+    top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-282px' : '24px')};
+    left: ${(props: { isOpen: boolean }) =>
+      props.isOpen ? '-200px' : 'calc(100% - 76px)'};
+  `}
+
+  ${mediaQueries.from.breakpoint.M`
+    top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-587px' : '24px')};
+    left: ${(props: { isOpen: boolean }) =>
+      props.isOpen ? '-320px' : 'calc(100% - 76px)'};
+  `}
+
+  ${mediaQueries.from.breakpoint.L`
+      display: none;
+  `}
+`
+
+const MobileNavContainer = styled.nav<IProps>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 16px;
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  pointer-events: ${({ isOpen }) => (isOpen ? 'auto' : 'none')};
+  transition: opacity 0.2s ease ${({ isOpen }) => isOpen && `.2s`};
+
+  ${mediaQueries.from.breakpoint.S`
+    padding-top: 24px;
+    padding-left: 20px;
+  `}
+
+  ${mediaQueries.from.breakpoint.L`
+      display: none;
+  `}
+`
+
+const MobileNavLogo = styled(Icon)`
+  margin-bottom: 32px;
+`
+
 const ContentPusher = styled.div`
   ${mediaQueries.from.breakpoint.L`
-    margin-bottom: 160px;
+    height: 136px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    height: 160px;
   `}
 `
 
 const ShadowBox = styled.div<IProps>`
+  display: none;
+
   ${mediaQueries.from.breakpoint.L`
-    position: fixed;
+    display: block;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -134,46 +251,14 @@ const ShadowBox = styled.div<IProps>`
 `
 
 const Container = styled.div<IProps>`
-  position: relative;
-  background: ${white};
-  padding: 0 16px;
-  margin-bottom: 16px;
-  max-height: 160px;
-  z-index: 10;
-
-  ::before {
-    content: "";
-    pointer-events: none;
-    opacity: ${props => (props.isOpen ? 1 : 0)};
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(
-      ${colors.dark.channels.red},
-      ${colors.dark.channels.green},
-      ${colors.dark.channels.blue},
-      0.16
-    );
-    transition: opacity 0.2s ease;
-  }
-
-  ${mediaQueries.from.breakpoint.S`
-    padding-left: 20px;
-    padding-right: 20px;
-  `}
-
   ${mediaQueries.from.breakpoint.L`
-    position: fixed;
-    top: 0;
     width: 100%;
-    left: 50%;
     max-width: 1920px;
-    padding-left: 24px;
-    padding-right: 24px;
-    margin-bottom: 0;
-    transform: translateX(-50%);
+    padding: 0 24px
+    margin: 0 auto;
+    max-height: 160px;
+    background-color: ${white};
+
     transition: max-height 0.2s ease;
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
@@ -200,19 +285,16 @@ const Wrapper = styled.div<IProps>`
   `}
 
   ${mediaQueries.from.breakpoint.L`
-    position: relative;
     max-width: 1920px;
     transition: max-height 0.2s ease;
-    ${(props: { isScrolled: boolean }) =>
-      props.isScrolled &&
-      `max-height: 72px;
-      padding-top: 16px;
-      `}
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
     padding-top: ${(props: { isScrolled: boolean }) =>
       props.isScrolled ? '16px' : '32px'};
+
+    ${(props: { isScrolled: boolean }) =>
+      props.isScrolled &&
+      `
+      max-height: 72px;
+      `}
   `}
 
   ${mediaQueries.from.breakpoint.XL`
@@ -220,19 +302,14 @@ const Wrapper = styled.div<IProps>`
   `}
 `
 
-const LogoLinkContainer = styled.div<IProps>`
-  height: 88px;
-  transition: height 0.2s ease;
-
-  ${mediaQueries.from.breakpoint.S`
-    height: 104px;
+const DesktopLogo = styled.div<IProps>`
+  ${mediaQueries.from.breakpoint.L`
+    transition: height 0.2s ease;
+    height: ${(props: { isScrolled: boolean }) =>
+      props.isScrolled ? '96px' : '104px'};
   `}
 
-  ${mediaQueries.from.breakpoint.L`
-    ${(props: { isScrolled: boolean }) => props.isScrolled && 'height: 96px;'}
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
+  ${mediaQueries.from.breakpoint.XL`
     height: ${(props: { isScrolled: boolean }) =>
       props.isScrolled ? '96px' : '128px'};
   `}
@@ -244,76 +321,30 @@ const NavContainer = styled.nav<IProps>`
 
   ${mediaQueries.from.breakpoint.L`
     display: inline-block;
-    width: 66%;
+    width: 50%;
     margin-left: 32px;
     padding-top: ${(props: { isScrolled: boolean }) =>
       props.isScrolled ? '6px' : '24px'};
   `}
 
-  ${mediaQueries.from.breakpoint.L`
-    width: 50%;
+  ${mediaQueries.from.breakpoint.XL`
+    max-width: 700px;
     ${(props: { isScrolled: boolean }) =>
       !props.isScrolled && 'padding-top: 32px;'}
   `}
-
-  ${mediaQueries.from.breakpoint.XL`
-    max-width: 700px;
-  `}
 `
 
-const MobileNavBackground = styled.div<IProps>`
-  background: ${yellow};
-  position: fixed;
-  top: ${({ isOpen }) => (isOpen ? '-182px' : '16px')};
-  left: ${({ isOpen }) => (isOpen ? '-200px' : 'calc(100% - 72px)')};
-  border-radius: 50%;
-  width: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
-  height: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
-  box-shadow: 0 4px 16px
-    rgba(
-      ${colors.darkest.channels.red},
-      ${colors.darkest.channels.green},
-      ${colors.darkest.channels.blue},
-      0.16
-    );
-  transition: top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease;
+const MobileLogo = styled(Link)`
+  display: inline-block;
+  padding: 16px 16px 0;
+  margin-bottom: 16px;
+  line-height: 0;
 
   ${mediaQueries.from.breakpoint.S`
-    top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-182px' : '24px')};
-    left: ${(props: { isOpen: boolean }) =>
-      props.isOpen ? '-200px' : 'calc(100% - 76px)'};
-  `}
-
-  ${mediaQueries.from.breakpoint.M`
-    top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-587px' : '24px')};
-    left: ${(props: { isOpen: boolean }) =>
-      props.isOpen ? '-320px' : 'calc(100% - 76px)'};
+    padding: 24px 20px 0;
   `}
 
   ${mediaQueries.from.breakpoint.L`
-      display: none;
+    display: none;
   `}
-`
-
-const MobileNavContainer = styled.nav<IProps>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 16px;
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  ${({ isOpen }) => !isOpen && 'pointer-events: none;'}
-  transition: opacity 0.2s ease ${({ isOpen }) => isOpen && `.2s`};
-
-  ${mediaQueries.from.breakpoint.S`
-    padding-top: 24px;
-    padding-left: 20px;
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
-      display: none;
-  `}
-`
-
-const MobileNavLogo = styled(Icon)`
-  margin-bottom: 32px;
 `
