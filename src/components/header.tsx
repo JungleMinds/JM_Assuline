@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import useComponentWillMount from '../hooks/useComponentWillMount'
 
 // Components
 import ContainerComponent from './container'
@@ -9,12 +8,13 @@ import IconComponent from './icons/icon'
 
 // Styles
 import * as textStyles from '../styles/textStyles'
-import mediaQueries, { breakpoints } from '../styles/mediaQueries'
+import mediaQueries from '../styles/mediaQueries'
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
 import { yellow } from '../styles/colors'
 
 // Types
 import { HeaderTypes, IButton } from '../types/entities'
+
 export interface IProps {
   title: string
   paragraph?: any
@@ -31,66 +31,39 @@ const Header: React.FC<IProps> = ({
   usps,
   image,
   type,
-}) => {
-  const [isWide, setIsWide] = useState<boolean>(false)
-
-  const handleResize = () => {
-    if (window.innerWidth >= breakpoints.L && !isWide) {
-      setIsWide(true)
-    } else if (window.innerWidth < breakpoints.L && isWide) {
-      setIsWide(false)
-    }
-  }
-
-  useComponentWillMount(handleResize)
-
-  useEffect(() => {
-    setIsWide(window.innerWidth >= breakpoints.L)
-
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  return (
-    <Container>
-      <ImageContainer>
-        <Image background={image} />
-        <Lines icon="lines" color={yellow} large={isWide} />
-      </ImageContainer>
-      <Wrapper>
-        <Title type={type} numOfChar={title.length}>
-          {title}
-        </Title>
-        {paragraph && <Text type={type}>{paragraph}</Text>}
-        {usps && (
-          <List>
-            {usps.map(item => (
-              <ListItem key={`usps-item-${item}`}>
-                <Icon icon="check" width={24} color={yellow} />
-                {item}
-              </ListItem>
-            ))}
-          </List>
-        )}
-        {buttons && (
-          <ButtonWrapper>
-            {buttons.map(button => (
-              <Button
-                to={button.url}
-                key={`header-button-${button.label}`}
-                icon
-              >
-                {button.label}
-              </Button>
-            ))}
-          </ButtonWrapper>
-        )}
-      </Wrapper>
-    </Container>
-  )
-}
+}) => (
+  <Container>
+    <ImageContainer>
+      <Image background={image} />
+      <Lines icon="lines" color={yellow} />
+    </ImageContainer>
+    <Wrapper>
+      <Title type={type} numOfChar={title.length}>
+        {title}
+      </Title>
+      {paragraph && <Text type={type}>{paragraph}</Text>}
+      {usps && (
+        <List>
+          {usps.map(item => (
+            <ListItem key={`usps-item-${item}`}>
+              <Icon icon="check" width={24} color={yellow} />
+              {item}
+            </ListItem>
+          ))}
+        </List>
+      )}
+      {buttons && (
+        <ButtonWrapper>
+          {buttons.map(button => (
+            <Button to={button.url} key={`header-button-${button.label}`} icon>
+              {button.label}
+            </Button>
+          ))}
+        </ButtonWrapper>
+      )}
+    </Wrapper>
+  </Container>
+)
 
 export default Header
 
@@ -129,6 +102,7 @@ const ImageContainer = styled.div`
   ${aspectRatio(375, 248)}
   margin: 0;
   margin-bottom: 16px;
+  overflow: hidden;
   z-index: -1;
 
   ${mediaQueries.from.breakpoint.M`
