@@ -26,10 +26,10 @@ const ImageBanner: React.FC<IProps> = ({ image, title, button }) => {
       <ImageContainer>
         <Image background={image} />
       </ImageContainer>
-      <Wrapper>
+      <Wrapper to={button.url}>
         <Title>{title}</Title>
         <MobileButton icon>{button.label}</MobileButton>
-        <DesktopButton to={button.url}>
+        <DesktopButton>
           <Label>{button.label}</Label>
           <Icon icon="arrow" width={24} height={24} />
         </DesktopButton>
@@ -113,32 +113,6 @@ const Image = styled.div<{ background?: string }>`
   `}
 `
 
-const Wrapper = styled.div`
-  display: block;
-  padding: 0 44px;
-
-  ${mediaQueries.from.breakpoint.M`
-    padding: 0 24px;
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `}
-
-  ${mediaQueries.from.px(1920)`
-    border-radius: 2px;
-  `}
-`
-
 const Title = styled.h1`
   ${textStyles.headingSubtle}
   margin: 0 0 16px;
@@ -167,7 +141,7 @@ const Icon = styled(IconComponent)`
   flex: 0 0 24px;
 `
 
-const DesktopButton = styled(Link)`
+const DesktopButton = styled.div`
   display: none;
 
   ${mediaQueries.from.breakpoint.L`
@@ -178,24 +152,56 @@ const DesktopButton = styled(Link)`
     border-radius: 50%;
     padding: 16px;
     transition: border-radius 0.4s 0.4s ease, background 0.4s ease;
+  `}
+`
+
+const Wrapper = styled(Link)`
+  display: block;
+  padding: 0 44px;
+  pointer-events: none;
+
+  ${mediaQueries.from.breakpoint.M`
+    padding: 0 24px;
+  `}
+
+  ${mediaQueries.from.breakpoint.L`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
 
     &:hover {
-      background: ${yellowDark};
-      border-radius: 28px;
-      padding: 16px 24px;
-      transition: border-radius 0s ease;
+      ${DesktopButton} {
+        background: ${yellowDark};
+        border-radius: 28px;
+        padding: 16px 24px;
+        transition: border-radius 0s ease;
 
-      ${Label} {
-        max-width: 7rem;
-        margin-right: 8px;
-        opacity: 1;
-        transition: max-width 0.4s ease, opacity 0.4s 0.2s ease;
+        ${Label} {
+          max-width: 7rem;
+          margin-right: 8px;
+          opacity: 1;
+          transition: max-width 0.4s ease, opacity 0.4s 0.2s ease;
+        }
       }
     }
+  `}
+
+  ${mediaQueries.from.px(1920)`
+    border-radius: 2px;
   `}
 `
 
 const MobileButton = styled(ButtonComponent)`
+  pointer-events: auto;
+
   ${mediaQueries.from.breakpoint.L`
     display: none;
   `}
