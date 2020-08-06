@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
+// Utils
+import { calculateMillisecondsFromWeeks } from '../util/calculations'
+
 // Components
 import Button from './button'
 
@@ -15,7 +18,6 @@ interface IProps {
   title: string
   message: string
   buttonLabel: IButtonLabel
-  rememberPeriodInWeeks: string
 }
 
 interface IButtonLabel {
@@ -23,17 +25,18 @@ interface IButtonLabel {
   long: string
 }
 
-const CookieMessage: React.FC<IProps> = ({
-  title,
-  message,
-  buttonLabel,
-  rememberPeriodInWeeks,
-}) => {
+const COOKIE_PERIOD_IN_WEEKS = 1
+
+const CookieMessage: React.FC<IProps> = ({ title, message, buttonLabel }) => {
   const [visible, setVisible] = useState<boolean>(false)
 
   useEffect(() => {
     const currentTime = new Date().getTime()
-    const acceptedUntil = Number(localStorage.getItem('cookie-accepted-until'))
+
+    const cookieStr = localStorage.getItem('assuline')
+    const cookieObj = cookieStr && JSON.parse(cookieStr)
+
+    const acceptedUntil = cookieObj && Number(cookieObj.cookie)
 
     const stillAccepted = acceptedUntil && currentTime < acceptedUntil
 
@@ -41,27 +44,30 @@ const CookieMessage: React.FC<IProps> = ({
       setVisible(true)
 
       if (acceptedUntil) {
-        localStorage.removeItem('cookie-accepted-until')
+        if (Object.keys(cookieObj).length > 1) {
+          delete cookieObj.cookie
+          localStorage.setItem('assuline', JSON.stringify(cookieObj))
+        } else {
+          localStorage.removeItem('assuline')
+        }
       }
     } else if (visible) {
       setVisible(false)
     }
   }, [])
 
-  const calculateMillisecondsFromWeeks = (howManyWeeks: string) =>
-    Number(howManyWeeks) * 7 * 24 * 60 * 60 * 1000
-
   const handleClick = () => {
     setVisible(false)
 
     const cookieAcceptedUntil =
       new Date().getTime() +
-      calculateMillisecondsFromWeeks(rememberPeriodInWeeks)
+      calculateMillisecondsFromWeeks(COOKIE_PERIOD_IN_WEEKS)
 
-    localStorage.setItem(
-      'cookie-accepted-until',
-      cookieAcceptedUntil.toString()
-    )
+    const cookieStr = localStorage.getItem('assuline')
+    const cookieObj = (cookieStr && JSON.parse(cookieStr)) || {}
+    cookieObj.cookie = cookieAcceptedUntil
+
+    localStorage.setItem('assuline', JSON.stringify(cookieObj))
   }
 
   return visible ? (
