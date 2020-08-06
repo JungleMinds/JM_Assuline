@@ -42,10 +42,10 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#FFFFFF`,
+        theme_color: `#FFFFFF`,
         display: `minimal-ui`,
-        icon: `static/favicon/assuline_favicon.svg`, // This path is relative to the root of the site.
+        icon: `static/images/favicon_192x192.svg`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-styled-components`,
