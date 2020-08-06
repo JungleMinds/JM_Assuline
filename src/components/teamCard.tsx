@@ -61,11 +61,17 @@ const Container = styled.div`
 
   ${mediaQueries.from.breakpoint.L`
     width: calc(33.3% - 21px);
+    margin-right: 32px;
+
+    :nth-child(3n) {
+      margin-right: 0;
+    }
   `}
 
   ${mediaQueries.from.breakpoint.XL`
     width: calc(33.3% - 16px);
     margin-bottom: 136px;
+    margin-right: 24px;
   `}
 `
 

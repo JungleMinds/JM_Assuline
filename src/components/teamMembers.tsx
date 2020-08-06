@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 // Components
 import ContainerComponent from './container'
-import TeamCard from './teamCard'
+import Card from './teamCard'
 
 // Styles
 import mediaQueries from '../styles/mediaQueries'
@@ -37,14 +37,12 @@ const Container = styled(ContainerComponent)`
     justify-content: space-between;
   `}
 
+  ${mediaQueries.from.breakpoint.L`
+    justify-content: flex-start;
+  `}
+
   ${mediaQueries.from.breakpoint.XL`
     margin: 0 auto;
     padding: 0 20px;
   `}
-`
-
-const Card = styled(TeamCard)`
-  &:last-of-type {
-    align-self: flex-start;
-  }
 `
