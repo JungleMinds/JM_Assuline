@@ -22,7 +22,6 @@ const COOKIE_MESSAGE_CONTENT = {
   title: 'Wij gebruiken cookies',
   message: 'Om onze website optimaal te tonen en het verkeer te analyseren.',
   buttonLabel: { long: 'Ik begrijp het', short: 'Ok' },
-  rememberPeriodInWeeks: '1',
 }
 
 const Layout: React.FC = ({ children }) => (
