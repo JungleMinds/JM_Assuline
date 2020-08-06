@@ -21,10 +21,10 @@ interface IProps {
 }
 
 interface IAddress {
-  streetAndNumber: string
-  postCodeAndLocation: string
-  postbus: string
-  postbusCodeAndLocation: string
+  street: string
+  postalCodeAndCity: string
+  postbox: string
+  postboxCodeAndCity: string
 }
 
 const Location: React.FC<IProps> = ({
@@ -36,7 +36,7 @@ const Location: React.FC<IProps> = ({
 }) => (
   <Container>
     <ImageContainer
-      href={`https://www.google.com/maps/dir//${address.streetAndNumber}%20${address.postCodeAndLocation}`}
+      href={`https://www.google.com/maps/dir//${address.street}%20${address.postalCodeAndCity}`}
       target="_blank"
       referrerPolicy="no-referrer"
     >
@@ -46,10 +46,10 @@ const Location: React.FC<IProps> = ({
       <CompanyName>{companyName}</CompanyName>
       <InnerWrapper>
         <Address>
-          <AddressLine>{address.streetAndNumber}</AddressLine>
-          <AddressLine>{address.postCodeAndLocation}</AddressLine>
-          <AddressLine>{address.postbus}</AddressLine>
-          <AddressLine>{address.postbusCodeAndLocation}</AddressLine>
+          <AddressLine>{address.street}</AddressLine>
+          <AddressLine>{address.postalCodeAndCity}</AddressLine>
+          <AddressLine>{address.postbox}</AddressLine>
+          <AddressLine>{address.postboxCodeAndCity}</AddressLine>
         </Address>
         <ContactWrapper>
           <Contact href={`tel:${phone}`}>
@@ -61,7 +61,7 @@ const Location: React.FC<IProps> = ({
             <Label>{email}</Label>
           </Contact>
           <RoutePlanner
-            href={`https://www.google.com/maps/dir//${address.streetAndNumber}%20${address.postCodeAndLocation}`}
+            href={`https://www.google.com/maps/dir//${address.street}%20${address.postalCodeAndCity}`}
             target="_blank"
             referrerPolicy="no-referrer"
           >
@@ -94,29 +94,6 @@ const Container = styled(ContainerComponent)`
   `}
 `
 
-const ImageContainer = styled.a`
-  ${aspectRatio(288, 208)}
-  display: block;
-  margin-bottom: 24px;
-
-  ${mediaQueries.from.breakpoint.M`
-    ${aspectRatio(720, 400)}
-    margin-bottom: 40px;
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
-    ${aspectRatio(472, 432)}
-    margin-bottom: 0;
-    margin-right: 32px;
-    flex-basis: 50%;
-  `}
-
-  ${mediaQueries.from.breakpoint.XL`
-    ${aspectRatio(600, 432)}
-    margin-right: 128px;
-  `}
-`
-
 const MapImage = styled.div<{ background: string }>`
   ${aspectRatioChild}
   border-radius: 2px;
@@ -124,6 +101,52 @@ const MapImage = styled.div<{ background: string }>`
   background-image: url('${({ background }) => background}');
   background-size: cover;
   background-position: center center;
+`
+
+const ImageContainer = styled.a`
+  ${aspectRatio(288, 208)}
+  display: block;
+  margin-bottom: 24px;
+  overflow: hidden;
+
+  ${MapImage} {
+    transform: scale(2);
+  }
+
+  ${mediaQueries.from.breakpoint.S`
+    ${MapImage} {
+      transform: scale(1.7);
+    }
+  `}
+
+  ${mediaQueries.from.breakpoint.M`
+    ${aspectRatio(720, 400)}
+    margin-bottom: 40px;
+
+    ${MapImage} {
+      transform: scale(1.5);
+    }
+  `}
+
+  ${mediaQueries.from.breakpoint.L`
+    ${aspectRatio(472, 432)}
+    margin-bottom: 0;
+    margin-right: 32px;
+    flex-basis: 50%;
+
+    ${MapImage} {
+      transform: scale(1.2);
+    }
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    ${aspectRatio(600, 432)}
+    margin-right: 128px;
+
+    ${MapImage} {
+      transform: scale(1);
+    }
+  `}
 `
 
 const OuterWrapper = styled.div``
@@ -174,6 +197,7 @@ const ContactWrapper = styled.div`
 
 const Icon = styled(IconComponent)`
   margin-right: 16px;
+  transition: stroke 0.2s ease;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 `
@@ -183,7 +207,7 @@ const Contact = styled.a`
   margin-bottom: 16px;
   display: inline-flex;
   align-items: center;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, color 0.2s ease;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 
