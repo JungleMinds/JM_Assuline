@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
+// Utils
+import { calculateMillisecondsFromWeeks } from '../util/calculations'
+
 // Components
 import IconComponent from './icons/icon'
 
@@ -15,7 +18,6 @@ interface IProps {
   message: string
   link: ILink
   visible: boolean
-  rememberPeriodInWeeks: string
 }
 
 interface ILink {
@@ -23,20 +25,19 @@ interface ILink {
   url: string
 }
 
-const ToastBar: React.FC<IProps> = ({
-  message,
-  link,
-  visible,
-  rememberPeriodInWeeks,
-}) => {
+const TOASTER_PERIOD_IN_WEEKS = 1
+
+const ToastBar: React.FC<IProps> = ({ message, link, visible }) => {
   const [isDiscarded, setIsDiscarded] = useState<boolean>(true)
 
   useEffect(() => {
     if (visible) {
       const currentTime = new Date().getTime()
-      const discardedUntil = Number(
-        localStorage.getItem('toastbar-discarded-until')
-      )
+
+      const cookieStr = localStorage.getItem('assuline')
+      const cookieObj = cookieStr && JSON.parse(cookieStr)
+
+      const discardedUntil = cookieObj && Number(cookieObj.toaster)
 
       const stillDiscarded = discardedUntil && currentTime < discardedUntil
 
@@ -44,7 +45,12 @@ const ToastBar: React.FC<IProps> = ({
         setIsDiscarded(false)
 
         if (discardedUntil) {
-          localStorage.removeItem('toastbar-discarded-until')
+          if (Object.keys(cookieObj).length > 1) {
+            delete cookieObj.toaster
+            localStorage.setItem('assuline', JSON.stringify(cookieObj))
+          } else {
+            localStorage.removeItem('assuline')
+          }
         }
       } else if (!isDiscarded) {
         setIsDiscarded(true)
@@ -52,17 +58,18 @@ const ToastBar: React.FC<IProps> = ({
     }
   }, [])
 
-  const calculateMillisecondsFromWeeks = (howManyWeeks: string) =>
-    Number(howManyWeeks) * 7 * 24 * 60 * 60 * 1000
-
   const handleDiscard = () => {
     setIsDiscarded(true)
 
     const discardedUntil =
       new Date().getTime() +
-      calculateMillisecondsFromWeeks(rememberPeriodInWeeks)
+      calculateMillisecondsFromWeeks(TOASTER_PERIOD_IN_WEEKS)
 
-    localStorage.setItem('toastbar-discarded-until', discardedUntil.toString())
+    const cookieStr = localStorage.getItem('assuline')
+    const cookieObj = (cookieStr && JSON.parse(cookieStr)) || {}
+    cookieObj.toaster = discardedUntil
+
+    localStorage.setItem('assuline', JSON.stringify(cookieObj))
   }
 
   return visible && !isDiscarded ? (
