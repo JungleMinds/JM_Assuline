@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import axios from 'axios'
 
 // Components
 import IconComponent from './icons/icon'
@@ -52,22 +53,16 @@ const ContactForm: React.FC<IProps> = ({
     values: IContactForm,
     { setSubmitting }: any
   ) => {
-    setError(false)
-    await fetch('/.netlify/functions/mail', {
-      method: 'POST',
-      body: JSON.stringify(values),
-    })
-      .then(_ => setSuccess(true))
-      .catch(err => {
-        setError(true)
-        console.error(err)
-        if (err.response) {
-          console.error(err.response.body)
-        }
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
+    try {
+      setError(false)
+      await axios.post('/.netlify/functions/mail', JSON.stringify(values))
+      setSuccess(true)
+    } catch (error) {
+      setError(true)
+      console.error(error)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
