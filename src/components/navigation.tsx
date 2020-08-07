@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import useStateWithRef from '../hooks/useStateWithRef'
+
+// Utils
+import checkCookieValidity from '../util/checkCookieValidity'
 
 // Components
 import Icon from './icons/icon'
@@ -16,14 +20,22 @@ import { appear } from '../styles/animations'
 interface IProps {
   isOpen?: boolean
   isScrolled?: boolean
+  visibleToastbar?: boolean
 }
 
 // Mock data
 const PHONE_NUMBER = '0623442344'
 
-const Navigation: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+const Navigation: React.FC<IProps> = ({ visibleToastbar }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const isFixedRef = useRef(false)
+  const isScrolledRef = useRef(false)
+  const isToasterRef = useRef(true)
+
+  const [isFixed, setIsFixed] = useStateWithRef<boolean>(isFixedRef)
+  const [isScrolled, setIsScrolled] = useStateWithRef<boolean>(isScrolledRef)
+  const [, setIsToasterVisible] = useStateWithRef<boolean>(isToasterRef)
 
   const handleResize = () => {
     if (window.innerWidth >= breakpoints.L && isOpen) {
@@ -36,15 +48,30 @@ const Navigation: React.FC = () => {
     const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
 
     if (window.innerWidth >= breakpoints.L) {
-      if (top > 82 && !isScrolled) {
+      if (isToasterRef.current && !isScrolledRef.current) {
+        const toastBar = document.getElementById('toast-bar')
+        const toastbarHeight = toastBar && toastBar.clientHeight
+
+        const spaceTop = (toastbarHeight && toastbarHeight) || 0
+
+        if (top >= spaceTop && !isFixedRef.current) {
+          setIsFixed(true)
+        } else if (top < spaceTop && isFixedRef.current) {
+          setIsFixed(false)
+        }
+      }
+
+      if (top > 82 && !isScrolledRef.current) {
         setIsScrolled(true)
-      } else if (top < 82 && isScrolled) {
+      } else if (top < 82 && isScrolledRef.current) {
         setIsScrolled(false)
       }
     }
   }
 
   useEffect(() => {
+    setIsToasterVisible(!checkCookieValidity('toaster') && !!visibleToastbar)
+
     window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleScroll)
 
@@ -52,7 +79,7 @@ const Navigation: React.FC = () => {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [handleScroll, handleResize])
+  }, [])
 
   const handleClick = () => {
     setIsOpen(prevState => !prevState)
@@ -60,7 +87,7 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <ScreenLayer isOpen={isOpen}>
+      <ScreenLayer isOpen={isOpen} isFixed={isFixed}>
         <HideOverflowX>
           <MobileNavBackground isOpen={isOpen} />
           <Hamburger isOpen={isOpen} handleClick={handleClick} />
@@ -78,7 +105,6 @@ const Navigation: React.FC = () => {
             <NavLinks />
           </MobileNavContainer>
         </HideOverflowX>
-        <ContentPusher />
         <ShadowBox isScrolled={isScrolled}>
           <Container isOpen={isOpen} isScrolled={isScrolled}>
             <Wrapper isScrolled={isScrolled}>
@@ -110,13 +136,17 @@ const Navigation: React.FC = () => {
         />
       </MobileLogo>
       <StickyPhoneButton phoneNumber={PHONE_NUMBER} />
+      <ContentPusher />
     </>
   )
 }
 
 export default Navigation
 
-const ScreenLayer = styled.div<{ isOpen: boolean }>`
+const ScreenLayer = styled.div<{
+  isOpen: boolean
+  isFixed: boolean
+}>`
   position: sticky;
   top: 0;
   left: 0;
@@ -140,6 +170,16 @@ const ScreenLayer = styled.div<{ isOpen: boolean }>`
     );
     transition: opacity 0.2s ease;
   }
+
+  ${mediaQueries.from.breakpoint.L`
+    position: ${(props: { isFixed: boolean }) =>
+      props.isFixed ? 'fixed' : 'relative'};
+    top: 0;
+
+    :first-child {
+      position: fixed;
+    }
+  `}
 `
 
 const HideOverflowX = styled.div`
@@ -211,16 +251,6 @@ const MobileNavContainer = styled.nav<IProps>`
 
 const MobileNavLogo = styled(Icon)`
   margin-bottom: 32px;
-`
-
-const ContentPusher = styled.div`
-  ${mediaQueries.from.breakpoint.L`
-    height: 136px;
-  `}
-
-  ${mediaQueries.from.breakpoint.XL`
-    height: 160px;
-  `}
 `
 
 const ShadowBox = styled.div<IProps>`
@@ -345,5 +375,15 @@ const MobileLogo = styled(Link)`
 
   ${mediaQueries.from.breakpoint.L`
     display: none;
+  `}
+`
+
+const ContentPusher = styled.div`
+  ${mediaQueries.from.breakpoint.L`
+    height: 136px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    height: 160px;
   `}
 `

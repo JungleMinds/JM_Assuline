@@ -49,13 +49,15 @@ const Toggle: React.FC<IProps> = props => {
       diff: number
     } = { w: 0, h: 0, diff: 0 }
 
-    if (value === 'private' && (privateLabel && privateLabel.current)) {
+    if (value === 'private' && privateLabel && privateLabel.current) {
       dimensions.w = privateLabel.current.clientWidth
       dimensions.h = privateLabel.current.clientHeight
     } else if (
       value === 'business' &&
-      (businessLabel && businessLabel.current) &&
-      (privateLabel && privateLabel.current)
+      businessLabel &&
+      businessLabel.current &&
+      privateLabel &&
+      privateLabel.current
     ) {
       dimensions.diff = privateLabel.current.clientWidth
       dimensions.w = businessLabel.current.clientWidth

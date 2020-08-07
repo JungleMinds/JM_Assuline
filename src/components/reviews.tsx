@@ -54,6 +54,7 @@ const Container = styled.div`
   margin: 0 44px 18px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   ${mediaQueries.from.breakpoint.M`
     margin: 0 24px 40px;
@@ -106,7 +107,7 @@ const Grade = styled.div`
 `
 
 const Block = styled.div`
-  margin: 0 auto 24px;
+  margin-bottom: 24px;
   max-width: 298px;
   display: flex;
   flex-direction: column;

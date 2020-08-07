@@ -152,6 +152,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-basis: 50%;
   `}
 
   ${mediaQueries.from.breakpoint.XL`

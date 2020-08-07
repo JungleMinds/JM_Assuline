@@ -27,7 +27,8 @@ const ImageBanner: React.FC<IProps> = ({ image, title, button }) => {
         <Image background={image} />
       </ImageContainer>
       <Wrapper to={button.url}>
-        <Title>{title}</Title>
+        <MobileTitle>{title}</MobileTitle>
+        <DesktopTitle>{title}</DesktopTitle>
         <MobileButton icon>{button.label}</MobileButton>
         <DesktopButton>
           <Label>{button.label}</Label>
@@ -114,7 +115,7 @@ const Image = styled.div<{ background?: string }>`
   `}
 `
 
-const Title = styled.h1`
+const MobileTitle = styled.h1`
   ${textStyles.headingSubtle}
   margin: 0 0 16px;
 
@@ -123,13 +124,23 @@ const Title = styled.h1`
   `}
 
   ${mediaQueries.from.breakpoint.L`
-    ${textStyles.headingLoud}
+    display: none;
+  `}
+`
+
+const DesktopTitle = styled.h1`
+  ${textStyles.headingLoud}
+  display: none;
+
+  ${mediaQueries.from.breakpoint.L`
+    display: block;
     color: ${white};
-    margin-bottom: 40px;
+    margin: 0 0 40px;
   `}
 `
 
 const Label = styled.span`
+  ${textStyles.highlight}
   max-width: 0;
   display: inline-block;
   white-space: nowrap;

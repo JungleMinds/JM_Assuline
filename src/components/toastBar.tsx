@@ -73,7 +73,7 @@ const ToastBar: React.FC<IProps> = ({ message, link, visible }) => {
   }
 
   return visible && !isDiscarded ? (
-    <Container>
+    <Container id="toast-bar">
       <Wrapper>
         <ContentWrapper>
           <Message>{message}</Message>
