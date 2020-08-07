@@ -29,7 +29,6 @@ const TOAST_BAR_CONTENT = {
     label: 'Lees meer',
   },
   visible: true,
-  rememberPeriodInWeeks: '1',
 }
 
 const COOKIE_MESSAGE_CONTENT = {

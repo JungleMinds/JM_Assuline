@@ -62,6 +62,7 @@ const Button = styled(ButtonComponent)`
 `
 
 const Label = styled.span`
+  ${textStyles.highlight}
   max-width: 0;
   display: inline-block;
   white-space: nowrap;
