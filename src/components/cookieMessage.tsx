@@ -11,7 +11,7 @@ import ButtonComponent from './button'
 import { plainSubtle } from '../styles/textStyles'
 import { lightGrey } from '../styles/colors'
 import mediaQueries from '../styles/mediaQueries'
-import { appear } from '../styles/animations'
+import { appearFrom } from '../styles/animations'
 
 // Types
 interface IProps {
@@ -96,7 +96,7 @@ const Container = styled.aside`
   width: 100%;
   background-color: ${lightGrey};
   z-index: 11;
-  ${appear('bottom')}
+  ${appearFrom('bottom')}
 
   ${mediaQueries.from.breakpoint.L`
     padding: 12px 24px;

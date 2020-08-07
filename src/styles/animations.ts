@@ -4,6 +4,9 @@ import { css, keyframes } from 'styled-components'
 import { dark, green } from './colors'
 import mediaQueries from './mediaQueries'
 
+// Types
+import { Iteration } from '../types/entities'
+
 const underline = css`
   position: relative;
 
@@ -53,7 +56,35 @@ const underline = css`
   }
 `
 
-const appearKeyframe = keyframes`
+// Navigation
+const appearAnimation = keyframes`
+  100% {
+    opacity: 1
+  }
+`
+
+const appear = css`
+  opacity: 0;
+  animation: ${appearAnimation} 0.5s 0.2s ease forwards;
+`
+
+// Main Content
+const mainLoadAnimation = keyframes`
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
+const mainLoaded = css`
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: ${mainLoadAnimation} 1s 0.2s cubic-bezier(0.26, 0.23, 0, 1.38)
+    forwards;
+`
+
+// CookieMessage and ToastBar
+const appearFromKeyframe = keyframes`
   100% {
     opacity: 1;
     max-height: 500px;
@@ -61,13 +92,75 @@ const appearKeyframe = keyframes`
   }
 `
 
-type Appear = 'top' | 'bottom'
+type AppearFrom = 'top' | 'bottom'
 
-const appear = (from: Appear) => css`
+const appearFrom = (from: AppearFrom) => css`
   opacity: 0;
   max-height: 0;
   transform: ${from === 'top' ? 'translateY(-100%)' : 'translateY(100%)'};
-  animation: ${appearKeyframe} 0.5s 0.5s ease forwards;
+  animation: ${appearFromKeyframe} 0.5s 0.5s ease forwards;
 `
 
-export { underline, appear }
+// Logo
+const jumpAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-20px);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(7px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`
+
+const jump = (iteration: Iteration) => css`
+  animation: ${jumpAnimation} 0.9s 0.4s ease ${iteration};
+`
+
+const lineExtensionAnimation = keyframes`
+  35% {
+    transform: translateY(-15px);
+  }
+  55% {
+    transform: translateY(0);
+  }
+`
+
+const lineExtension = (iteration: Iteration) => css`
+  animation: ${lineExtensionAnimation} 0.9s 0.4s ease ${iteration};
+`
+
+const moveUpAnimation = keyframes`
+  100% {
+    transform: rotate(0);
+  }
+`
+
+const moveUp = (
+  delay: number,
+  transformOrigin?: { x: number; y: number }
+) => css`
+  transform: rotate(-75deg);
+  transform-origin: ${transformOrigin
+    ? `${transformOrigin.x}% ${transformOrigin.y}%`
+    : 'center'};
+  animation: ${moveUpAnimation} 2s ${delay + 0.5}s cubic-bezier(0, 0, 0, 1)
+    forwards;
+`
+
+export {
+  underline,
+  appear,
+  mainLoaded,
+  appearFrom,
+  jump,
+  lineExtension,
+  moveUp,
+}

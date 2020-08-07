@@ -22,7 +22,8 @@ import ErrorIcon from './error'
 import { dark } from '../../styles/colors'
 
 // Types
-import { IBaseIcon } from '../../types/entities'
+import { IBaseIcon, Iteration } from '../../types/entities'
+
 export interface IIconProps extends IBaseIcon {
   isOpen?: boolean
   inverse?: boolean
@@ -30,6 +31,7 @@ export interface IIconProps extends IBaseIcon {
   isScrolled?: boolean
   footer?: boolean
   large?: boolean
+  iteration?: Iteration
 }
 
 type IProps = IIconProps & {

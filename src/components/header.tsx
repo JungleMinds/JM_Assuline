@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 // Components
 import ContainerComponent from './container'
@@ -95,16 +95,6 @@ const Container = styled(ContainerComponent)`
   `}
 `
 
-const appear = keyframes`
-  30% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-`
-
 const ImageContainer = styled.div`
   ${aspectRatio(375, 248)}
   margin: 0;
@@ -141,9 +131,13 @@ const Image = styled.div<{ background?: string }>`
 `
 
 const Lines = styled(IconComponent)`
-  ${aspectRatioChild}
-  opacity: 0;
-  animation: ${appear} 1s linear forwards;
+  position: absolute;
+  bottom: -4px;
+  left: 16px;
+
+  ${mediaQueries.from.breakpoint.L`
+    left: 80px;
+  `}
 `
 
 const Wrapper = styled.div`

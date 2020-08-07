@@ -6,7 +6,9 @@ import Icon from './icons/icon'
 
 // Styles
 import mediaQueries from '../styles/mediaQueries'
+import { appear } from '../styles/animations'
 
+// Types
 interface IProps {
   isOpen?: boolean
   handleClick?: () => void
@@ -35,6 +37,7 @@ const Button = styled.button<IProps>`
   top: 16px;
   right: 16px;
   cursor: pointer;
+  ${appear}
 
   :focus {
     outline: none;

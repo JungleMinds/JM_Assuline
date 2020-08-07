@@ -11,6 +11,7 @@ import StickyPhoneButton from './stickyPhoneButton'
 // Styles
 import colors, { white, yellow } from '../styles/colors'
 import mediaQueries, { breakpoints } from '../styles/mediaQueries'
+import { appear } from '../styles/animations'
 
 interface IProps {
   isOpen?: boolean
@@ -69,7 +70,7 @@ const Navigation: React.FC = () => {
                 <Icon
                   icon="logo"
                   width={200.2}
-                  height={88}
+                  height={104}
                   isScrolled={isScrolled}
                   payoff={!isScrolled}
                 />
@@ -85,7 +86,7 @@ const Navigation: React.FC = () => {
               <MobileNavLogo
                 icon="logo"
                 width={200.2}
-                height={88}
+                height={104}
                 inverse
                 isScrolled={isScrolled}
                 payoff
@@ -104,6 +105,10 @@ export default Navigation
 
 const ContentPusher = styled.div`
   ${mediaQueries.from.breakpoint.L`
+    margin-bottom: 128px;
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
     margin-bottom: 160px;
   `}
 `
@@ -114,7 +119,7 @@ const ShadowBox = styled.div<IProps>`
     top: 0;
     left: 0;
     width: 100%;
-    height: 160px;
+    height: 128px;
     transition: height 0.2s ease;
     z-index: 10;
 
@@ -130,6 +135,11 @@ const ShadowBox = styled.div<IProps>`
           0.16
         );
     `}
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+    height: ${(props: { isScrolled: boolean }) =>
+      props.isScrolled ? '72px' : '160px'};
   `}
 `
 
@@ -192,12 +202,7 @@ const Wrapper = styled.div<IProps>`
   background: ${white};
   display: flex;
   justify-content: space-between;
-  padding-top: 16px;
   max-height: 160px;
-
-  ${mediaQueries.from.breakpoint.S`
-    padding-top: 24px;
-  `}
 
   ${mediaQueries.from.breakpoint.L`
     position: relative;
@@ -206,13 +211,7 @@ const Wrapper = styled.div<IProps>`
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
       `max-height: 72px;
-      padding-top: 16px;
       `}
-  `}
-
-  ${mediaQueries.from.breakpoint.L`
-    padding-top: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? '16px' : '32px'};
   `}
 
   ${mediaQueries.from.breakpoint.XL`
@@ -221,20 +220,20 @@ const Wrapper = styled.div<IProps>`
 `
 
 const LogoLinkContainer = styled.div<IProps>`
-  height: 88px;
+  height: 104px;
   transition: height 0.2s ease;
 
   ${mediaQueries.from.breakpoint.S`
-    height: 104px;
+    height: 128px;
   `}
 
   ${mediaQueries.from.breakpoint.L`
-    ${(props: { isScrolled: boolean }) => props.isScrolled && 'height: 96px;'}
+    ${(props: { isScrolled: boolean }) => props.isScrolled && 'height: 112px;'}
   `}
 
-  ${mediaQueries.from.breakpoint.L`
+  ${mediaQueries.from.breakpoint.XL`
     height: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? '96px' : '128px'};
+      props.isScrolled ? '112px' : '160px'};
   `}
 `
 
@@ -244,20 +243,17 @@ const NavContainer = styled.nav<IProps>`
 
   ${mediaQueries.from.breakpoint.L`
     display: inline-block;
-    width: 66%;
+    width: 50%;
     margin-left: 32px;
     padding-top: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? '6px' : '24px'};
+      props.isScrolled ? '22px' : '44px'};
   `}
-
-  ${mediaQueries.from.breakpoint.L`
-    width: 50%;
-    ${(props: { isScrolled: boolean }) =>
-      !props.isScrolled && 'padding-top: 32px;'}
-  `}
+  ${appear}
 
   ${mediaQueries.from.breakpoint.XL`
     max-width: 700px;
+    padding-top: ${(props: { isScrolled: boolean }) =>
+      props.isScrolled ? '22px' : '64px'};
   `}
 `
 
@@ -277,6 +273,7 @@ const MobileNavBackground = styled.div<IProps>`
       0.16
     );
   transition: top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease;
+  ${appear}
 
   ${mediaQueries.from.breakpoint.S`
     top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-182px' : '24px')};
@@ -299,13 +296,12 @@ const MobileNavContainer = styled.nav<IProps>`
   position: fixed;
   top: 0;
   left: 0;
-  padding: 16px;
+  padding: 0 16px 16px;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   ${({ isOpen }) => !isOpen && 'pointer-events: none;'}
   transition: opacity 0.2s ease ${({ isOpen }) => isOpen && `.2s`};
 
   ${mediaQueries.from.breakpoint.S`
-    padding-top: 24px;
     padding-left: 20px;
   `}
 

@@ -113,3 +113,6 @@ export type IContactForm = {
 }
 
 export type FieldName = 'name' | 'email' | 'phone'
+
+// ANIMATIONS
+export type Iteration = 'forwards' | 'infinite'
