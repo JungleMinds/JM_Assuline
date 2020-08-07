@@ -156,7 +156,7 @@ const Label = styled.span`
 const DownloadLink = styled.a`
   display: inline-flex;
   align-items: center;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s cubic-bezier(0, 0, 0, 1);
 
   :hover {
     color: ${green};

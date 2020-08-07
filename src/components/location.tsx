@@ -207,7 +207,7 @@ const Contact = styled.a`
   margin-bottom: 16px;
   display: inline-flex;
   align-items: center;
-  transition: transform 0.2s ease-in-out, color 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0, 0, 0, 1), color 0.2s ease;
   transform-style: preserve-3d;
   backface-visibility: hidden;
 

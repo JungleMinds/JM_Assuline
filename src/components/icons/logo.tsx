@@ -4,14 +4,17 @@ import styled from 'styled-components'
 // Styles
 import mediaQueries from '../../styles/mediaQueries'
 import { white, yellow, dark } from '../../styles/colors'
+import { jump, lineExtension } from '../../styles/animations'
 
 // Types
-import { IBaseIcon } from '../../types/entities'
+import { IBaseIcon, Iteration } from '../../types/entities'
+
 interface IIconProps extends IBaseIcon {
   inverse?: boolean
   payoff?: boolean
   isScrolled?: boolean
   footer?: boolean
+  iteration?: Iteration
 }
 
 const Logo = ({
@@ -22,27 +25,33 @@ const Logo = ({
   payoff,
   isScrolled,
   footer,
+  iteration = 'forwards',
 }: IIconProps) => (
   <Svg
     width={width}
     height={height}
     className={className}
     xmlns="http://www.w3.org/2000/svg"
-    viewBox={`0 0 291 128`}
+    viewBox={`0 -24 291 152`}
     preserveAspectRatio="xMidYMid meet"
     isScrolled={isScrolled}
     footer={footer}
   >
     <Container inverse={inverse} fillRule="evenodd">
-      <I
+      <Dot
         d="M155.756 9.687c2.677 0 4.773-2.185 4.773-4.784 0-2.717-2.096-4.903-4.773-4.903-2.62 0-4.773 2.186-4.773 4.903 0 2.599 2.154 4.784 4.773 4.784"
         inverse={inverse}
+        iteration={iteration}
       />
-      <I
+      <Line
         d="M159.642 17.444h-7.714v29.484h-.018c.001.158.006.315.006.472 0 19.363-7.5 37.568-21.118 51.26-13.618 13.691-31.725 21.232-50.984 21.232-19.26 0-37.366-7.54-50.984-21.233C16.938 86.704 9.713 71.307 8.072 54.702H.324c1.665 18.68 9.698 36.021 23.05 49.444 15.075 15.157 35.12 23.505 56.44 23.505s41.365-8.348 56.44-23.505c15.077-15.157 23.38-35.31 23.38-56.746 0-.157-.005-.314-.006-.472h.014V17.444z"
         inverse={inverse}
       />
-
+      <LineExtension
+        d="M151.928 17.444h7.714v15.421h-7.714z"
+        inverse={inverse}
+        iteration={iteration}
+      />
       {payoff && (
         <Payoff
           inverse={inverse}
@@ -73,7 +82,7 @@ const Svg = styled.svg<IIconProps>`
       width: ${(props: { footer: boolean }) =>
         props.footer ? '200px' : '236px'};
       height: ${(props: { footer: boolean }) =>
-        props.footer ? '88px' : '104px'};
+        props.footer ? '112px' : '128px'};
   `}
 
   ${mediaQueries.from.breakpoint.M`
@@ -83,17 +92,32 @@ const Svg = styled.svg<IIconProps>`
 
   ${mediaQueries.from.breakpoint.L`
       width: ${(props: { isScrolled: boolean; footer: boolean }) =>
+        props.footer ? '200px' : props.isScrolled ? '219px' : '236px'};
+      height: ${(props: { isScrolled: boolean; footer: boolean }) =>
+        props.footer ? '112px' : props.isScrolled ? '96px' : '128px'};
+  `}
+
+  ${mediaQueries.from.breakpoint.XL`
+      width: ${(props: { isScrolled: boolean; footer: boolean }) =>
         props.footer ? '200px' : props.isScrolled ? '219px' : '291px'};
       height: ${(props: { isScrolled: boolean; footer: boolean }) =>
-        props.footer ? '88px' : props.isScrolled ? '96px' : '128px'};
+        props.footer ? '112px' : props.isScrolled ? '96px' : '160px'};
   `}
 `
 
 const Container = styled.g<{ inverse?: boolean }>`
   fill: ${props => props.inverse && white};
 `
-const I = styled.path<{ inverse?: boolean }>`
+const Line = styled.path<{ inverse?: boolean }>`
   fill: ${props => (props.inverse ? white : yellow)};
+`
+
+const Dot = styled(Line)<{ iteration: Iteration }>`
+  ${({ iteration }) => jump(iteration)}
+`
+
+const LineExtension = styled(Line)<{ iteration: Iteration }>`
+  ${({ iteration }) => lineExtension(iteration)}
 `
 
 const Payoff = styled.path<{ inverse?: boolean }>`

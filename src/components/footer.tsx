@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
     <Container>
       <Wrapper>
         <InnerWrapper>
-          <IconComponent icon="logo" width={145} height={64} footer />
+          <Logo icon="logo" width={169} height={88} footer />
           <TopSection>
             <NavLinks>
               {NAV_ITEMS.map(item => (
@@ -150,6 +150,14 @@ const InnerWrapper = styled.div`
   `}
 `
 
+const Logo = styled(IconComponent)`
+  margin-top: -12px;
+
+  ${mediaQueries.from.breakpoint.S`
+    margin-top: -20px;
+  `}
+`
+
 const TopSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -218,7 +226,7 @@ const ListItem = styled.li`
   backface-visibility: hidden;
 
   ${StyledNavLink}, ${StyledAddressLink} {
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s cubic-bezier(0, 0, 0, 1);
     transform-style: preserve-3d;
     backface-visibility: hidden;
 

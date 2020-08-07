@@ -132,7 +132,7 @@ const Contact = styled.a`
   display: inline-flex;
   align-items: center;
   margin-bottom: 16px;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s cubic-bezier(0, 0, 0, 1);
   transform-style: preserve-3d;
   backface-visibility: hidden;
 

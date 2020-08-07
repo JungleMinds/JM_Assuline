@@ -98,6 +98,7 @@ const IconContainer = styled.div`
   background: ${yellow};
   flex: 0 0 32px;
   cursor: pointer;
+  perspective: 650px;
   transition: background 0.2s ease-in-out;
 
   ${mediaQueries.from.breakpoint.L`

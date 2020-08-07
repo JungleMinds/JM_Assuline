@@ -7,6 +7,7 @@ import Icon from './icons/icon'
 // Styles
 import colors, { green, white } from '../styles/colors'
 import mediaQueries from '../styles/mediaQueries'
+import { appear } from '../styles/animations'
 
 // Types
 interface IProps {
@@ -39,6 +40,7 @@ const Container = styled.a`
     );
   border-radius: 50%;
   z-index: 1;
+  ${appear}
 
   ${mediaQueries.from.breakpoint.S`
       right: 20px;

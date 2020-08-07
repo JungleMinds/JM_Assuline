@@ -89,7 +89,7 @@ export default Button
 const Icon = styled(IconComponent)`
   margin-left: 8px;
   flex: 0 0 24px;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s cubic-bezier(0, 0, 0, 1);
   transform-style: preserve-3d;
   backface-visibility: hidden;
 `
