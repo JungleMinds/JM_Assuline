@@ -14,6 +14,7 @@ module.exports = {
         whitelist: ['NODE_ENV', 'COMMIT_HASH', 'VERSION'], // Add ENV vars to whitelist here and they'll show up in your client-side
       },
     },
+    `gatsby-plugin-polyfill-io`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-typescript-checker`,
     `gatsby-plugin-tslint`,
