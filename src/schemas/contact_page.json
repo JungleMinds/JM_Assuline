@@ -56,7 +56,9 @@
       "type": "Slices",
       "fieldset": "Slice zone",
       "config": {
-        "labels": {},
+        "labels": {
+          "location": []
+        },
         "choices": {
           "call_to_action_banner": {
             "type": "Slice",
@@ -127,6 +129,78 @@
                 "type": "Text",
                 "config": {
                   "label": "form_buttonlabel"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "location": {
+            "type": "Slice",
+            "fieldset": "Location",
+            "description": "All details regarding the location of Assuline",
+            "icon": "map",
+            "display": "list",
+            "non-repeat": {
+              "location_company_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Company name"
+                }
+              },
+              "location_address_street": {
+                "type": "Text",
+                "config": {
+                  "label": "Street"
+                }
+              },
+              "location_address_postalcode": {
+                "type": "Text",
+                "config": {
+                  "label": "Postal code"
+                }
+              },
+              "location_address_city": {
+                "type": "Text",
+                "config": {
+                  "label": "City"
+                }
+              },
+              "location_postbox_number": {
+                "type": "Text",
+                "config": {
+                  "label": "Postbox number"
+                }
+              },
+              "location_postbox_code": {
+                "type": "Text",
+                "config": {
+                  "label": "Postbox code"
+                }
+              },
+              "location_postbox_city": {
+                "type": "Text",
+                "config": {
+                  "label": "Postbox city"
+                }
+              },
+              "location_phone": {
+                "type": "Text",
+                "config": {
+                  "label": "Phone"
+                }
+              },
+              "location_email": {
+                "type": "Text",
+                "config": {
+                  "label": "Email"
+                }
+              },
+              "location_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Map image"
                 }
               }
             },

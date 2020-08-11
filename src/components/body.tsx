@@ -16,6 +16,7 @@ import Banner from './banner'
 import Toggle from './toggle'
 import CrossLinks from './crossLinks'
 import Team from './teamMembers'
+import Location from './location'
 
 interface IProps {
   items: any
@@ -37,6 +38,7 @@ const Body: React.FC<IProps> = ({ items }) => {
     servicesToggle: Toggle,
     crossLinks: CrossLinks,
     team: Team,
+    location: Location,
   }
 
   return (
