@@ -61,6 +61,7 @@ export type HeaderTypes =
   | 'Verzekeren'
   | 'Team'
   | 'Contact'
+  | 'Content'
 
 // SERVICES
 export interface IService {
