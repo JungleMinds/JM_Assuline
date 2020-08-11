@@ -2,10 +2,10 @@ require('./config/env')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://www.example.com`,
+    title: `Assuline`,
+    description: `Persoonlijk advies op maat. Voor uw hypotheek, verzekeringen en andere financiële zaken voor zowel consumenten als bedrijven.`,
+    author: `@jungleminds`,
+    siteUrl: `https://www.assuline.nl`,
   },
   plugins: [
     {
@@ -39,8 +39,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `assuline-zeker-voor-u`,
+        short_name: `assuline`,
         start_url: `/`,
         background_color: `#FFFFFF`,
         theme_color: `#FFFFFF`,
