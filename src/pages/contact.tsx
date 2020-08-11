@@ -10,22 +10,6 @@ import SEO from '../components/seo'
 import Header from '../components/header'
 import Body from '../components/body'
 
-import Location from '../components/location'
-
-// Mock data
-const LOCATION_CONTENT = {
-  image: '/images/mapImage.png',
-  companyName: 'Assuline BV.',
-  address: {
-    street: 'Herenweg 88',
-    postalCodeAndCity: '3645 CL Wilnis',
-    postbox: 'Postbus 202',
-    postboxCodeAndCity: '3640 AE Mijdrecht',
-  },
-  phone: '0297288198',
-  email: 'info@assuline.nl',
-}
-
 const Contact = ({ data }: any) => {
   const [pageData, setPageData] = useState<any>(null)
 
@@ -45,7 +29,6 @@ const Contact = ({ data }: any) => {
         type="Contact"
       />
       <Body items={pageData && pageData.body} />
-      <Location {...LOCATION_CONTENT} />
     </Layout>
   )
 }
@@ -100,6 +83,23 @@ export const pageQuery = graphql`
                 text
               }
               form_buttonlabel
+            }
+          }
+          ... on PrismicContactPageBodyLocation {
+            __typename
+            primary {
+              location_company_name
+              location_address_street
+              location_address_postalcode
+              location_address_city
+              location_postbox_number
+              location_postbox_code
+              location_postbox_city
+              location_email
+              location_phone
+              location_image {
+                url
+              }
             }
           }
         }

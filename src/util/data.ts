@@ -119,7 +119,9 @@ const generateDataObjectForComponent = (component: any) => {
   if (component.__typename.endsWith('Team')) {
     return handleTeamData(component)
   }
-  // TODO: Add Location componment
+  if (component.__typename.endsWith('Location')) {
+    return handleLocationData(component)
+  }
 }
 
 // TODO: Validation from CMS data
@@ -295,6 +297,20 @@ const handleTeamData = (data: any) => ({
     email: item.team_item_email,
     image: item.team_item_image.url,
   })),
+})
+// Components: Location
+const handleLocationData = (data: any) => ({
+  type: 'location',
+  companyName: data.primary.location_company_name,
+  address: {
+    street: data.primary.location_address_street,
+    postalCodeAndCity: `${data.primary.location_address_postalcode} ${data.primary.location_address_city}`,
+    postbox: `Postbus ${data.primary.location_postbox_number}`,
+    postboxCodeAndCity: `${data.primary.location_postbox_code} ${data.primary.location_postbox_city}`,
+  },
+  phone: data.primary.location_phone,
+  email: data.primary.location_email,
+  image: data.primary.location_image.url,
 })
 
 // Links
