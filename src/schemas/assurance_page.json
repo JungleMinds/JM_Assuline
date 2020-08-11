@@ -63,6 +63,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Text"
                 }
               }
@@ -167,6 +168,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Private description"
                 }
               },
@@ -195,6 +197,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Business description"
                 }
               },
@@ -227,6 +230,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Description"
                 }
               }

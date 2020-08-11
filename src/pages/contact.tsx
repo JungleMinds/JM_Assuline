@@ -51,14 +51,16 @@ export const pageQuery = graphql`
         header_buttonlabel
         header_buttonlink {
           url
-          slug
           type
+          slug
+          uid
         }
         header_secondary_buttonlabel
         header_secondary_buttonlink {
           url
           type
           slug
+          uid
         }
         body {
           ... on PrismicContactPageBodyCallToActionBanner {
@@ -72,6 +74,7 @@ export const pageQuery = graphql`
                 url
                 type
                 slug
+                uid
               }
             }
           }

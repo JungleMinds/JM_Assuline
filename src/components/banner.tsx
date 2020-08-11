@@ -36,7 +36,7 @@ const Banner: React.FC<IProps> = ({ heading, button, asset }) => {
         )}
       </Wrapper>
       {asset && (
-        <DownloadLink href={asset.url} target="_blank">
+        <DownloadLink href={asset.url}>
           <Icon icon="download" />
           <Label>{asset.label}</Label>
         </DownloadLink>

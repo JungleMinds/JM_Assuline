@@ -17,6 +17,7 @@
       "type": "StructuredText",
       "config": {
         "multi": "strong, hyperlink",
+        "allowTargetBlank": true,
         "label": "Intro"
       }
     },
@@ -29,7 +30,8 @@
     "header_buttonlink": {
       "type": "Link",
       "config": {
-        "label": "Button link"
+        "label": "Button link",
+        "allowTargetBlank": true
       }
     },
     "header_image": {
@@ -86,6 +88,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Description"
                 }
               },
@@ -115,6 +118,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Text"
                 }
               }
@@ -186,6 +190,7 @@
                 "type": "StructuredText",
                 "config": {
                   "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
                   "label": "Text"
                 }
               },
@@ -221,7 +226,7 @@
               "review_text": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "strong, hyperlink",
+                  "multi": "strong",
                   "label": "Text"
                 }
               }
