@@ -122,6 +122,9 @@ const generateDataObjectForComponent = (component: any) => {
   if (component.__typename.endsWith('Location')) {
     return handleLocationData(component)
   }
+  if (component.__typename.endsWith('ContentBlock')) {
+    return handleContentBlockData(component)
+  }
 }
 
 // TODO: Validation from CMS data
@@ -312,6 +315,18 @@ const handleLocationData = (data: any) => ({
   email: data.primary.location_email,
   image: data.primary.location_image.url,
 })
+// Components: ContentBlock
+const handleContentBlockData = (data: any) => ({
+  type: 'contentBlock',
+  title: data.primary.content_block_title.text,
+  content: data.primary.content_block_content,
+  button: data.primary.content_block_button_link
+    ? {
+        label: data.primary.content_block_button_label,
+        url: linkResolver(data.primary.content_block_button_link),
+      }
+    : undefined,
+})
 
 // Links
 // TODO: Improve link resolver - links are not handled correctly from the CMS data
@@ -319,10 +334,12 @@ export const linkResolver = (link: any) => {
   const INFO_PAGE_PATH = `/informatie`
   if (link.uid) {
     // Internal links
-    if (link.type !== 'content_page') {
-      return `/${link.uid}`
-    } else {
+    if (link.type === 'content_page') {
       return `${INFO_PAGE_PATH}/${link.uid}`
+    } else if (link.type === 'home_page') {
+      return `/`
+    } else {
+      return `/${link.uid}`
     }
   } else {
     // External links
