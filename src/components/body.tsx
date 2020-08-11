@@ -17,6 +17,7 @@ import Toggle from './toggle'
 import CrossLinks from './crossLinks'
 import Team from './teamMembers'
 import Location from './location'
+import ContentBlock from './contentBlock'
 
 interface IProps {
   items: any
@@ -39,6 +40,7 @@ const Body: React.FC<IProps> = ({ items }) => {
     crossLinks: CrossLinks,
     team: Team,
     location: Location,
+    contentBlock: ContentBlock,
   }
 
   return (
