@@ -6,15 +6,22 @@
         "label": "slug"
       }
     },
-    "title": {
+    "page_title": {
       "type": "StructuredText",
       "config": {
         "single": "heading1",
-        "label": "Title",
-        "placeholder": "title"
+        "label": "Title"
       }
     },
-    "image": {
+    "header_intro": {
+      "type": "StructuredText",
+      "config": {
+        "single": "strong, hyperlink",
+        "allowTargetBlank": true,
+        "label": "Intro"
+      }
+    },
+    "header_image": {
       "type": "Image",
       "config": {
         "constraint": {},
@@ -22,13 +29,89 @@
         "label": "Image"
       }
     },
-    "intro": {
-      "type": "StructuredText",
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
       "config": {
-        "multi": "paragraph, strong, em, hyperlink",
-        "allowTargetBlank": true,
-        "label": "Intro",
-        "placeholder": "Initial paragraph of the page"
+        "labels": {
+          "content_block": []
+        },
+        "choices": {
+          "image": {
+            "type": "Slice",
+            "fieldset": "Image",
+            "description": "A simple component to display an image",
+            "icon": "image",
+            "display": "list",
+            "non-repeat": {
+              "image_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "intro": {
+            "type": "Slice",
+            "fieldset": "Intro",
+            "description": "Intro paragraph to show some content",
+            "icon": "view_headline",
+            "display": "list",
+            "non-repeat": {
+              "intro_text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "content_block": {
+            "type": "Slice",
+            "fieldset": "Content Block",
+            "description": "Custom content block component for content pages",
+            "icon": "description",
+            "display": "list",
+            "non-repeat": {
+              "content_block_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "content_block_content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "strong, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Content"
+                }
+              },
+              "content_block_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button label"
+                }
+              },
+              "content_block_button_link": {
+                "type": "Link",
+                "config": {
+                  "allowTargetBlank": true,
+                  "label": "Button link"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
       }
     }
   }
