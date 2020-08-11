@@ -57,6 +57,7 @@ export const pageQuery = graphql`
           url
           type
           slug
+          uid
         }
         body {
           __typename
@@ -76,6 +77,7 @@ export const pageQuery = graphql`
                 url
                 type
                 slug
+                uid
               }
               service_buttonlabel {
                 text
@@ -103,6 +105,7 @@ export const pageQuery = graphql`
                 url
                 type
                 slug
+                uid
               }
               imagebanner_buttonlabel {
                 text

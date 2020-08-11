@@ -26,7 +26,6 @@ interface IProps {
   to?: string
   disabled?: boolean
   type?: 'button' | 'submit'
-  target?: string
   inverse?: boolean
   onClick?: () => void
 }
@@ -38,7 +37,6 @@ const Button: React.FC<IProps> = ({
   to,
   disabled,
   type,
-  target,
   inverse,
   onClick,
 }) => {
@@ -51,12 +49,15 @@ const Button: React.FC<IProps> = ({
 
   let result
 
-  if (
-    to &&
-    (to.includes('tel:') || to.includes('mailto:') || to.includes('http'))
-  ) {
+  if (to && to.includes('http')) {
     result = (
-      <Link className={className} href={to} target={target} inverse={inverse}>
+      <Link className={className} href={to} target="_blank" inverse={inverse}>
+        <Content />
+      </Link>
+    )
+  } else if (to && (to.includes('tel:') || to.includes('mailto:'))) {
+    result = (
+      <Link className={className} href={to} inverse={inverse}>
         <Content />
       </Link>
     )

@@ -316,23 +316,16 @@ const handleLocationData = (data: any) => ({
 // Links
 // TODO: Improve link resolver - links are not handled correctly from the CMS data
 export const linkResolver = (link: any) => {
-  let result = '/'
-  if (link.type) {
+  const INFO_PAGE_PATH = `/informatie`
+  if (link.uid) {
     // Internal links
-    switch (link.type) {
-      case 'content_page':
-        result = `/${link.slug}`
-        break
-
-      case 'home_page':
-      default:
-        result = `/`
-        break
+    if (link.type !== 'content_page') {
+      return `/${link.uid}`
+    } else {
+      return `${INFO_PAGE_PATH}/${link.uid}`
     }
   } else {
     // External links
-    result = `${link.url}`
+    return `${link.url}`
   }
-
-  return result
 }

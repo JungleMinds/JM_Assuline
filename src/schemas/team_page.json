@@ -17,6 +17,7 @@
       "type": "StructuredText",
       "config": {
         "multi": "strong, hyperlink",
+        "allowTargetBlank": true,
         "label": "Intro"
       }
     },

@@ -47,8 +47,10 @@ export const pageQuery = graphql`
         }
         header_buttonlabel
         header_buttonlink {
+          url
           type
           slug
+          uid
         }
         header_image {
           url
@@ -97,6 +99,7 @@ export const pageQuery = graphql`
                 url
                 type
                 slug
+                uid
               }
               how_we_work_button_label
             }
@@ -156,6 +159,7 @@ export const pageQuery = graphql`
                 url
                 type
                 slug
+                uid
               }
             }
             items {
@@ -167,6 +171,7 @@ export const pageQuery = graphql`
                 url
                 type
                 slug
+                uid
               }
               crosslink_item_image {
                 url
