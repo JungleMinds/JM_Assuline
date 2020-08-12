@@ -96,7 +96,6 @@ type AppearFrom = 'top' | 'bottom'
 
 const appearFrom = (from: AppearFrom) => css`
   opacity: 0;
-  max-height: 1px;
   transform: ${from === 'top' ? 'translateY(-100%)' : 'translateY(100%)'};
   animation: ${appearFromKeyframe} 0.5s 0.5s ease forwards;
 `

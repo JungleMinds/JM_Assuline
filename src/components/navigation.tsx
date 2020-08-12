@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
-import useStateWithRef from '../hooks/useStateWithRef'
-
-// Utils
-import checkCookieValidity from '../util/checkCookieValidity'
+import styled, { css } from 'styled-components'
 
 // Components
+import ToastBarComponent from './toastBar'
 import Icon from './icons/icon'
 import Hamburger from './hamburger'
 import NavLinks from './navLinks'
@@ -17,25 +14,34 @@ import colors, { white, yellow } from '../styles/colors'
 import mediaQueries, { breakpoints } from '../styles/mediaQueries'
 import { appear } from '../styles/animations'
 
+// Types
+import { IToastBar } from '../types/entities'
+
 interface IProps {
+  toastBarContent?: IToastBar
+}
+
+interface IChildProps {
   isOpen?: boolean
   isScrolled?: boolean
-  visibleToastbar?: boolean
+  toasterHeight?: number
 }
 
 // Mock data
 const PHONE_NUMBER = '0623442344'
 
-const Navigation: React.FC<IProps> = ({ visibleToastbar }) => {
+const Navigation: React.FC<IProps> = ({ toastBarContent }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isScrolled, setIsScrolled] = useState<boolean>(false)
+  const [toasterHeight, setToasterHeight] = useState<number>(0)
 
-  const isFixedRef = useRef(false)
-  const isScrolledRef = useRef(false)
-  const isToasterRef = useRef(true)
-
-  const [isFixed, setIsFixed] = useStateWithRef<boolean>(isFixedRef)
-  const [isScrolled, setIsScrolled] = useStateWithRef<boolean>(isScrolledRef)
-  const [, setIsToasterVisible] = useStateWithRef<boolean>(isToasterRef)
+  const toasterRef = useCallback(node => {
+    if (node !== null) {
+      setToasterHeight(node.getBoundingClientRect().height)
+    } else if (node === null) {
+      setToasterHeight(0)
+    }
+  }, [])
 
   const handleResize = () => {
     if (window.innerWidth >= breakpoints.L && isOpen) {
@@ -48,30 +54,19 @@ const Navigation: React.FC<IProps> = ({ visibleToastbar }) => {
     const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
 
     if (window.innerWidth >= breakpoints.L) {
-      if (isToasterRef.current && !isScrolledRef.current) {
-        const toastBar = document.getElementById('toast-bar')
-        const toastbarHeight = toastBar && toastBar.clientHeight
-
-        const spaceTop = (toastbarHeight && toastbarHeight) || 0
-
-        if (top >= spaceTop && !isFixedRef.current) {
-          setIsFixed(true)
-        } else if (top < spaceTop && isFixedRef.current) {
-          setIsFixed(false)
-        }
-      }
-
-      if (top > 82 && !isScrolledRef.current) {
+      if (top > 82 && !isScrolled) {
         setIsScrolled(true)
-      } else if (top < 82 && isScrolledRef.current) {
+      } else if (top < 82 && isScrolled) {
         setIsScrolled(false)
       }
     }
   }
 
-  useEffect(() => {
-    setIsToasterVisible(!checkCookieValidity('toaster') && !!visibleToastbar)
+  const handleClick = () => {
+    setIsOpen(prevState => !prevState)
+  }
 
+  useEffect(() => {
     window.addEventListener('resize', handleResize)
     window.addEventListener('scroll', handleScroll)
 
@@ -79,15 +74,12 @@ const Navigation: React.FC<IProps> = ({ visibleToastbar }) => {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
-
-  const handleClick = () => {
-    setIsOpen(prevState => !prevState)
-  }
+  }, [handleScroll, handleResize])
 
   return (
     <>
-      <ScreenLayer isOpen={isOpen} isFixed={isFixed}>
+      {toastBarContent && <MobileToastBar {...toastBarContent} />}
+      <ScreenLayer isOpen={isOpen}>
         <HideOverflowX>
           <MobileNavBackground isOpen={isOpen} />
           <Hamburger isOpen={isOpen} handleClick={handleClick} />
@@ -105,7 +97,10 @@ const Navigation: React.FC<IProps> = ({ visibleToastbar }) => {
             <NavLinks />
           </MobileNavContainer>
         </HideOverflowX>
-        <ShadowBox isScrolled={isScrolled}>
+        <ShadowBox isScrolled={isScrolled} toasterHeight={toasterHeight}>
+          {toastBarContent && (
+            <DesktopToastBar ref={toasterRef} {...toastBarContent} />
+          )}
           <Container isOpen={isOpen} isScrolled={isScrolled}>
             <Wrapper isScrolled={isScrolled}>
               <DesktopLogo isScrolled={isScrolled}>
@@ -136,17 +131,26 @@ const Navigation: React.FC<IProps> = ({ visibleToastbar }) => {
         />
       </MobileLogo>
       <StickyPhoneButton phoneNumber={PHONE_NUMBER} />
-      <ContentPusher />
+      <ContentPusher toasterHeight={toasterHeight} />
     </>
   )
 }
 
 export default Navigation
 
-const ScreenLayer = styled.div<{
-  isOpen: boolean
-  isFixed: boolean
-}>`
+const hideOrShowToastBar = (isScrolled: boolean, height: number) => css`
+  transform: translateY(${isScrolled ? `-${height}px` : 0});
+`
+
+const MobileToastBar = styled(ToastBarComponent)`
+  max-height: 0;
+
+  ${mediaQueries.from.breakpoint.L`
+    display: none;
+  `}
+`
+
+const ScreenLayer = styled.div<IChildProps>`
   position: sticky;
   top: 0;
   left: 0;
@@ -172,13 +176,16 @@ const ScreenLayer = styled.div<{
   }
 
   ${mediaQueries.from.breakpoint.L`
-    position: ${(props: { isFixed: boolean }) =>
-      props.isFixed ? 'fixed' : 'relative'};
+    position: fixed;
     top: 0;
+  `}
+`
 
-    :first-child {
-      position: fixed;
-    }
+const DesktopToastBar = styled(ToastBarComponent)`
+  display: none;
+
+  ${mediaQueries.from.breakpoint.L`
+    display: block;
   `}
 `
 
@@ -196,7 +203,7 @@ const HideOverflowX = styled.div`
   `}
 `
 
-const MobileNavBackground = styled.div<IProps>`
+const MobileNavBackground = styled.div<IChildProps>`
   background: ${yellow};
   position: absolute;
   top: ${({ isOpen }) => (isOpen ? '-182px' : '16px')};
@@ -231,7 +238,7 @@ const MobileNavBackground = styled.div<IProps>`
   `}
 `
 
-const MobileNavContainer = styled.nav<IProps>`
+const MobileNavContainer = styled.nav<IChildProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -253,7 +260,7 @@ const MobileNavLogo = styled(Icon)`
   margin-bottom: 32px;
 `
 
-const ShadowBox = styled.div<IProps>`
+const ShadowBox = styled.div<IChildProps>`
   display: none;
 
   ${mediaQueries.from.breakpoint.L`
@@ -266,10 +273,12 @@ const ShadowBox = styled.div<IProps>`
     transition: height 0.2s ease;
     z-index: 10;
 
+    ${(props: { isScrolled: boolean; toasterHeight: number }) =>
+      hideOrShowToastBar(props.isScrolled, props.toasterHeight)}
+
     ${(props: { isScrolled: boolean }) =>
       props.isScrolled &&
       `
-      height: 72px;
       box-shadow: 0 0 4px
         rgba(
           ${colors.darkest.channels.red},
@@ -286,7 +295,7 @@ const ShadowBox = styled.div<IProps>`
   `}
 `
 
-const Container = styled.div<IProps>`
+const Container = styled.div<IChildProps>`
   ${mediaQueries.from.breakpoint.L`
     width: 100%;
     max-width: 1920px;
@@ -309,7 +318,7 @@ const Container = styled.div<IProps>`
   `}
 `
 
-const Wrapper = styled.div<IProps>`
+const Wrapper = styled.div<IChildProps>`
   background: ${white};
   display: flex;
   justify-content: space-between;
@@ -330,7 +339,7 @@ const Wrapper = styled.div<IProps>`
   `}
 `
 
-const DesktopLogo = styled.div<IProps>`
+const DesktopLogo = styled.div<IChildProps>`
   ${mediaQueries.from.breakpoint.L`
     transition: height 0.2s ease;
     height: ${(props: { isScrolled: boolean }) =>
@@ -343,7 +352,7 @@ const DesktopLogo = styled.div<IProps>`
   `}
 `
 
-const NavContainer = styled.nav<IProps>`
+const NavContainer = styled.nav<IChildProps>`
   display: none;
   transition: padding 0.2s ease;
 
@@ -378,12 +387,14 @@ const MobileLogo = styled(Link)`
   `}
 `
 
-const ContentPusher = styled.div`
+const ContentPusher = styled.div<IChildProps>`
   ${mediaQueries.from.breakpoint.L`
-    height: 136px;
-  `}
+    height: ${(props: { toasterHeight: number }) =>
+      props.toasterHeight + 136}px;
+      `}
 
   ${mediaQueries.from.breakpoint.XL`
-    height: 160px;
+    height: ${(props: { toasterHeight: number }) =>
+      props.toasterHeight + 160}px;
   `}
 `

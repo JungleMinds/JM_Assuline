@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, forwardRef } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
@@ -14,76 +14,73 @@ import mediaQueries from '../styles/mediaQueries'
 import { appear } from '../styles/animations'
 
 // Types
-interface IProps {
-  message: string
-  link: ILink
-  visible: boolean
-}
+import { IToastBar } from '../types/entities'
 
-interface ILink {
-  label: string
-  url: string
+interface IProps extends IToastBar {
+  className?: string
 }
 
 const TOASTER_PERIOD_IN_WEEKS = 1
 
-const ToastBar: React.FC<IProps> = ({ message, link, visible }) => {
-  const [isDiscarded, setIsDiscarded] = useState<boolean>(true)
+const ToastBar = forwardRef<HTMLElement, IProps>(
+  ({ message, link, visible, className }, ref) => {
+    const [isDiscarded, setIsDiscarded] = useState<boolean>(true)
 
-  useEffect(() => {
-    if (visible) {
-      const currentTime = new Date().getTime()
+    useEffect(() => {
+      if (visible) {
+        const currentTime = new Date().getTime()
+
+        const cookieStr = localStorage.getItem('assuline')
+        const cookieObj = cookieStr && JSON.parse(cookieStr)
+
+        const discardedUntil = cookieObj && Number(cookieObj.toaster)
+
+        const stillDiscarded = discardedUntil && currentTime < discardedUntil
+
+        if (!stillDiscarded && isDiscarded) {
+          setIsDiscarded(false)
+
+          if (discardedUntil) {
+            if (Object.keys(cookieObj).length > 1) {
+              delete cookieObj.toaster
+              localStorage.setItem('assuline', JSON.stringify(cookieObj))
+            } else {
+              localStorage.removeItem('assuline')
+            }
+          }
+        } else if (!isDiscarded) {
+          setIsDiscarded(true)
+        }
+      }
+    }, [])
+
+    const handleDiscard = () => {
+      setIsDiscarded(true)
+
+      const discardedUntil =
+        new Date().getTime() +
+        calculateMillisecondsFromWeeks(TOASTER_PERIOD_IN_WEEKS)
 
       const cookieStr = localStorage.getItem('assuline')
-      const cookieObj = cookieStr && JSON.parse(cookieStr)
+      const cookieObj = (cookieStr && JSON.parse(cookieStr)) || {}
+      cookieObj.toaster = discardedUntil
 
-      const discardedUntil = cookieObj && Number(cookieObj.toaster)
-
-      const stillDiscarded = discardedUntil && currentTime < discardedUntil
-
-      if (!stillDiscarded && isDiscarded) {
-        setIsDiscarded(false)
-
-        if (discardedUntil) {
-          if (Object.keys(cookieObj).length > 1) {
-            delete cookieObj.toaster
-            localStorage.setItem('assuline', JSON.stringify(cookieObj))
-          } else {
-            localStorage.removeItem('assuline')
-          }
-        }
-      } else if (!isDiscarded) {
-        setIsDiscarded(true)
-      }
+      localStorage.setItem('assuline', JSON.stringify(cookieObj))
     }
-  }, [])
 
-  const handleDiscard = () => {
-    setIsDiscarded(true)
-
-    const discardedUntil =
-      new Date().getTime() +
-      calculateMillisecondsFromWeeks(TOASTER_PERIOD_IN_WEEKS)
-
-    const cookieStr = localStorage.getItem('assuline')
-    const cookieObj = (cookieStr && JSON.parse(cookieStr)) || {}
-    cookieObj.toaster = discardedUntil
-
-    localStorage.setItem('assuline', JSON.stringify(cookieObj))
+    return visible && !isDiscarded ? (
+      <Container ref={ref} className={className}>
+        <Wrapper>
+          <ContentWrapper>
+            <Message>{message}</Message>
+            <Link to={link.url}>{link.label}</Link>
+          </ContentWrapper>
+          <Icon icon="close" onClick={handleDiscard} color={white} />
+        </Wrapper>
+      </Container>
+    ) : null
   }
-
-  return visible && !isDiscarded ? (
-    <Container id="toast-bar">
-      <Wrapper>
-        <ContentWrapper>
-          <Message>{message}</Message>
-          <Link to={link.url}>{link.label}</Link>
-        </ContentWrapper>
-        <Icon icon="close" onClick={handleDiscard} color={white} />
-      </Wrapper>
-    </Container>
-  ) : null
-}
+)
 
 export default ToastBar
 

@@ -116,3 +116,15 @@ export type FieldName = 'name' | 'email' | 'phone'
 
 // ANIMATIONS
 export type Iteration = 'forwards' | 'infinite'
+
+// TOAST BAR
+export interface IToastBar {
+  message: string
+  link: IToastBarLink
+  visible: boolean
+}
+
+export interface IToastBarLink {
+  label: string
+  url: string
+}
