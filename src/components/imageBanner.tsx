@@ -42,6 +42,7 @@ export default ImageBanner
 
 const Container = styled.section`
   margin-bottom: 64px;
+  width: 100%;
 
   ${mediaQueries.from.breakpoint.M`
     margin-bottom: 80px;

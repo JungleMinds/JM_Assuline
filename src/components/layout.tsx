@@ -6,6 +6,7 @@
  */
 
 import React from 'react'
+import styled from 'styled-components'
 
 import { StaticQuery, graphql } from 'gatsby'
 
@@ -38,13 +39,27 @@ const Layout: React.FC = ({ children }) => (
     render={() => (
       <>
         <GlobalStyle />
-        <Navigation />
-        <main>{children}</main>
-        <CookieMessage {...COOKIE_MESSAGE_CONTENT} />
-        <Footer />
+        <Container>
+          <Navigation />
+          <Main>{children}</Main>
+          <CookieMessage {...COOKIE_MESSAGE_CONTENT} />
+          <Footer />
+        </Container>
       </>
     )}
   />
 )
 
 export default Layout
+
+const Container = styled.div`
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+`
+
+const Main = styled.main`
+  flex-grow: 1;
+  width: 100%;
+`
