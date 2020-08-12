@@ -13,7 +13,6 @@ import styled from 'styled-components'
 import Icon from './icons/icon'
 import Navigation from './navigation'
 import Footer from './footer'
-import ToastBar from './toastBar'
 import CookieMessage from './cookieMessage'
 
 // Styling
@@ -25,7 +24,7 @@ import { mainLoaded } from '../styles/animations'
 const TOAST_BAR_CONTENT = {
   message: 'Een update omtrend onze Corona maatregelen',
   link: {
-    url: '/covid-19',
+    url: '/informatie/covid-19',
     label: 'Lees meer',
   },
   visible: true,
@@ -68,8 +67,7 @@ const Layout: React.FC = ({ children }) => {
             />
           ) : (
             <Container>
-              <ToastBar {...TOAST_BAR_CONTENT} />
-              <Navigation />
+              <Navigation toastBarContent={TOAST_BAR_CONTENT} />
               <Main>{children}</Main>
               <CookieMessage {...COOKIE_MESSAGE_CONTENT} />
               <Footer />
