@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { calculateMillisecondsFromWeeks } from '../util/calculations'
 
 // Components
-import Button from './button'
+import ButtonComponent from './button'
 
 // Styles
 import { plainSubtle } from '../styles/textStyles'
@@ -126,6 +126,10 @@ const Message = styled.p`
 
 const Title = styled(Message)`
   font-weight: 600;
+`
+
+const Button = styled(ButtonComponent)`
+  flex-shrink: 0;
 `
 
 const ShortLabel = styled.span`

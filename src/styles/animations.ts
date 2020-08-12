@@ -56,7 +56,7 @@ const underline = css`
 const appearKeyframe = keyframes`
   100% {
     opacity: 1;
-    max-height: 100px;
+    max-height: 500px;
     transform: translateY(0);
   }
 `
