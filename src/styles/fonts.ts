@@ -2,7 +2,7 @@ import { css } from 'styled-components'
 
 // Fonts
 const families = {
-  circular: `'CircularStd', sans-serif`,
+  circular: `'CircularXXWeb-Bold', sans-serif`,
   poppins: `'Poppins', sans-serif;`,
 }
 
