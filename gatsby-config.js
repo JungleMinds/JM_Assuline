@@ -59,7 +59,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         custom: {
-          families: ['CircularStd'],
+          families: ['CircularXXWeb-Bold'],
           urls: ['/fonts/fonts.css'],
         },
       },

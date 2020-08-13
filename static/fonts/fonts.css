@@ -1,12 +1,46 @@
 @font-face {
-  font-family: "CircularStd";
-  src: url("./CircularStd-Bold.woff") format("woff"),
-    url("./CircularStd-Bold.woff2") format("woff2"),
-    url("./CircularStd-Bold.eot"),
-    url("./CircularStd-Bold.eot?#iefix")
-      format("embedded-opentype"),
-    url("./CircularStd-Bold.ttf") format("truetype");
+  font-family: 'CircularXXWeb-Bold';
+  src: url('./CircularXXWeb-Bold.woff') format('woff'),
+    url('./CircularXXWeb-Bold.woff2') format('woff2');
   font-display: fallback;
   font-style: normal;
   font-weight: bold;
 }
+
+/*
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+Font: Circular
+Cuts: Bold
+Format: woff, woff2, eot
+
+Purchase Date: August 12, 2020
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+Legal Disclaimer for Web licence
+
+Licence to use self-hosted webfonts for displaying dynamic text on specified website domains. Our package includes WOFF and WOFF2 font formats.
+
+Should the license page views limit be exceeded the license holder will be required to contact Lineto.com for an upgrade.
+
+It is strictly prohibited to rename the font and to download or use these fonts in any other media.
+
+These Web fonts are licensed exclusively for the use on the following domain(s) and their subdomains:
+
+www.assuline.nl (monthly pageviews: <50K)
+
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+Manufacturer  Lineto GmbH
+
+Vendor URL    https://lineto.com
+
+Copyright     Copyright © 2020 by Lineto GmbH.
+              https://lineto.com
+              All rights reserved
+
+Designer      Laurenz Brunner
+              https://lineto.com/designers
+
+EULA          https://lineto.com/api/front/documents/eula
+
+*/
