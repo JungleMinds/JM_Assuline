@@ -56,6 +56,7 @@ const InputContainer = styled.div<{
   position: relative;
   margin-bottom: 42px;
 
+  :before,
   :after {
     display: block;
     content: '';
@@ -64,16 +65,31 @@ const InputContainer = styled.div<{
     bottom: -8px;
     left: 0;
     height: 2px;
-    background-color: ${props =>
-      props.hasError ? red : props.touched ? dark : yellow};
     border-radius: 1px;
     pointer-events: none;
+    transition: transform 1.1s cubic-bezier(0, 1, 0, 1);
+  }
+
+  :before {
+    background-color: ${props => (props.hasError ? red : dark)};
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  :after {
+    background-color: ${props =>
+      props.hasError ? red : props.touched ? dark : yellow};
+    transform-origin: right;
   }
 
   :focus-within,
   :hover {
+    :before {
+      transform: scaleX(1);
+    }
+
     :after {
-      background-color: ${dark};
+      transform: scaleX(0);
     }
   }
 
@@ -81,6 +97,7 @@ const InputContainer = styled.div<{
     margin-right: 24px;
     margin-bottom: 0;
 
+    :before,
     :after {
       bottom: -10px;
     }
