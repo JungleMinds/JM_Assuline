@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import SliderComponent from 'react-slick'
 
 // Components
-import ContainerComponent from './container'
 import IconComponent from './icons/icon'
 import RichText from './richText'
 
@@ -21,29 +20,80 @@ interface IProps {
 }
 
 const Carousel: React.FC<IProps> = ({ images, heading }) => {
+  const [autoplay, setAutoplay] = useState<boolean>(false)
+  const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0)
+  const sliderRef = useRef<HTMLDivElement>(null)
+
+  let observer: IntersectionObserver
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5,
+  }
+
+  useEffect(() => {
+    if (
+      !('IntersectionObserver' in window) ||
+      !('IntersectionObserverEntry' in window)
+    ) {
+      return setAutoplay(true)
+    }
+
+    observer = new IntersectionObserver(handleIntersection, observerOptions)
+
+    if (sliderRef.current) {
+      observer.observe(sliderRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleIntersection: IntersectionObserverCallback = (
+    entries: IntersectionObserverEntry[]
+  ) => {
+    if (entries[0].isIntersecting) {
+      setAutoplay(true)
+    } else {
+      setAutoplay(false)
+    }
+  }
+
+  const getCurrentSlideIndex = (slideIndex: number) => {
+    setCurrentSlideIndex(slideIndex)
+  }
+
   const sliderSettings = {
     dots: true,
     arrows: false,
     infinite: true,
-    speed: 1000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
     autoplaySpeed: 5000,
     customPaging: () => (
       <Indicator>
         <Icon icon="indicator" width={24} height={24} />
       </Indicator>
     ),
+    afterChange: getCurrentSlideIndex,
   }
 
   return (
-    <Container>
-      <Slider size={images.length} {...sliderSettings}>
+    <Container ref={sliderRef}>
+      <Slider
+        size={images.length}
+        key={`autoplay: ${autoplay}`}
+        {...sliderSettings}
+        autoplay={autoplay}
+        initialSlide={currentSlideIndex}
+      >
         {images.map((image, index) => (
-          <ImageContainer key={`carousel-image-${index}`}>
-            <Image background={image} />
-          </ImageContainer>
+          <div key={`carousel-image-${index}`}>
+            <ImageContainer>
+              <Image background={image} />
+            </ImageContainer>
+          </div>
         ))}
       </Slider>
       <Heading>
@@ -99,9 +149,10 @@ const Slider = styled(SliderComponent)<{ size: number }>`
   `}
 `
 
-const Container = styled(ContainerComponent)`
+const Container = styled.div`
+  max-width: 1264px;
   padding: 0 44px;
-  margin-bottom: 64px;
+  margin: 0 auto 64px;
 
   ${mediaQueries.from.breakpoint.M`
     padding: 0 24px;
