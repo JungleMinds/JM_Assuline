@@ -73,7 +73,9 @@ const ToastBar = forwardRef<HTMLElement, IProps>(
         <Wrapper>
           <ContentWrapper>
             <Message>{message}</Message>
-            <Link to={link.url}>{link.label}</Link>
+            <Link to={link.url}>
+              <Span onClick={handleDiscard}>{link.label}</Span>
+            </Link>
           </ContentWrapper>
           <Icon icon="close" onClick={handleDiscard} color={white} />
         </Wrapper>
@@ -124,6 +126,8 @@ const Link = styled(GatsbyLink)`
   color: ${white};
   text-decoration: underline;
 `
+
+const Span = styled.span``
 
 const Icon = styled(IconComponent)`
   flex: 0 0 24px;
