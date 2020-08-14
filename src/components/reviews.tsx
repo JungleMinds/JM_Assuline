@@ -56,7 +56,7 @@ const Container = styled.div`
   flex-direction: column;
 
   ${mediaQueries.from.breakpoint.M`
-    margin: 0 24px 18px;
+    margin: 0 24px 40px;
   `}
 
   ${mediaQueries.from.breakpoint.XL`
@@ -102,6 +102,7 @@ const Grade = styled.div`
   ${headingLoud};
   background-color: ${green};
   color: ${white};
+  border-radius: 2px;
 `
 
 const Block = styled.div`

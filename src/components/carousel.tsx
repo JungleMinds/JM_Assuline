@@ -156,7 +156,6 @@ const Container = styled.div`
 
   ${mediaQueries.from.breakpoint.M`
     padding: 0 24px;
-    margin-bottom: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -164,6 +163,10 @@ const Container = styled.div`
     > ${Slider} {
       width: calc(50% - 16px);
     }
+  `}
+
+  ${mediaQueries.from.breakpoint.L`
+    margin-bottom: 80px;
   `}
 
   ${mediaQueries.from.breakpoint.XL`
