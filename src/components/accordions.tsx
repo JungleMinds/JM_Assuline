@@ -89,12 +89,12 @@ const Container = styled(ContainerComponent)`
   flex-direction: column;
   justify-content: space-between;
   padding: 0 44px;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
   ${textStyles.highlight}
 
   ${mediaQueries.from.breakpoint.M`
     padding: 0 24px;
-    margin-bottom: 80px;
+    margin-bottom: 64px;
   `}
 
   ${mediaQueries.from.breakpoint.L`
