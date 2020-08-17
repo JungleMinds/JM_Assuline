@@ -97,8 +97,10 @@ const Footer: React.FC = () => {
               &copy; Copyright Assuline BV {new Date().getFullYear()}
             </Copyright>
             <Statements>
-              <StyledLink to="/disclaimer">Disclaimer</StyledLink>
-              <StyledLink to="/privacy">Privacy statement</StyledLink>
+              <StyledLink to="/informatie/disclaimer">Disclaimer</StyledLink>
+              <StyledLink to="/informatie/privacy-statement">
+                Privacy statement
+              </StyledLink>
             </Statements>
           </BottomTexts>
           <LogoContainer>
