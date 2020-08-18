@@ -21,15 +21,6 @@ import mediaQueries from '../styles/mediaQueries'
 import { mainLoaded } from '../styles/animations'
 
 // Mock data
-const TOAST_BAR_CONTENT = {
-  message: 'Een update omtrend onze Corona maatregelen',
-  link: {
-    url: '/informatie/covid-19',
-    label: 'Lees meer',
-  },
-  visible: true,
-}
-
 const COOKIE_MESSAGE_CONTENT = {
   title: 'Wij gebruiken cookies',
   message: 'Om onze website optimaal te tonen en het verkeer te analyseren.',
@@ -67,7 +58,7 @@ const Layout: React.FC = ({ children }) => {
             />
           ) : (
             <Container>
-              <Navigation toastBarContent={TOAST_BAR_CONTENT} />
+              <Navigation />
               <Main>{children}</Main>
               <CookieMessage {...COOKIE_MESSAGE_CONTENT} />
               <Footer />

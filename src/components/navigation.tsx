@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
+
+// Utils
+import { normalizeNavData } from '../util/data'
 
 // Components
 import ToastBarComponent from './toastBar'
@@ -14,26 +17,77 @@ import colors, { white, yellow } from '../styles/colors'
 import mediaQueries, { breakpoints } from '../styles/mediaQueries'
 import { appear } from '../styles/animations'
 
-// Types
-import { IToastBar } from '../types/entities'
-
-interface IProps {
-  toastBarContent?: IToastBar
-}
-
 interface IChildProps {
   isOpen?: boolean
   isScrolled?: boolean
   toasterHeight?: number
 }
 
-// Mock data
-const PHONE_NUMBER = '0623442344'
-
-const Navigation: React.FC<IProps> = ({ toastBarContent }) => {
+const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
   const [toasterHeight, setToasterHeight] = useState<number>(0)
+
+  const queryData = useStaticQuery(graphql`
+    query NavQuery {
+      allPrismicContentPage(
+        filter: {
+          url: { nin: ["/privacy-statement", "/disclaimer"] }
+          data: { toaster_active: { eq: true } }
+        }
+      ) {
+        edges {
+          node {
+            url
+            type
+            uid
+            data {
+              toaster_title
+              toaster_link_label
+              toaster_active
+            }
+            last_publication_date
+          }
+        }
+      }
+      prismicHomePage {
+        url
+        uid
+        type
+      }
+      prismicMortgagePage {
+        url
+        uid
+        type
+      }
+      prismicAssurancePage {
+        url
+        uid
+        type
+      }
+      prismicTeamPage {
+        url
+        uid
+        type
+      }
+      prismicContactPage {
+        url
+        uid
+        type
+        data {
+          body {
+            ... on PrismicContactPageBodyLocation {
+              primary {
+                location_phone
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const data = normalizeNavData(queryData)
 
   const toasterRef = useCallback(node => {
     if (node !== null) {
@@ -78,13 +132,13 @@ const Navigation: React.FC<IProps> = ({ toastBarContent }) => {
 
   return (
     <>
-      {toastBarContent && <MobileToastBar {...toastBarContent} />}
+      {data.toaster && <MobileToastBar {...data.toaster} />}
       <ScreenLayer isOpen={isOpen}>
         <HideOverflowX>
           <MobileNavBackground isOpen={isOpen} />
           <Hamburger isOpen={isOpen} handleClick={handleClick} />
           <MobileNavContainer isOpen={isOpen}>
-            <Link to="/">
+            <Link to={data.nav[0].url}>
               <MobileNavLogo
                 icon="logo"
                 width={200.2}
@@ -94,17 +148,17 @@ const Navigation: React.FC<IProps> = ({ toastBarContent }) => {
                 payoff
               />
             </Link>
-            <NavLinks />
+            <NavLinks items={data.nav} />
           </MobileNavContainer>
         </HideOverflowX>
         <ShadowBox isScrolled={isScrolled} toasterHeight={toasterHeight}>
-          {toastBarContent && (
-            <DesktopToastBar ref={toasterRef} {...toastBarContent} />
+          {data.toaster && (
+            <DesktopToastBar ref={toasterRef} {...data.toaster} />
           )}
           <Container isOpen={isOpen} isScrolled={isScrolled}>
             <Wrapper isScrolled={isScrolled}>
               <DesktopLogo isScrolled={isScrolled}>
-                <Link to="/">
+                <Link to={data.nav[0].url}>
                   <Icon
                     icon="logo"
                     width={200.2}
@@ -115,13 +169,13 @@ const Navigation: React.FC<IProps> = ({ toastBarContent }) => {
                 </Link>
               </DesktopLogo>
               <NavContainer isScrolled={isScrolled}>
-                <NavLinks subtle={isScrolled} />
+                <NavLinks items={data.nav} subtle={isScrolled} />
               </NavContainer>
             </Wrapper>
           </Container>
         </ShadowBox>
       </ScreenLayer>
-      <MobileLogo to="/">
+      <MobileLogo to={data.nav[0].url}>
         <Icon
           icon="logo"
           width={200.2}
@@ -130,7 +184,7 @@ const Navigation: React.FC<IProps> = ({ toastBarContent }) => {
           payoff={!isScrolled}
         />
       </MobileLogo>
-      <StickyPhoneButton phoneNumber={PHONE_NUMBER} />
+      <StickyPhoneButton phoneNumber={data.phone} />
       <ContentPusher toasterHeight={toasterHeight} />
     </>
   )

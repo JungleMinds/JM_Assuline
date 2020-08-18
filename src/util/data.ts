@@ -345,6 +345,44 @@ export const linkResolver = (link: any) => {
 }
 
 // Navigation
+export const normalizeNavData = (data: any) => {
+  const nav = Object.keys(data)
+    .filter((key: string) => key.startsWith('prismic'))
+    .map((key: string) => ({
+      label: data[key].uid.charAt(0).toUpperCase() + data[key].uid.slice(1),
+      url: linkResolver({
+        uid: data[key].uid,
+        type: data[key].type,
+        url: data[key].url,
+      }),
+    }))
+
+  const addressData = data.prismicContactPage.data.body.filter((item: any) =>
+    item.__typename.endsWith('Location')
+  )[0]
+  const phone = addressData.primary.location_phone
+
+  const toasterData = data.allPrismicContentPage.edges[0]
+  const toaster = toasterData
+    ? {
+        message: toasterData.node.data.toaster_title,
+        link: {
+          url: linkResolver({
+            uid: toasterData.node.uid,
+            type: toasterData.node.type,
+            url: toasterData.node.url,
+          }),
+          label: toasterData.node.data.toaster_link_label,
+        },
+      }
+    : undefined
+
+  return {
+    nav,
+    phone,
+    toaster,
+  }
+}
 
 // Footer
 export const normalizeFooterData = (data: any) => {

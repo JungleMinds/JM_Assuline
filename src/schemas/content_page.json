@@ -114,5 +114,26 @@
         }
       }
     }
+  },
+  "Banner": {
+    "toaster_active": {
+      "type": "Boolean",
+      "config": {
+        "default_value": false,
+        "label": "Show Toaster for this page"
+      }
+    },
+    "toaster_title": {
+      "type": "Text",
+      "config": {
+        "label": "Title"
+      }
+    },
+    "toaster_link_label": {
+      "type": "Text",
+      "config": {
+        "label": "Link label"
+      }
+    }
   }
 }
