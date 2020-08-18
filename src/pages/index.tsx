@@ -9,7 +9,6 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Header from '../components/header'
 import Body from '../components/body'
-import Button from '../components/button'
 
 const Index = ({ data }: any) => {
   const [pageData, setPageData] = useState<any>(null)
@@ -30,9 +29,6 @@ const Index = ({ data }: any) => {
         type="Home"
       />
       <Body items={pageData && pageData.body} />
-      <Button to="/styleguide" icon>
-        Go to styleguide
-      </Button>
     </Layout>
   )
 }
