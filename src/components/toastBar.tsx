@@ -24,18 +24,16 @@ interface IProps extends IToastBar {
 const TOASTER_PERIOD_IN_WEEKS = 1
 
 const ToastBar = forwardRef<HTMLElement, IProps>(
-  ({ message, link, visible, className }, ref) => {
+  ({ message, link, className }, ref) => {
     const [isDiscarded, setIsDiscarded] = useState<boolean>(true)
 
     useEffect(() => {
-      if (visible) {
-        const stillDiscarded = checkCookieValidity('toaster')
+      const stillDiscarded = checkCookieValidity('toaster')
 
-        if (!stillDiscarded && isDiscarded) {
-          setIsDiscarded(false)
-        } else if (!isDiscarded) {
-          setIsDiscarded(true)
-        }
+      if (!stillDiscarded && isDiscarded) {
+        setIsDiscarded(false)
+      } else if (!isDiscarded) {
+        setIsDiscarded(true)
       }
     }, [])
 
@@ -53,7 +51,7 @@ const ToastBar = forwardRef<HTMLElement, IProps>(
       localStorage.setItem('assuline', JSON.stringify(cookieObj))
     }
 
-    return visible && !isDiscarded ? (
+    return !isDiscarded ? (
       <Container ref={ref} className={className}>
         <Wrapper>
           <ContentWrapper>

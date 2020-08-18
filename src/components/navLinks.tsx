@@ -13,37 +13,14 @@ import mediaQueries from '../styles/mediaQueries'
 // Types
 import { INavLinkItem } from '../types/entities'
 
-// Mock data
-const NAV_ITEMS: INavLinkItem[] = [
-  {
-    url: '/',
-    label: 'Home',
-  },
-  {
-    url: '/hypotheken',
-    label: 'Hypotheken',
-  },
-  {
-    url: '/verzekeren',
-    label: 'Verzekeren',
-  },
-  {
-    url: '/team',
-    label: 'Team',
-  },
-  {
-    url: '/contact',
-    label: 'Contact',
-  },
-]
-
 interface IProps {
+  items: INavLinkItem[]
   subtle?: boolean
 }
 
-const NavLinks: React.FC<IProps> = ({ subtle }) => (
+const NavLinks: React.FC<IProps> = ({ items, subtle }) => (
   <List subtle={subtle}>
-    {NAV_ITEMS.map(item => (
+    {items.map(item => (
       <ListItem key={`nav-item-${item.label}`}>
         <Link to={item.url} activeClassName="active">
           <Label>{item.label}</Label>
@@ -61,7 +38,7 @@ const NavLinks: React.FC<IProps> = ({ subtle }) => (
 
 export default NavLinks
 
-const List = styled.ul<IProps>`
+const List = styled.ul<{ subtle?: boolean }>`
   ${({ subtle }) =>
     subtle ? textStyles.highlightSubtle : textStyles.highlight}
   list-style: none;
@@ -82,7 +59,7 @@ const List = styled.ul<IProps>`
   `}
 `
 
-const ListItem = styled.li<IProps>`
+const ListItem = styled.li<{ subtle?: boolean }>`
   margin-bottom: 24px;
 
   &:nth-last-child(2) {

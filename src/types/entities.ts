@@ -121,7 +121,6 @@ export type Iteration = 'forwards' | 'infinite'
 export interface IToastBar {
   message: string
   link: IToastBarLink
-  visible: boolean
 }
 
 export interface IToastBarLink {
