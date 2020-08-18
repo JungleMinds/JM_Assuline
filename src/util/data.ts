@@ -135,10 +135,13 @@ const handleServicesData = (data: any) => ({
     title: item.service_title.text,
     paragraph: item.service_description,
     image: item.service_image.url,
-    button: {
-      label: item.service_buttonlabel.text,
-      url: linkResolver(item.service_buttonlink),
-    },
+    button:
+      item.service_buttonlink && item.service_buttonlink.url !== ''
+        ? {
+            label: item.service_buttonlabel.text,
+            url: linkResolver(item.service_buttonlink),
+          }
+        : undefined,
   })),
 })
 // Components: Carousel
@@ -152,10 +155,14 @@ const handleImageBannerData = (data: any) => ({
   type: 'imageBanner',
   title: data.primary.imagebanner_text.text,
   image: data.primary.imagebanner_image.url,
-  button: {
-    label: data.primary.imagebanner_buttonlabel.text,
-    url: linkResolver(data.primary.imagebanner_buttonlink),
-  },
+  button:
+    data.primary.imagebanner_buttonlink &&
+    data.primary.imagebanner_buttonlink.url !== ''
+      ? {
+          label: data.primary.imagebanner_buttonlabel.text,
+          url: linkResolver(data.primary.imagebanner_buttonlink),
+        }
+      : undefined,
 })
 // Components: Reviews
 const handleReviewsData = (data: any) => ({
@@ -211,10 +218,14 @@ const handleHowWeWorkData = (data: any) => ({
     title: `${index + 1}. ${item.how_we_work_step_title.text}`,
     paragraph: item.how_we_work_step_content,
   })),
-  button: {
-    label: data.primary.how_we_work_button_label,
-    url: linkResolver(data.primary.how_we_work_button_link),
-  },
+  button:
+    data.primary.how_we_work_button_link &&
+    data.primary.how_we_work_button_link !== ''
+      ? {
+          label: data.primary.how_we_work_button_label,
+          url: linkResolver(data.primary.how_we_work_button_link),
+        }
+      : undefined,
 })
 // Component: Accordions
 const handleAccordionsData = (data: any) => ({
@@ -228,16 +239,22 @@ const handleAccordionsData = (data: any) => ({
 const handleCallToActionBannerData = (data: any) => ({
   type: 'callToActionBanner',
   heading: data.primary.banner_title.text,
-  button: data.primary.banner_button_link
-    ? {
-        label: data.primary.banner_button_label,
-        url: linkResolver(data.primary.banner_button_link),
-      }
-    : undefined,
-  asset: {
-    label: data.primary.banner_download_label,
-    url: linkResolver(data.primary.banner_download_link),
-  },
+  button:
+    data.primary.banner_button_link &&
+    data.primary.banner_button_link.url !== ''
+      ? {
+          label: data.primary.banner_button_label,
+          url: linkResolver(data.primary.banner_button_link),
+        }
+      : undefined,
+  asset:
+    data.primary.banner_download_link &&
+    data.primary.banner_download_link !== ''
+      ? {
+          label: data.primary.banner_download_label,
+          url: linkResolver(data.primary.banner_download_link),
+        }
+      : undefined,
 })
 // Component: Toggle
 const handleToggleData = (data: any) => ({
@@ -318,12 +335,13 @@ const handleContentBlockData = (data: any) => ({
   type: 'contentBlock',
   title: data.primary.content_block_title.text,
   content: data.primary.content_block_content,
-  button: data.primary.content_block_button_link
-    ? {
-        label: data.primary.content_block_button_label,
-        url: linkResolver(data.primary.content_block_button_link),
-      }
-    : undefined,
+  button:
+    data.primary.content_block_button_link.url !== ''
+      ? {
+          label: data.primary.content_block_button_label,
+          url: linkResolver(data.primary.content_block_button_link),
+        }
+      : undefined,
 })
 
 // Links
