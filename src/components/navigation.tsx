@@ -269,7 +269,6 @@ const ShadowBox = styled.div<IChildProps>`
     top: 0;
     left: 0;
     width: 100%;
-    height: 128px;
     transition: height 0.2s ease;
     z-index: 10;
 
@@ -287,11 +286,6 @@ const ShadowBox = styled.div<IChildProps>`
           0.16
         );
     `}
-  `}
-
-  ${mediaQueries.from.breakpoint.XL`
-    height: ${(props: { isScrolled: boolean }) =>
-      props.isScrolled ? '72px' : '160px'};
   `}
 `
 
@@ -374,12 +368,12 @@ const NavContainer = styled.nav<IChildProps>`
 
 const MobileLogo = styled(Link)`
   display: inline-block;
-  padding: 16px 16px 0;
+  padding-left: 16px;
   margin-bottom: 16px;
   line-height: 0;
 
   ${mediaQueries.from.breakpoint.S`
-    padding: 24px 20px 0;
+    padding-left: 20px;
   `}
 
   ${mediaQueries.from.breakpoint.L`

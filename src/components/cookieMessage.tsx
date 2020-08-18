@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 // Utils
 import { calculateMillisecondsFromWeeks } from '../util/calculations'
+import checkCookieValidity from '../util/checkCookieValidity'
 
 // Components
 import ButtonComponent from './button'
@@ -31,26 +32,10 @@ const CookieMessage: React.FC<IProps> = ({ title, message, buttonLabel }) => {
   const [visible, setVisible] = useState<boolean>(false)
 
   useEffect(() => {
-    const currentTime = new Date().getTime()
-
-    const cookieStr = localStorage.getItem('assuline')
-    const cookieObj = cookieStr && JSON.parse(cookieStr)
-
-    const acceptedUntil = cookieObj && Number(cookieObj.cookie)
-
-    const stillAccepted = acceptedUntil && currentTime < acceptedUntil
+    const stillAccepted = checkCookieValidity('cookie')
 
     if (!stillAccepted && !visible) {
       setVisible(true)
-
-      if (acceptedUntil) {
-        if (Object.keys(cookieObj).length > 1) {
-          delete cookieObj.cookie
-          localStorage.setItem('assuline', JSON.stringify(cookieObj))
-        } else {
-          localStorage.removeItem('assuline')
-        }
-      }
     } else if (visible) {
       setVisible(false)
     }

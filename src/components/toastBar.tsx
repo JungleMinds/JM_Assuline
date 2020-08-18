@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 // Utils
 import { calculateMillisecondsFromWeeks } from '../util/calculations'
+import checkCookieValidity from '../util/checkCookieValidity'
 
 // Components
 import IconComponent from './icons/icon'
@@ -11,7 +12,7 @@ import IconComponent from './icons/icon'
 // Styles
 import { green, white } from '../styles/colors'
 import mediaQueries from '../styles/mediaQueries'
-import { appear } from '../styles/animations'
+import { appearFrom } from '../styles/animations'
 
 // Types
 import { IToastBar } from '../types/entities'
@@ -28,26 +29,10 @@ const ToastBar = forwardRef<HTMLElement, IProps>(
 
     useEffect(() => {
       if (visible) {
-        const currentTime = new Date().getTime()
-
-        const cookieStr = localStorage.getItem('assuline')
-        const cookieObj = cookieStr && JSON.parse(cookieStr)
-
-        const discardedUntil = cookieObj && Number(cookieObj.toaster)
-
-        const stillDiscarded = discardedUntil && currentTime < discardedUntil
+        const stillDiscarded = checkCookieValidity('toaster')
 
         if (!stillDiscarded && isDiscarded) {
           setIsDiscarded(false)
-
-          if (discardedUntil) {
-            if (Object.keys(cookieObj).length > 1) {
-              delete cookieObj.toaster
-              localStorage.setItem('assuline', JSON.stringify(cookieObj))
-            } else {
-              localStorage.removeItem('assuline')
-            }
-          }
         } else if (!isDiscarded) {
           setIsDiscarded(true)
         }
@@ -90,7 +75,7 @@ const Container = styled.aside`
   background-color: ${green};
   z-index: 11;
   position: relative;
-  ${appear('top')}
+  ${appearFrom('top')}
 `
 
 const Wrapper = styled.div`
