@@ -127,8 +127,6 @@ const generateDataObjectForComponent = (component: any) => {
   }
 }
 
-// TODO: Validation from CMS data
-
 // Components: Services
 const handleServicesData = (data: any) => ({
   type: 'services',
@@ -329,7 +327,6 @@ const handleContentBlockData = (data: any) => ({
 })
 
 // Links
-// TODO: Improve link resolver - links are not handled correctly from the CMS data
 export const linkResolver = (link: any) => {
   const INFO_PAGE_PATH = `/informatie`
   if (link.uid) {
@@ -344,5 +341,45 @@ export const linkResolver = (link: any) => {
   } else {
     // External links
     return `${link.url}`
+  }
+}
+
+// Navigation
+
+// Footer
+export const normalizeFooterData = (data: any) => {
+  const links = data.allPrismicContentPage.edges.map((item: any) => ({
+    label: item.node.data.page_title.text,
+    url: linkResolver({
+      uid: item.node.uid,
+      type: item.node.type,
+      url: item.node.url,
+    }),
+  }))
+
+  const addressData = data.prismicContactPage.data.body.filter((item: any) =>
+    item.__typename.endsWith('Location')
+  )[0]
+  const address = {
+    phone: addressData.primary.location_phone,
+    email: addressData.primary.location_email,
+    location: `${addressData.primary.location_address_street}, ${addressData.primary.location_address_postalcode} ${addressData.primary.location_address_city}`,
+  }
+
+  const nav = Object.keys(data)
+    .filter((key: string) => key.startsWith('prismic'))
+    .map((key: string) => ({
+      label: data[key].uid.charAt(0).toUpperCase() + data[key].uid.slice(1),
+      url: linkResolver({
+        uid: data[key].uid,
+        type: data[key].type,
+        url: data[key].url,
+      }),
+    }))
+
+  return {
+    nav,
+    address,
+    links,
   }
 }

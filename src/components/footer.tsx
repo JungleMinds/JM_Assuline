@@ -1,6 +1,9 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+
+// Utils
+import { normalizeFooterData } from '../util/data'
 
 // Components
 import IconComponent from './icons/icon'
@@ -13,37 +16,68 @@ import { green } from '../styles/colors'
 // Types
 import { INavLinkItem } from '../types/entities'
 
-// Mock data
-const NAV_ITEMS: INavLinkItem[] = [
-  {
-    url: '/',
-    label: 'Home',
-  },
-  {
-    url: '/hypotheken',
-    label: 'Hypotheken',
-  },
-  {
-    url: '/verzekeren',
-    label: 'Verzekeren',
-  },
-  {
-    url: '/team',
-    label: 'Team',
-  },
-  {
-    url: '/contact',
-    label: 'Contact',
-  },
-]
-
-const ADDRESS_DATA = {
-  phone: '0297288198',
-  email: 'info@assuline.nl',
-  location: 'Herenweg 88, 3648 CL Wilnis',
-}
-
 const Footer: React.FC = () => {
+  const queryData = useStaticQuery(graphql`
+    query ContentQuery {
+      allPrismicContentPage(
+        filter: { url: { in: ["/privacy-statement", "/disclaimer"] } }
+      ) {
+        edges {
+          node {
+            url
+            data {
+              page_title {
+                text
+              }
+            }
+            type
+            uid
+          }
+        }
+      }
+      prismicHomePage {
+        url
+        uid
+        type
+      }
+      prismicMortgagePage {
+        url
+        uid
+        type
+      }
+      prismicAssurancePage {
+        url
+        uid
+        type
+      }
+      prismicTeamPage {
+        url
+        uid
+        type
+      }
+      prismicContactPage {
+        url
+        uid
+        type
+        data {
+          body {
+            ... on PrismicContactPageBodyLocation {
+              primary {
+                location_address_street
+                location_address_postalcode
+                location_address_city
+                location_phone
+                location_email
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const data = normalizeFooterData(queryData)
+
   return (
     <Container>
       <Wrapper>
@@ -51,7 +85,7 @@ const Footer: React.FC = () => {
           <Logo icon="logo" width={169} height={88} footer />
           <TopSection>
             <NavLinks>
-              {NAV_ITEMS.map(item => (
+              {data.nav.map(item => (
                 <ListItem key={`nav-item-${item.label}`}>
                   <StyledNavLink to={item.url} activeClassName="active">
                     <Icon icon="arrow" />
@@ -63,28 +97,28 @@ const Footer: React.FC = () => {
             <Address>
               <AddressList>
                 <ListItem>
-                  <StyledAddressLink href={`tel:${ADDRESS_DATA.phone}`}>
+                  <StyledAddressLink href={`tel:${data.address.phone}`}>
                     <Icon icon="phone" width={24} height={24} />
-                    {`${ADDRESS_DATA.phone.slice(
+                    {`${data.address.phone.slice(
                       0,
                       4
-                    )} - ${ADDRESS_DATA.phone.slice(4)}`}
+                    )} - ${data.address.phone.slice(4)}`}
                   </StyledAddressLink>
                 </ListItem>
                 <ListItem>
-                  <StyledAddressLink href={`mailto:${ADDRESS_DATA.email}`}>
+                  <StyledAddressLink href={`mailto:${data.address.email}`}>
                     <Icon icon="mail" width={24} height={24} />
-                    {ADDRESS_DATA.email}
+                    {data.address.email}
                   </StyledAddressLink>
                 </ListItem>
                 <ListItem>
                   <StyledAddressLink
-                    href={`https://www.google.com/maps/search/${ADDRESS_DATA.location}`}
+                    href={`https://www.google.com/maps/search/${data.address.location}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Icon icon="location" width={24} height={24} />
-                    {ADDRESS_DATA.location}
+                    {data.address.location}
                   </StyledAddressLink>
                 </ListItem>
               </AddressList>
@@ -97,10 +131,11 @@ const Footer: React.FC = () => {
               &copy; Copyright Assuline BV {new Date().getFullYear()}
             </Copyright>
             <Statements>
-              <StyledLink to="/informatie/disclaimer">Disclaimer</StyledLink>
-              <StyledLink to="/informatie/privacy-statement">
-                Privacy statement
-              </StyledLink>
+              {data.links.map((link: INavLinkItem) => (
+                <StyledLink key={link.label} to={link.url}>
+                  {link.label}
+                </StyledLink>
+              ))}
             </Statements>
           </BottomTexts>
           <LogoContainer>
