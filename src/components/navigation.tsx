@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 // Utils
 import { normalizeNavData } from '../util/data'
@@ -15,7 +15,7 @@ import StickyPhoneButton from './stickyPhoneButton'
 // Styles
 import colors, { white, yellow } from '../styles/colors'
 import mediaQueries, { breakpoints } from '../styles/mediaQueries'
-import { appear } from '../styles/animations'
+import { appear, appearFrom, slideDownAnimation } from '../styles/animations'
 
 interface IChildProps {
   isOpen?: boolean
@@ -192,12 +192,8 @@ const Navigation: React.FC = () => {
 
 export default Navigation
 
-const hideOrShowToastBar = (isScrolled: boolean, height: number) => css`
-  transform: translateY(${isScrolled ? `-${height}px` : 0});
-`
-
 const MobileToastBar = styled(ToastBarComponent)`
-  max-height: 0;
+  ${appearFrom('top')}
 
   ${mediaQueries.from.breakpoint.L`
     display: none;
@@ -323,15 +319,17 @@ const ShadowBox = styled.div<IChildProps>`
     top: 0;
     left: 0;
     width: 100%;
-    transition: height 0.2s ease;
     z-index: 10;
 
-    ${(props: { isScrolled: boolean; toasterHeight: number }) =>
-      hideOrShowToastBar(props.isScrolled, props.toasterHeight)}
+    animation: ${(props: { toasterHeight: number }) =>
+      slideDownAnimation(props.toasterHeight)} 0.5s ease forwards;
 
-    ${(props: { isScrolled: boolean }) =>
+
+    ${(props: { isScrolled: boolean; toasterHeight: number }) =>
       props.isScrolled &&
       `
+      animation: none;
+      transform: translateY(${-1 * props.toasterHeight}px);
       box-shadow: 0 0 4px
         rgba(
           ${colors.darkest.channels.red},
@@ -436,6 +434,8 @@ const MobileLogo = styled(Link)`
 `
 
 const ContentPusher = styled.div<IChildProps>`
+  transition: height 0.5s ease;
+
   ${mediaQueries.from.breakpoint.L`
     height: ${(props: { toasterHeight: number }) =>
       props.toasterHeight + 136}px;

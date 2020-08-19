@@ -68,6 +68,16 @@ const appear = css`
   animation: ${appearAnimation} 0.5s 0.2s ease forwards;
 `
 
+const slideDownAnimation = (value: number) => keyframes`
+ 0% {
+  transform: translateY(${-1 * value}px)
+ }
+
+ 100% {
+  transform: translateY(0)
+ }
+`
+
 // Main Content
 const mainLoadAnimation = keyframes`
   100% {
@@ -85,6 +95,9 @@ const mainLoaded = css`
 
 // CookieMessage and ToastBar
 const appearFromKeyframe = keyframes`
+  90% {
+    max-height: 100px;
+  }
   100% {
     opacity: 1;
     max-height: 500px;
@@ -96,6 +109,7 @@ type AppearFrom = 'top' | 'bottom'
 
 const appearFrom = (from: AppearFrom) => css`
   opacity: 0;
+  max-height: 0;
   transform: ${from === 'top' ? 'translateY(-100%)' : 'translateY(100%)'};
   animation: ${appearFromKeyframe} 0.5s 0.5s ease forwards;
 `
@@ -158,6 +172,7 @@ export {
   underline,
   appear,
   mainLoaded,
+  slideDownAnimation,
   appearFrom,
   jump,
   lineExtension,

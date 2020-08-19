@@ -12,7 +12,8 @@ import IconComponent from './icons/icon'
 // Styles
 import { green, white } from '../styles/colors'
 import mediaQueries from '../styles/mediaQueries'
-import { appearFrom } from '../styles/animations'
+import { underline } from '../styles/animations'
+import { plainSubtle } from '../styles/textStyles'
 
 // Types
 import { IToastBar } from '../types/entities'
@@ -57,7 +58,7 @@ const ToastBar = forwardRef<HTMLElement, IProps>(
           <ContentWrapper>
             <Message>{message}</Message>
             <Link to={link.url}>
-              <Span onClick={handleDiscard}>{link.label}</Span>
+              <Span>{link.label}</Span>
             </Link>
           </ContentWrapper>
           <Icon icon="close" onClick={handleDiscard} color={white} />
@@ -73,7 +74,6 @@ const Container = styled.aside`
   background-color: ${green};
   z-index: 11;
   position: relative;
-  ${appearFrom('top')}
 `
 
 const Wrapper = styled.div`
@@ -83,6 +83,10 @@ const Wrapper = styled.div`
   color: ${white};
   max-width: 1920px;
   margin: 0 auto;
+
+  ${mediaQueries.from.breakpoint.M`
+    align-items: center;
+  `}
 
   ${mediaQueries.from.breakpoint.L`
     padding: 8px 24px;
@@ -99,18 +103,39 @@ const ContentWrapper = styled.div`
 `
 
 const Message = styled.p`
+  ${plainSubtle}
   display: inline;
   margin: 0;
   margin-right: 16px;
+
+  ${mediaQueries.from.breakpoint.L`
+    margin-right: 32px;
+  `}
 `
 
 const Link = styled(GatsbyLink)`
+  ${underline}
   display: inline;
   color: ${white};
-  text-decoration: underline;
+
+  :before,
+  :after {
+    background: ${white};
+  }
+
+  :hover {
+    color: ${white};
+
+    :before,
+    :after {
+      background: ${white};
+    }
+  }
 `
 
-const Span = styled.span``
+const Span = styled.span`
+  ${plainSubtle}
+`
 
 const Icon = styled(IconComponent)`
   flex: 0 0 24px;
