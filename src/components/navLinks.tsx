@@ -28,7 +28,11 @@ const NavLinks: React.FC<IProps> = ({ items, subtle }) => (
       </ListItem>
     ))}
     <ListItem>
-      <External href={`https://jungleminds.com`} rel="noopener noreferrer">
+      <External
+        href={`https://jungleminds.com`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Label>Login</Label>
         <Icon icon="external" width={24} height={24} />
       </External>
