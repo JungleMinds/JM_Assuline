@@ -201,6 +201,8 @@ const MobileToastBar = styled(ToastBarComponent)`
 `
 
 const ScreenLayer = styled.div<IChildProps>`
+  /* fallback for the browser which doesn't support sticky */
+  position: fixed;
   position: sticky;
   top: 0;
   left: 0;
@@ -247,6 +249,7 @@ const HideOverflowX = styled.div`
   height: 100vh;
   overflow-x: hidden;
   pointer-events: none;
+  z-index: 10;
 
   ${mediaQueries.from.breakpoint.L`
     display: none;
@@ -259,6 +262,8 @@ const MobileNavBackground = styled.div<IChildProps>`
   top: ${({ isOpen }) => (isOpen ? '-182px' : '16px')};
   left: ${({ isOpen }) => (isOpen ? '-200px' : 'calc(100% - 72px)')};
   border-radius: 50%;
+  /* fallback for browsers which max() isn't supported */
+  ${({ isOpen }) => isOpen && `width: 680px; height: 680px;`}
   width: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
   height: ${({ isOpen }) => (isOpen ? 'max(100vw + 342px, 680px)' : '56px')};
   box-shadow: 0 4px 16px
@@ -275,12 +280,30 @@ const MobileNavBackground = styled.div<IChildProps>`
     top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-282px' : '24px')};
     left: ${(props: { isOpen: boolean }) =>
       props.isOpen ? '-200px' : 'calc(100% - 76px)'};
+
+    /* fallback for browsers which max() isn't supported */
+    ${(props: { isOpen: boolean }) =>
+      props.isOpen && `width: 980px; height: 880px;`}
+    /* duplicate style because of non-supporting browsers */
+    width: ${(props: { isOpen: boolean }) =>
+      props.isOpen ? 'max(100vw + 342px, 680px)' : '56px'};
+    height: ${(props: { isOpen: boolean }) =>
+      props.isOpen ? 'max(100vw + 342px, 680px)' : '56px'};
   `}
 
   ${mediaQueries.from.breakpoint.M`
     top: ${(props: { isOpen: boolean }) => (props.isOpen ? '-587px' : '24px')};
     left: ${(props: { isOpen: boolean }) =>
       props.isOpen ? '-320px' : 'calc(100% - 76px)'};
+
+    /* fallback for browsers which max() isn't supported */
+    ${(props: { isOpen: boolean }) =>
+      props.isOpen && `width: 1300px; height: 1080px;`}
+    /* duplicate style because of non-supporting browsers */
+    width: ${(props: { isOpen: boolean }) =>
+      props.isOpen ? 'max(100vw + 342px, 680px)' : '56px'};
+    height: ${(props: { isOpen: boolean }) =>
+      props.isOpen ? 'max(100vw + 342px, 680px)' : '56px'};
   `}
 
   ${mediaQueries.from.breakpoint.L`
