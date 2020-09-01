@@ -180,7 +180,7 @@ const Container = styled.div`
 `
 
 const ImageContainer = styled.div`
-  ${aspectRatio(288, 208)}
+  ${aspectRatio(288, 219)}
   margin: 0;
 `
 
