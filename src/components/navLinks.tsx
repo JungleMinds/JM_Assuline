@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link as LinkComponent } from 'gatsby'
 
 // Components
-import IconComponent from './icons/icon'
+// import IconComponent from './icons/icon'
 
 // Styles
 import * as textStyles from '../styles/textStyles'
@@ -27,7 +27,7 @@ const NavLinks: React.FC<IProps> = ({ items, subtle }) => (
         </Link>
       </ListItem>
     ))}
-    <ListItem>
+    {/* <ListItem>
       <External
         href={`https://jungleminds.com`}
         target="_blank"
@@ -36,7 +36,7 @@ const NavLinks: React.FC<IProps> = ({ items, subtle }) => (
         <Label>Login</Label>
         <Icon icon="external" width={24} height={24} />
       </External>
-    </ListItem>
+    </ListItem> */}
   </List>
 )
 
@@ -66,18 +66,26 @@ const List = styled.ul<{ subtle?: boolean }>`
 const ListItem = styled.li<{ subtle?: boolean }>`
   margin-bottom: 24px;
 
-  &:nth-last-child(2) {
-    margin-bottom: 22px;
-  }
-
   ${mediaQueries.from.breakpoint.L`
     margin-bottom: 0;
-
-    &:nth-last-child(2) {
-      margin-bottom: 0;
-    }
   `}
 `
+
+// const ListItem = styled.li<{ subtle?: boolean }>`
+//   margin-bottom: 24px;
+
+//   &:nth-last-child(2) {
+//     margin-bottom: 22px;
+//   }
+
+//   ${mediaQueries.from.breakpoint.L`
+//     margin-bottom: 0;
+
+//     &:nth-last-child(2) {
+//       margin-bottom: 0;
+//     }
+//   `}
+// `
 
 const Link = styled(LinkComponent)`
   position: relative;
@@ -138,14 +146,14 @@ const Link = styled(LinkComponent)`
   `}
 `
 
-const External = styled.a`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-`
+// const External = styled.a`
+//   display: flex;
+//   align-items: center;
+//   text-decoration: none;
+// `
 
 const Label = styled.span``
 
-const Icon = styled(IconComponent)`
-  margin-left: 8px;
-`
+// const Icon = styled(IconComponent)`
+//   margin-left: 8px;
+// `

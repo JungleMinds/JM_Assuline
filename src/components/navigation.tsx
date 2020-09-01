@@ -427,7 +427,8 @@ const NavContainer = styled.nav<IChildProps>`
 
   ${mediaQueries.from.breakpoint.L`
     display: inline-block;
-    width: 50%;
+    /* if login link is visible, set width to 50% */
+    width: 40%;
     margin-left: 32px;
     padding-top: ${(props: { isScrolled: boolean }) =>
       props.isScrolled ? '22px' : '44px'};
