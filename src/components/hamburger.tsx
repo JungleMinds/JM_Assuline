@@ -40,7 +40,7 @@ const Button = styled.button<IProps>`
   pointer-events: auto;
   ${appear}
 
-  :focus {
+  &:focus {
     outline: none;
   }
 

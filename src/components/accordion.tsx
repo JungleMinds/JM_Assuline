@@ -120,7 +120,7 @@ const LabelWrapper = styled.div<{ isOpen: boolean }>`
   align-items: center;
   ${props => props.isOpen && 'margin-bottom: 8px;'}
 
-  :hover {
+  &:hover {
     ${IconContainer} {
       background: ${yellowDark};
     }
