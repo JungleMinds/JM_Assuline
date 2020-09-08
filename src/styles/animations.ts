@@ -2,13 +2,13 @@ import { css, keyframes } from 'styled-components'
 
 // Styles
 import { dark, green } from './colors'
-import mediaQueries from './mediaQueries'
 
 // Types
 import { Iteration } from '../types/entities'
 
 const underline = css`
   position: relative;
+  display: inline-block;
 
   &::before,
   &::after {
@@ -22,12 +22,6 @@ const underline = css`
     background: ${dark};
     transition: transform 1.1s cubic-bezier(0.19, 1, 0.22, 1);
   }
-
-  ${mediaQueries.to.breakpoint.M`
-    &::before {
-      content: none;
-    }
-  `}
 
   &::before {
     transform: scaleX(0);
