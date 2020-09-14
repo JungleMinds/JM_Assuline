@@ -20,7 +20,11 @@ const Footer: React.FC = () => {
   const queryData = useStaticQuery(graphql`
     query ContentQuery {
       allPrismicContentPage(
-        filter: { url: { in: ["/privacy-statement", "/disclaimer"] } }
+        filter: {
+          url: {
+            in: ["/informatie/privacy-statement/", "/informatie/disclaimer/"]
+          }
+        }
       ) {
         edges {
           node {
