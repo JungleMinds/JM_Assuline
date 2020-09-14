@@ -1,44 +1,50 @@
-const sgMail = require('@sendgrid/mail')
+const client = require('@sendgrid/mail')
 
-export function handler(event, _, callback) {
-  const { SENDGRID_API_KEY, ASSULINE_EMAIL } = process.env
-  const values = JSON.parse(event.body)
-
-  sgMail.setApiKey(SENDGRID_API_KEY)
-  const msg = {
-    personalizations: [
-      {
-        to: [{ email: ASSULINE_EMAIL }],
-      },
-    ],
-    from: { email: values.email, name: values.name },
-    subject: `Contactaanvraag van (potentiële) klant`,
-    content: [
-      {
-        type: 'text/plain',
-        value: `Onderstaande (potentiële) klant heeft het contactformulier op de website ingevuld en wil graag benaderd worden:\n\n
+function sendEmail(client, values, receiver) {
+  return new Promise((fullfill, reject) => {
+    const data = {
+      personalizations: [
+        {
+          to: [{ email: receiver }],
+        },
+      ],
+      from: { email: receiver, name: 'Contact formulier assuline.nl' },
+      subject: `Contactaanvraag van (potentiële) klant`,
+      content: [
+        {
+          type: 'text/plain',
+          value: `Onderstaande (potentiële) klant heeft het contactformulier op de website ingevuld en wil graag benaderd worden:\n\n
 E-mailadres: ${values.email}\r
 Naam: ${values.name || 'Dit veld is door de aanvrager niet ingevuld'}\r
 Telefoonnummer: ${values.phone ||
-          'Dit veld is door de aanvrager niet ingevuld'}`,
-      },
-    ],
-  }
-  //ES6
-  sgMail
-    .send(msg)
-    .then(response => {
-      console.log('EMAIL FROM: ', values.email)
-      callback(null, {
-        // return null to show no errors
-        statusCode: response.statusCode,
-        body: JSON.stringify({
-          status: response.statusCode,
-        }),
+            'Dit veld is door de aanvrager niet ingevuld'}`,
+        },
+      ],
+    }
+
+    client
+      .send(data)
+      .then(response => {
+        fullfill(response)
       })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
+
+exports.handler = function(event, context, callback) {
+  const { SENDGRID_API_KEY, ASSULINE_EMAIL } = process.env
+  const values = JSON.parse(event.body)
+
+  client.setApiKey(SENDGRID_API_KEY)
+  sendEmail(client, values, ASSULINE_EMAIL)
+    .then(response => {
+      console.log('Successfully sent mail')
+      callback(null, { statusCode: response.statusCode })
     })
-    .catch(error => {
-      console.log('ERROR: ', JSON.stringify(error))
-      callback(error, null)
+    .catch(err => {
+      console.log('Failed to send mail')
+      callback(err, null)
     })
 }
