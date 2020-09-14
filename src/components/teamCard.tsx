@@ -36,10 +36,12 @@ const TeamCard: React.FC<IProps> = ({
       </ImageContainer>
       <Name>{name}</Name>
       <Address>
-        <Contact href={`tel:${phone}`}>
-          <Icon icon="phone" />
-          <Label>{modifyPhone(phone)}</Label>
-        </Contact>
+        {phone && (
+          <Contact href={`tel:${phone}`}>
+            <Icon icon="phone" />
+            <Label>{modifyPhone(phone)}</Label>
+          </Contact>
+        )}
         <Contact href={`mailto:${email}`}>
           <Icon icon="mail" />
           <Label>{email}</Label>

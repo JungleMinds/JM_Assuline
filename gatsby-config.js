@@ -94,7 +94,22 @@ module.exports = {
         // Fields with rich text formatting or links to internal content use this
         // function to generate the correct link URL.
         // See: https://prismic.io/docs/javascript/query-the-api/link-resolving
-        linkResolver: ({ node }) => () => `/${node.uid}`,
+        linkResolver: ({ node }) => () => {
+          if (node.uid) {
+            // Internal links
+            if (node.type === 'content_page') {
+              return `/informatie/${node.uid}/`
+            } else if (node.type === 'home_page') {
+              return `/`
+            } else {
+              return `/${node.uid}/`
+            }
+          } else {
+            // External links
+            return `${node.url}`
+          }
+          // return `/${node.uid !== 'home' &&}`
+        },
 
         // Provide an object of Prismic custom type JSON schemas to load into
         // Gatsby. This is required.

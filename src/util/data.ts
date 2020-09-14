@@ -194,7 +194,6 @@ const handleIntroData = (data: any) => ({
 // Components: For Who
 const handleForWhoData = (data: any) => ({
   type: 'forWho',
-  image: data.primary.forwho_image.url,
   business: {
     title: data.primary.forwho_business_title.text,
     paragraph: data.primary.forwho_business_description,
@@ -311,7 +310,7 @@ const handleTeamData = (data: any) => ({
   type: 'team',
   data: data.items.map((item: any) => ({
     name: item.team_item_name.text,
-    phone: item.team_item_phone,
+    phone: item.team_item_phone || undefined,
     email: item.team_item_email,
     image: item.team_item_image.url,
   })),
@@ -350,11 +349,11 @@ export const linkResolver = (link: any) => {
   if (link.uid) {
     // Internal links
     if (link.type === 'content_page') {
-      return `${INFO_PAGE_PATH}/${link.uid}`
+      return `${INFO_PAGE_PATH}/${link.uid}/`
     } else if (link.type === 'home_page') {
       return `/`
     } else {
-      return `/${link.uid}`
+      return `/${link.uid}/`
     }
   } else {
     // External links
