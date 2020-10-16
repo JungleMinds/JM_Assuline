@@ -10,7 +10,7 @@ import IconComponent from './icons/icon'
 // Styles
 import { white, green } from '../styles/colors'
 import * as textStyles from '../styles/textStyles'
-import aspectRation from '../styles/aspectRatio'
+import aspectRatio from '../styles/aspectRatio'
 import mediaQueries from '../styles/mediaQueries'
 
 // Types
@@ -83,20 +83,20 @@ const Wrapper = styled.div`
 `
 
 const PictogramWrapper = styled.div`
-  ${aspectRation(224, 78)}
+  ${aspectRatio(224, 78)}
   margin-bottom: 32px;
   width: 224px;
   flex: 0 0 78px;
 
   ${mediaQueries.from.breakpoint.M`
-    ${aspectRation(312, 106)}
+    ${aspectRatio(312, 106)}
     margin-bottom: 40px;
     width: 312px;
     flex: 0 0 106px;
   `}
 
   ${mediaQueries.from.breakpoint.XL`
-    ${aspectRation(232, 106)}
+    ${aspectRatio(232, 106)}
     margin-bottom: 0;
     margin-right: 104px;
     flex: 0 0 232px;

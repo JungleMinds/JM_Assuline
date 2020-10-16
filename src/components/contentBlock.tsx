@@ -56,10 +56,6 @@ const Content = styled.div`
 
   p {
     margin-bottom: 28px;
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 
   ${mediaQueries.from.breakpoint.XL`

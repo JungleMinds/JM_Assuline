@@ -25,4 +25,18 @@ const Wrapper = styled.div`
   > p {
     margin: 0;
   }
+
+  > ul,
+  > ol {
+    padding-left: 20px;
+    margin-bottom: 40px;
+
+    li {
+      margin-bottom: 24px;
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
 `

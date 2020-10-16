@@ -141,6 +141,28 @@ export const pageQuery = graphql`
               form_buttonlabel
             }
           }
+          ... on PrismicHomePageBodyCallToActionBanner {
+            __typename
+            primary {
+              banner_title {
+                text
+              }
+              banner_button_label
+              banner_button_link {
+                url
+                type
+                slug
+                uid
+              }
+              banner_download_label
+              banner_download_link {
+                url
+                type
+                slug
+                uid
+              }
+            }
+          }
         }
       }
     }

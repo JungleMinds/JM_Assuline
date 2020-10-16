@@ -125,6 +125,9 @@ const generateDataObjectForComponent = (component: any) => {
   if (component.__typename.endsWith('ContentBlock')) {
     return handleContentBlockData(component)
   }
+  if (component.__typename.endsWith('DownloadsBlock')) {
+    return handleDownloadsBlockData(component)
+  }
 }
 
 // Components: Services
@@ -341,6 +344,25 @@ const handleContentBlockData = (data: any) => ({
           url: linkResolver(data.primary.content_block_button_link),
         }
       : undefined,
+})
+// Components: DownloadsBlock
+const handleDownloadsBlockData = (data: any) => ({
+  type: 'downloadsBlock',
+  title: data.primary.downloads_block_title.text,
+  button:
+    data.primary.downloads_block_button_link.url !== ''
+      ? {
+          label: data.primary.downloads_block_button_label,
+          url: linkResolver(data.primary.downloads_block_button_link),
+        }
+      : undefined,
+  items:
+    data.items.length > 0
+      ? data.items.map((item: any) => ({
+          label: item.downloads_block_download_label,
+          url: item.downloads_block_download_file.url,
+        }))
+      : [],
 })
 
 // Links

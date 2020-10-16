@@ -263,6 +263,48 @@
               }
             },
             "repeat": {}
+          },
+          "call_to_action_banner": {
+            "type": "Slice",
+            "fieldset": "Call To Action Banner",
+            "description": "Banner to take the user to the contact page, with a possible download.",
+            "icon": "forward",
+            "display": "list",
+            "non-repeat": {
+              "banner_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Title"
+                }
+              },
+              "banner_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button label"
+                }
+              },
+              "banner_button_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button link"
+                }
+              },
+              "banner_download_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Download label"
+                }
+              },
+              "banner_download_link": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Download link"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

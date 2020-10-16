@@ -16,13 +16,25 @@ import { green } from '../styles/colors'
 // Types
 import { INavLinkItem } from '../types/entities'
 
+const sortFooterLinks = (items: INavLinkItem[]): INavLinkItem[] => {
+  const footerLinkOrder = ['Privacy statement', 'Disclaimer', 'Downloads']
+  return items.sort(
+    (a: INavLinkItem, b: INavLinkItem) =>
+      footerLinkOrder.indexOf(a.label) - footerLinkOrder.indexOf(b.label)
+  )
+}
+
 const Footer: React.FC = () => {
   const queryData = useStaticQuery(graphql`
     query ContentQuery {
       allPrismicContentPage(
         filter: {
           url: {
-            in: ["/informatie/privacy-statement/", "/informatie/disclaimer/"]
+            in: [
+              "/informatie/privacy-statement/"
+              "/informatie/disclaimer/"
+              "/informatie/downloads/"
+            ]
           }
         }
       ) {
@@ -82,6 +94,11 @@ const Footer: React.FC = () => {
 
   const data = normalizeFooterData(queryData)
 
+  let sortedFooterLinks: INavLinkItem[] = []
+  if (data.links) {
+    sortedFooterLinks = sortFooterLinks(data.links)
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -135,7 +152,7 @@ const Footer: React.FC = () => {
               &copy; Copyright Assuline BV {new Date().getFullYear()}
             </Copyright>
             <Statements>
-              {data.links.map((link: INavLinkItem) => (
+              {sortedFooterLinks.map((link: INavLinkItem) => (
                 <StyledLink key={link.label} to={link.url}>
                   {link.label}
                 </StyledLink>
@@ -299,19 +316,16 @@ const BottomTexts = styled.div`
   flex-direction: column;
   ${textStyles.plainSubtle}
 
-  ${mediaQueries.from.breakpoint.M`
-    flex-direction: row;
-    justify-content: space-between;
-  `}
-
   ${mediaQueries.from.breakpoint.L`
-    width: 50%;
-    justify-content: start;
+  flex-direction: row;
+  justify-content: start;
+  justify-content: space-between;
   `}
 `
 
 const Copyright = styled.span`
   margin: 24px 0;
+  flex-shrink: 0;
 
   ${mediaQueries.from.breakpoint.M`
     margin: 0;
@@ -320,10 +334,9 @@ const Copyright = styled.span`
 `
 
 const Statements = styled(InnerWrapper)`
-  flex-direction: row;
+  flex-flow: row wrap;
 
   ${mediaQueries.from.breakpoint.L`
-    width: 50%;
     justify-content: start;
   `}
 `
@@ -331,6 +344,7 @@ const Statements = styled(InnerWrapper)`
 const StyledLink = styled(Link)`
   margin-right: 32px;
   margin-bottom: 32px;
+  flex-shrink: 0;
 
   :hover {
     text-decoration: underline;

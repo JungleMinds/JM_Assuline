@@ -18,6 +18,7 @@ import CrossLinks from './crossLinks'
 import Team from './teamMembers'
 import Location from './location'
 import ContentBlock from './contentBlock'
+import DownloadsBlock from './downloadsBlock'
 
 interface IProps {
   items: any
@@ -41,6 +42,7 @@ const Body: React.FC<IProps> = ({ items }) => {
     team: Team,
     location: Location,
     contentBlock: ContentBlock,
+    downloadsBlock: DownloadsBlock,
   }
 
   return (

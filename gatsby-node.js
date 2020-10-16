@@ -58,6 +58,30 @@ exports.createPages = async ({ graphql, actions }) => {
                     }
                   }
                 }
+                ... on PrismicContentPageBodyDownloadsBlock {
+                  __typename
+                  primary {
+                    downloads_block_title {
+                      text
+                    }
+                    downloads_block_button_label
+                    downloads_block_button_link {
+                      url
+                      type
+                      slug
+                      uid
+                    }
+                  }
+                  items {
+                    downloads_block_download_label
+                    downloads_block_download_file {
+                      url
+                      type
+                      slug
+                      uid
+                    }
+                  }
+                }
               }
             }
           }

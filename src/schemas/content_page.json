@@ -34,7 +34,8 @@
       "fieldset": "Slice zone",
       "config": {
         "labels": {
-          "content_block": []
+          "content_block": [],
+          "downloads_block": []
         },
         "choices": {
           "image": {
@@ -90,7 +91,7 @@
               "content_block_content": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "strong, hyperlink",
+                  "multi": "strong, hyperlink, list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Content"
                 }
@@ -110,6 +111,50 @@
               }
             },
             "repeat": {}
+          },
+          "downloads_block": {
+            "type": "Slice",
+            "fieldset": " Downloads Block",
+            "description": "Custom content block for downloads",
+            "icon": "file_download",
+            "display": "list",
+            "non-repeat": {
+              "downloads_block_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Downloads Title"
+                }
+              },
+              "downloads_block_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button label"
+                }
+              },
+              "downloads_block_button_link": {
+                "type": "Link",
+                "config": {
+                  "allowTargetBlank": true,
+                  "label": "Button link"
+                }
+              }
+            },
+            "repeat": {
+              "downloads_block_download_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Download label"
+                }
+              },
+              "downloads_block_download_file": {
+                "type": "Link",
+                "config": {
+                  "select": "media",
+                  "label": "Download file"
+                }
+              }
+            }
           }
         }
       }
