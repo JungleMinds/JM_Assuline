@@ -20,7 +20,12 @@ const Index = ({ data }: any) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO
+        title="Home"
+        description={
+          'Persoonlijk advies op maat. Voor uw hypotheek, particuliere of zakelijke verzekeringen en financiële planning.'
+        }
+      />
       <Header
         title={pageData && pageData.header.title}
         paragraph={pageData && pageData.header.intro}

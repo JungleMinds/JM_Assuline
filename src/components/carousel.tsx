@@ -4,7 +4,7 @@ import SliderComponent from 'react-slick'
 
 // Components
 import IconComponent from './icons/icon'
-import RichText from './richText'
+// import RichText from './richText'
 
 // Styles
 import 'slick-carousel/slick/slick.css'
@@ -96,9 +96,7 @@ const Carousel: React.FC<IProps> = ({ images, heading }) => {
           </div>
         ))}
       </Slider>
-      <Heading>
-        <RichText content={heading.raw} />
-      </Heading>
+      <Heading>{heading}</Heading>
     </Container>
   )
 }
@@ -198,6 +196,7 @@ const Heading = styled.h2`
 
   ${mediaQueries.from.breakpoint.M`
     width: calc(50% - 16px);
+    margin-top: -56px;
   `}
 
   ${mediaQueries.from.breakpoint.XL`

@@ -20,7 +20,12 @@ const Verzekeren = ({ data }: any) => {
 
   return (
     <Layout>
-      <SEO title="Verzekeren" />
+      <SEO
+        title="Verzekeren"
+        description={
+          'Goed verzekerd, zowel zakelijk als particulier. Totaalpakket aan verzekeringen. Snelle afwikkeling van schades. Zowel zakelijk als particulier'
+        }
+      />
       <Header
         title={pageData && pageData.header.title}
         usps={pageData && pageData.header.usps}

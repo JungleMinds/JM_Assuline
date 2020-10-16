@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // Components
 import ContainerComponent from './container'
 import ButtonComponent from './button'
-import RichTextComponent from './richText'
+import RichText from './richText'
 
 // Styles
 import aspectRatio, { aspectRatioChild } from '../styles/aspectRatio'
@@ -161,10 +161,6 @@ const Paragraph = styled.div`
   ${mediaQueries.from.breakpoint.L`
     margin-bottom: 40px;
   `}
-`
-
-const RichText = styled(RichTextComponent)`
-  margin-bottom: 24px;
 `
 
 const Button = styled(ButtonComponent)`

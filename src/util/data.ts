@@ -150,7 +150,7 @@ const handleServicesData = (data: any) => ({
 // Components: Carousel
 const handleCarouselData = (data: any) => ({
   type: 'carousel',
-  heading: data.primary.carousel_text,
+  heading: data.primary.carousel_text.raw[0].text,
   images: data.items.map((item: any) => item.carousel_image.url),
 })
 // Components: Image Banner

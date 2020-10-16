@@ -26,7 +26,7 @@ interface IButtonLabel {
   long: string
 }
 
-const COOKIE_PERIOD_IN_WEEKS = 1
+const COOKIE_PERIOD_IN_WEEKS = 12
 
 const CookieMessage: React.FC<IProps> = ({ title, message, buttonLabel }) => {
   const [visible, setVisible] = useState<boolean>(false)

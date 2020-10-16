@@ -20,7 +20,12 @@ const Team = ({ data }: any) => {
 
   return (
     <Layout>
-      <SEO title="Team" />
+      <SEO
+        title="Team"
+        description={
+          'Ontmoet het team van Assuline. Al 28 jaar geven wij advies op maat aan bedrijven en particulieren. Daarin vinden wij persoonlijk contact belangrijk. Niet iedere keer contact met een andere medewerker, maar een vaste adviseur die direct de juiste service kan bieden.'
+        }
+      />
       <Header
         title={pageData && pageData.header.title}
         paragraph={pageData && pageData.header.intro}

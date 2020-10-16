@@ -20,7 +20,12 @@ const Hypotheken = ({ data }: any) => {
 
   return (
     <Layout>
-      <SEO title="Hypotheken" />
+      <SEO
+        title="Hypotheken"
+        description={
+          'Persoonlijk en onafhankelijk hypotheekadvies. 100% onafhankelijk. Wij vergelijken meer dan 30 aanbieders. Vrijblijvend gratis eerste hypotheekgesprek'
+        }
+      />
       <Header
         title={pageData && pageData.header.title}
         usps={pageData && pageData.header.usps}

@@ -20,7 +20,10 @@ const Contact = ({ data }: any) => {
 
   return (
     <Layout>
-      <SEO title="Contact" />
+      <SEO
+        title="Contact"
+        description={'Heeft u een vraag of wilt u een afspraak maken?'}
+      />
       <Header
         title={pageData && pageData.header.title}
         paragraph={pageData && pageData.header.intro}
