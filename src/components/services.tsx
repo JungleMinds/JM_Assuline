@@ -154,6 +154,8 @@ const Title = styled.h1`
 `
 
 const Paragraph = styled.div`
+  margin-bottom: 16px;
+
   ${mediaQueries.from.breakpoint.S`
     margin-bottom: 32px;
   `}

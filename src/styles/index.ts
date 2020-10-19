@@ -23,6 +23,8 @@ const GlobalStyle = createGlobalStyle`
     ${fonts.settings}
     ${textStyles.plainNormal}
 
+    color: ${dark};
+
     @media all and (-ms-high-contrast:none) {
       overflow-x: hidden;
     }
