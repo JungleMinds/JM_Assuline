@@ -1,4 +1,5 @@
 require('./config/env')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = {
   siteMetadata: {
@@ -131,4 +132,16 @@ module.exports = {
     },
     `gatsby-plugin-robots-txt`,
   ],
+  // Local proxy for lambda functions to work in local development environment
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      createProxyMiddleware({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      })
+    )
+  },
 }
