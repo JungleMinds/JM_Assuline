@@ -51,16 +51,18 @@ const ContactForm: React.FC<IProps> = ({ title, label, visible }) => {
     values: IContactForm,
     { setSubmitting }: any
   ) => {
-    try {
-      setError(false)
-      await axios.post('/.netlify/functions/mail', JSON.stringify(values))
-      setSuccess(true)
-    } catch (error) {
-      setError(true)
-      console.error(error)
-    } finally {
-      setSubmitting(false)
-    }
+    axios
+      .post('/.netlify/functions/mail', {
+        ...values,
+      })
+      .then(() => {
+        setError(false)
+        setSuccess(true)
+        setSubmitting(false)
+      })
+      .catch(() => {
+        setError(true)
+      })
   }
 
   return visible ? (
