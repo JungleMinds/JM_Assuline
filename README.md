@@ -34,8 +34,9 @@ To test Nodemailer in your local environment:
 
 - open a new terimal tab
 - export NODE_ENV=production
-- export GMAIL_USER=email@gmail.com
-- export GMAIL_PASS=password
+- export HOTMAIL_USER=email@hotmail.com (this will be used to send emails)
+- export HOTMAIL_PASS=password
+- export ASSULINE_EMAIL=your@email.to.test (this will get the emails from form submit)
 - `yarn start:functions`
 
 ## 🧑‍💻 Contributors

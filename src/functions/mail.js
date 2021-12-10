@@ -1,21 +1,21 @@
 const nodemailer = require('nodemailer')
 
 exports.handler = function(event, context, callback) {
-  const { GMAIL_USER, GMAIL_PASS } = process.env
+  const { ASSULINE_EMAIL, HOTMAIL_USER, HOTMAIL_PASS } = process.env
 
   const values = JSON.parse(event.body)
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'hotmail',
     auth: {
-      user: GMAIL_USER,
-      pass: GMAIL_PASS,
+      user: HOTMAIL_USER,
+      pass: HOTMAIL_PASS,
     },
   })
 
   const mailOptions = {
-    from: `Assuline.nl <${GMAIL_USER}>`,
-    to: GMAIL_USER,
+    from: `Assuline.nl <${HOTMAIL_USER}>`,
+    to: ASSULINE_EMAIL,
     subject: `Contactaanvraag van (potentiële) klant`,
     text: `
       Onderstaande (potentiële) klant heeft het contactformulier op de website ingevuld en wil graag benaderd worden:\n\n
